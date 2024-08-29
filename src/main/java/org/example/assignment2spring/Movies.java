@@ -24,14 +24,13 @@ public class Movies {
     @NonNull
     private String url;
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "movies")
+    private List<Customer> customers = new ArrayList<>();
 
-    private List<User> users = new ArrayList<>();
-
-    public void addUsers(User u) {
-        this.users.add(u);
-        if (!u.getMovies().contains(this)) {
-            u.addMovies(this);
+    public void addUsers(Customer cust) {
+        this.customers.add(cust);
+        if (!cust.getMovies().contains(this)) {
+            cust.addMovie(this);
         }
-    }*/
+    }
 }
