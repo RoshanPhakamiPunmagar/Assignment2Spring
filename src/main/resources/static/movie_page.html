@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Data</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .movie {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .movie h2 {
+            margin: 0 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Movie Data</h1>
+<div id="movie-container"></div>
+
+<script>
+    async function getData() {
+        const url = "http://localhost:5050/movies";
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const movies = await response.json();
+            const movieContainer = document.getElementById("movie-container");
+
+            // Loop through the data and create HTML for each movie
+            movies.forEach(movie => {
+                const movieDiv = document.createElement("div");
+                movieDiv.className = "movie";
+                movieDiv.innerHTML = `
+                        <h2></h2>
+                        <iframe width="560" height="315" src=${movie.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    `;
+                movieContainer.appendChild(movieDiv);
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    window.onload = getData;
+</script>
+</body>
+</html>

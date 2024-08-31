@@ -1,9 +1,6 @@
 package org.example.assignment2spring;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -14,11 +11,11 @@ import java.util.List;
 
 @Entity
 @Data @NoArgsConstructor
-@RequiredArgsConstructor
+@RequiredArgsConstructor @Table
 public class Customer {
     @Id
     @GeneratedValue private Long id;
-    @NonNull private String name;
+    @NonNull   @Column(nullable = false) private String name;
 
     @ManyToMany
     private List<Movies> movies = new ArrayList<>();
@@ -26,7 +23,7 @@ public class Customer {
     public void addMovie(Movies movie) {
         this.movies.add(movie);
         if(!this.movies.contains(movie)){
-            movie.addUsers(this);
+            movie.addCustomer(this);
         }
     }
 

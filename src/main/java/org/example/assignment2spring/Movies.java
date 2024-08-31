@@ -12,22 +12,22 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor @Table
 public class Movies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NonNull    @Column(nullable = false)
     private String title;
 
-    @NonNull
+    @NonNull  @Column(nullable = false)
     private String url;
 
     @ManyToMany (mappedBy = "movies")
     private List<Customer> customers = new ArrayList<>();
 
-    public void addUsers(Customer cust) {
+    public void addCustomer(Customer cust) {
         this.customers.add(cust);
         if (!cust.getMovies().contains(this)) {
             cust.addMovie(this);
