@@ -26,19 +26,27 @@ public class Movies {
 
     private boolean isBlocked = false;
 
-    @ManyToMany (mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies")
     private List<Customer> customers = new ArrayList<>();
 
     public void addUsers(Customer cust) {
-        this.customers.add(cust);
-        if (!cust.getMovies().contains(this)) {
-            cust.addMovie(this);
+        if (!this.isBlocked && !cust.isBlocked()) {
+            this.customers.add(cust);
+            if (!cust.getMovies().contains(this)) {
+                cust.addMovie(this);
+            }
         }
     }
 
-    public void blockMovie(Movies movie) {
+    public void blockMovie() {
+        this.isBlocked = true;
+        // Optionally: Remove this movie from all customers
+        for (Customer customer : new ArrayList<>(this.customers)) {
+            customer.getMovies().remove(this);
+        }
     }
 
-    public void unblockMovie(Movies movie) {
+    public void unblockMovie() {
+        this.isBlocked = false;
     }
 }
