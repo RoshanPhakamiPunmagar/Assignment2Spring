@@ -54,14 +54,9 @@ class AppInit implements ApplicationRunner {
         customerRepository.save(user2);
 
         Customer user3 = new Customer();
-        user3.setName("Alice Johnson");
-        user3.setBlocked(true); // Example of a blocked user
+        user3.setName("Bob Brown");
+        user3.setBlocked(false);
         customerRepository.save(user3);
-
-        Customer user4 = new Customer();
-        user4.setName("Bob Brown");
-        user4.setBlocked(false);
-        customerRepository.save(user4);
 
         // Print the created entities
         System.out.println("Movies created: " + moviesRepository.findAll());
