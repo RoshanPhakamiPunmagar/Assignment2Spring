@@ -43,4 +43,5 @@ public class Customer {
     public void unblockUser() {
         this.isBlocked = false;
     }
+
 }

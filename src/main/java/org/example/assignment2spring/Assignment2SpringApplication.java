@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class Assignment2SpringApplication {
 
@@ -16,28 +18,53 @@ public class Assignment2SpringApplication {
     }
 
 }
+
 @Component
-@Data @Transactional
+@Data
+@Transactional
 class AppInit implements ApplicationRunner {
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        // Create and save movies
         Movies m = new Movies();
-        m.setTitle("herop");
+        m.setTitle("Herop");
         m.setUrl("https://www.youtube.com/watch?v=cE7vGF60cRA&pp=ygUNd3Vrb25nIHJldmlldw%3D%3D");
         moviesRepository.save(m); // Save and automatically generate ID
         movieController._update(m.getId(), m); // Use the generated ID for updating
 
         Movies m1 = new Movies();
-        m1.setTitle("Say it");
+        m1.setTitle("Say It");
         m1.setUrl("https://www.youtube.com/watch?v=F64yFFnZfkI");
         moviesRepository.save(m1); // Save and automatically generate ID
         movieController._update(m1.getId(), m1); // Use the generated ID for updating
 
+        // Create and save users
+        Customer user1 = new Customer();
+        user1.setName("John Doe");
+        user1.setBlocked(false);
+        customerRepository.save(user1);
+
+        Customer user2 = new Customer();
+        user2.setName("Jane Smith");
+        user2.setBlocked(false);
+        customerRepository.save(user2);
+
+        Customer user3 = new Customer();
+        user3.setName("Alice Johnson");
+        user3.setBlocked(true); // Example of a blocked user
+        customerRepository.save(user3);
+
+        Customer user4 = new Customer();
+        user4.setName("Bob Brown");
+        user4.setBlocked(false);
+        customerRepository.save(user4);
+
+        // Print the created entities
         System.out.println("Movies created: " + moviesRepository.findAll());
+        System.out.println("Users created: " + customerRepository.findAll());
     }
-
-
 }
