@@ -24,6 +24,8 @@ public class Movies {
     @NonNull
     private String url;
 
+    private boolean isBlocked = false;
+
     @ManyToMany (mappedBy = "movies")
     private List<Customer> customers = new ArrayList<>();
 
@@ -32,5 +34,11 @@ public class Movies {
         if (!cust.getMovies().contains(this)) {
             cust.addMovie(this);
         }
+    }
+
+    public void blockMovie(Movies movie) {
+    }
+
+    public void unblockMovie(Movies movie) {
     }
 }

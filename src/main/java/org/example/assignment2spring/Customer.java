@@ -13,21 +13,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data @NoArgsConstructor
+@Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue private Long id;
-    @NonNull private String name;
+    @GeneratedValue
+    private Long id;
+
+    @NonNull
+    private String name;
 
     @ManyToMany
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
-        this.movies.add(movie);
-        if(!this.movies.contains(movie)){
+        if (!this.movies.contains(movie)) {
+            this.movies.add(movie);
             movie.addUsers(this);
         }
     }
 
+    public void blockMovie(Movies movie) {
+        if (this.movies.contains(movie)) {
+            movie.blockMovie(movie); // block movie globally
+            this.movies.remove(movie); // remove it from the customer's list
+        }
+    }
+
+    public void unblockMovie(Movies movie) {
+        if (!this.movies.contains(movie)) {
+            movie.unblockMovie(movie); // unblock movie globally
+            this.movies.add(movie); // add it back to the customer's list
+        }
+    }
 }

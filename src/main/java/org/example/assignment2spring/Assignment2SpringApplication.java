@@ -1,5 +1,6 @@
 package org.example.assignment2spring;
 
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,7 +17,7 @@ public class Assignment2SpringApplication {
 
 }
 @Component
-@Data
+@Data @Transactional
 class AppInit implements ApplicationRunner {
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
@@ -37,4 +38,6 @@ class AppInit implements ApplicationRunner {
 
         System.out.println("Movies created: " + moviesRepository.findAll());
     }
+
+
 }
