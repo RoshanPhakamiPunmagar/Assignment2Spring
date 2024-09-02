@@ -1,37 +1,51 @@
 package org.example.assignment2spring;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller @Data
-@RequestMapping
-class MovieController {
+import java.util.List;
+
+@Controller
+@RequestMapping("/admin")
+public class MovieController {
     @Autowired
-    private final MoviesRepository moviesRepository;
+    private MoviesRepository moviesRepository;
 
-    @GetMapping("/movies/{id}")
-    public String _retrieve(@PathVariable Long id, Model model) {
-        Movies m = moviesRepository.findById(id).orElseThrow();
-        model.addAttribute("movie", m);
-    return "movie_page" ;   }
-
-    @PostMapping("/movies")
+    // Retrieve all non-blocked movies
+    @GetMapping("/movies")
     @ResponseBody
-    public String _create(@ModelAttribute Movies movies) {
-        moviesRepository.save(movies);
-        return "C<a href='/index.html'>Movie</a>";
+    public List<Movies> getAllNonBlockedMovies() {
+        return moviesRepository.findByIsBlockedFalse();
     }
 
-    @PutMapping("/movies")
+    // Retrieve a movie by ID
+    @GetMapping("/{id}")
     @ResponseBody
-    public String _update(@PathVariable Long id, @ModelAttribute Movies movies) {
-        Movies existingMovie = moviesRepository.findById(id).orElseThrow();
-        existingMovie.setTitle(movies.getTitle());
-        existingMovie.setUrl(movies.getUrl());
-        moviesRepository.save(existingMovie); // Save the updated movie
-        return "U<a href='/index.html'>Movie</a>";
+    public Movies getMovieById(@PathVariable Long id) {
+        return moviesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Movie not found"));
     }
+
+    // Create a new movie
+    @PostMapping
+    @ResponseBody
+    public String createMovie(@RequestBody Movies movie) {
+        moviesRepository.save(movie);
+        return "Movie created successfully";
+    }
+
+    // Update an existing movie
+    @PutMapping("/{id}")
+    @ResponseBody
+    public String _update(@PathVariable Long id, @RequestBody Movies updatedMovie) {
+        Movies existingMovie = moviesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Movie not found"));
+        existingMovie.setTitle(updatedMovie.getTitle());
+        existingMovie.setUrl(updatedMovie.getUrl());
+        moviesRepository.save(existingMovie);
+        return "Movie updated successfully";
+    }
+
+
 }
