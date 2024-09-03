@@ -26,13 +26,13 @@ class AppInit implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Movies m = new Movies();
         m.setTitle("herop");
-        m.setUrl("https://www.youtube.com/watch?v=cE7vGF60cRA&pp=ygUNd3Vrb25nIHJldmlldw%3D%3D");
+        m.setUrl("https://www.youtube.com/embed/DhISPQFRnDU?si=aeEV0maPpDDrLweg");
         moviesRepository.save(m); // Save and automatically generate ID
         movieController.update(m.getId(), m); // Use the generated ID for updating
 
         Movies m1 = new Movies();
         m1.setTitle("Say it");
-        m1.setUrl("https://www.youtube.com/watch?v=F64yFFnZfkI");
+        m1.setUrl("https://www.youtube.com/embed/ymvjfu_Hm_8?si=ZjEqpm4gNljbRDBC");
         moviesRepository.save(m1); // Save and automatically generate ID
         movieController.update(m1.getId(), m1); // Use the generated ID for updating
 

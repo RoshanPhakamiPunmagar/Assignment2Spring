@@ -42,9 +42,8 @@
                 const movieDiv = document.createElement("div");
                 movieDiv.className = "movie";
                 movieDiv.innerHTML = `
-                        <h2></h2>
-                        <iframe width="560" height="315" src=${movie.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    `;
+                        <h2>${movie.title}</h2>
+<iframe width="560" height="315" src= ${movie.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                    `;
                 movieContainer.appendChild(movieDiv);
             });
         } catch (error) {
