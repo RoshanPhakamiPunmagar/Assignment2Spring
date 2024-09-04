@@ -19,13 +19,11 @@ class MovieController {
         this.movieService = movieService;
     }
 
-
     @GetMapping("/movies/{id}")
     public ResponseEntity<Movies> retrieve(@PathVariable Long id) {
         Optional<Movies> moviesOptional = movieService.fetchProductById(id);
 
     return moviesOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()) ;   }
-
 
     @GetMapping("/movies")
     public ResponseEntity<List<Movies>> retrieveAll(Model model) {
