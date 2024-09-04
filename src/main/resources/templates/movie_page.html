@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${movie.title}">Movie Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Data</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .movie {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .movie h2 {
+            margin: 0 0 10px 0;
+        }
+        .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${movie.title}">Movie Title</h1>
-<a th:href="${movie.url}">Watch Movie</a>
+<h1>Movie Data</h1>
+<div id="movie-container">
+    <div class="row">
+    <!-- Thymeleaf will loop through the movies list and render each movie -->
+    <div th:each="movie : ${movies}" class="movie">
+        <div class="col">
+        <h2 th:text="${movie.title}">Movie Title</h2>
+        <h3 th:text="${movie.description}">Movie Description</h3>
+        <iframe width="560" height="315" th:src="${movie.url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div> </div> </div>
+</div>
 </body>
 </html>
