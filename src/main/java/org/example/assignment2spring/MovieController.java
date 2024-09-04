@@ -32,7 +32,11 @@ class MovieController {
         List<Movies> m = movieService.getAllMovies();
         return ResponseEntity.ok(m);   }
 
-
+    @GetMapping("/allMovies")
+    public String getAllMovies(Model model) {
+        model.addAttribute("movies", movieService.getAllMovies());
+        return "movie_page";
+    }
 
     @PostMapping("/movies")
     @ResponseBody

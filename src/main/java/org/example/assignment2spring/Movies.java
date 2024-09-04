@@ -24,6 +24,9 @@ public class Movies {
     @NonNull  @Column(nullable = false)
     private String url;
 
+    @NonNull  @Column(nullable = false)
+    private String description;
+
     @ManyToMany (mappedBy = "movies")
     private List<Customer> customers = new ArrayList<>();
 
