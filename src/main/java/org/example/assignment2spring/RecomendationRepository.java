@@ -4,10 +4,12 @@
  */
 package org.example.assignment2spring;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author bruce
  */
-public class RecomendationRepository {
+public interface RecomendationRepository extends JpaRepository<Recomendation, Long> {
     
 }
