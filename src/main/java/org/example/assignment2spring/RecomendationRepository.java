@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author bruce
  */
-public interface RecomendationRepository extends JpaRepository<Recomendation, Long> {
+public interface RecomendationRepository extends JpaRepository<Recommendation, Long> {
     
 }

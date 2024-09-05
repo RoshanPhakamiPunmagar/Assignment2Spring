@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 
-public class Recomendation {
+public class Recommendation {
     @Id
     @GeneratedValue
     private Long id;

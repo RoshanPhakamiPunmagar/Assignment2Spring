@@ -10,7 +10,7 @@ interface RecommendationServiceInt {
  
 
     // Block a user by ID
-    Recomendation getRecomendation(Customer cust);
+    Recommendation getRecommendation(Customer cust);
 
   
    
@@ -21,7 +21,7 @@ public class RecommendationService implements RecommendationServiceInt
 {
 
     @Override
-    public Recomendation getRecommendation(Customer cust) {
+    public Recommendation getRecommendation(Customer cust) {
         // access customer databaase use information such as prefered genre then randomly select a moview from the list of movies with the matchig genre
         Recommendation recommendation = new Recommendation();
         recommendation.setCustomer(cust);
