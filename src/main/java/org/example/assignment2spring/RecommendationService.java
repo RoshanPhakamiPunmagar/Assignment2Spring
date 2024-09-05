@@ -3,6 +3,7 @@ package org.example.assignment2spring;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 interface RecommendationServiceInt {
@@ -11,7 +12,7 @@ interface RecommendationServiceInt {
 
     // Block a user by ID
     Recommendation getRecommendation(Customer cust);
-
+    List<Recommendation> getAllRecommendations();
   
    
 }
@@ -19,6 +20,8 @@ interface RecommendationServiceInt {
 @Service
 public class RecommendationService implements RecommendationServiceInt 
 {
+@Autowired
+private RecommendationRepository recommendationRepository;
 
     @Override
     public Recommendation getRecommendation(Customer cust) {
@@ -31,6 +34,11 @@ public class RecommendationService implements RecommendationServiceInt
         recommendation.setMovie(movie);
         
         return recommendation;
+    }
+
+    @Override
+    public List<Recommendation> getAllRecommendations() {
+        return recommendationRepository.findAll();
     }
     
 }

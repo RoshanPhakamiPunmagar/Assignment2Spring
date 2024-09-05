@@ -4,12 +4,15 @@
  */
 package org.example.assignment2spring;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
  *
  * @author bruce
  */
-public interface RecomendationRepository extends JpaRepository<Recommendation, Long> {
-    
+@RepositoryRestResource
+public interface RecommendationRepository extends JpaRepository<Recommendation, Long> {
+    List<Recommendation> findAll();
 }

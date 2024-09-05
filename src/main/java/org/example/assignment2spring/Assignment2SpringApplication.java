@@ -20,6 +20,10 @@ public class Assignment2SpringApplication {
 class AppInit implements ApplicationRunner {
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
+    private final RecommendationRepository recommendationRepository;
+    private final CustomerRepository customerRepository;
+    private final RecommendationController recomendationController;
+    
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -34,7 +38,17 @@ class AppInit implements ApplicationRunner {
         m1.setUrl("https://www.youtube.com/watch?v=F64yFFnZfkI");
         moviesRepository.save(m1); // Save and automatically generate ID
         movieController._update(m1.getId(), m1); // Use the generated ID for updating
-
+        
+        Customer cust = new Customer();
+       cust.setName("TestCust");
+        customerRepository.save(cust);
+       Recommendation testRecommendation = new Recommendation();
+       
+       testRecommendation.setCustomer(cust);
+       testRecommendation.setMovie(m1);
+        recommendationRepository.save(testRecommendation);
         System.out.println("Movies created: " + moviesRepository.findAll());
+                System.out.println("recomendations " + recommendationRepository.findAll());
+
     }
 }
