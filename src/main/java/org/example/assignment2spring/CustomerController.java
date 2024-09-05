@@ -2,6 +2,7 @@ package org.example.assignment2spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,36 +10,37 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 class CustomerController {
+
     @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
     private MoviesRepository moviesRepository;
 
-    // Block a user by ID
-    @PutMapping("/users/{id}/block")
-    @ResponseBody
-    public String blockUser(@PathVariable Long id) {
-        Customer user = customerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        user.blockUser(); // Block the user
-        customerRepository.save(user);
-        return "User has been blocked successfully";
+
+    @Autowired
+    private CustomerService customerService;
+
+
+    @GetMapping("/users")
+    public String getAllUsers(Model model) {
+        model.addAttribute("users", customerService.getAllUsers());
+        return "user";  // Refers to Thymeleaf template: admin_users.html
     }
 
-    // Unblock a user by ID
-    @PutMapping("/users/{id}/unblock")
-    @ResponseBody
-    public String unblockUser(@PathVariable Long id) {
-        Customer user = customerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        user.unblockUser(); // Unblock the user
-        customerRepository.save(user);
-        return "User has been unblocked successfully";
+    @PostMapping("/users/{id}/action")
+    public String handleUserAction(@PathVariable Long id, @RequestParam("action") String action) {
+        if ("block".equals(action)) {
+            customerService.blockUser(id);  // Block the user
+        } else if ("unblock".equals(action)) {
+            customerService.unblockUser(id);  // Unblock the user
+        }
+        return "redirect:/admin/users";  // Redirect back to the list of users
     }
+
 
     // Block a movie by ID
-    @PutMapping("/movies/{id}/block")
+    @PostMapping("/movies/{id}/block")
     @ResponseBody
     public String blockMovie(@PathVariable Long id) {
         Movies movie = moviesRepository.findById(id)
@@ -49,7 +51,7 @@ class CustomerController {
     }
 
     // Unblock a movie by ID
-    @PutMapping("/movies/{id}/unblock")
+    @PostMapping("/movies/{id}/unblock")
     @ResponseBody
     public String unblockMovie(@PathVariable Long id) {
         Movies movie = moviesRepository.findById(id)
@@ -64,12 +66,6 @@ class CustomerController {
     @ResponseBody
     public Customer createUser(@RequestBody Customer user) {
         return customerRepository.save(user); // Use the injected instance to save the user
-    }
-
-    @GetMapping("/users")
-    @ResponseBody
-    public List<Customer> getAllUsers() {
-        return customerRepository.findByIsBlockedFalse(); // Fetch only non-blocked users
     }
 
 }

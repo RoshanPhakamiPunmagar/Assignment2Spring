@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Block or Unblock Users</title>
+</head>
+<body>
+<h1>Admin - Block or Unblock Users</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through users -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.blocked ? 'Blocked' : 'Active'}"></td>
+        <td>
+            <!-- Block/Unblock form -->
+            <form th:action="@{/admin/users/{id}/action(id=${user.id})}" method="post">
+                <!-- Show Block button if the user is not blocked -->
+                <button type="submit" name="action" value="block" th:if="${!user.blocked}">Block</button>
+                <!-- Show Unblock button if the user is blocked -->
+                <button type="submit" name="action" value="unblock" th:if="${user.blocked}">Unblock</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
