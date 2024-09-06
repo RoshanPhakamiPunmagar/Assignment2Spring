@@ -23,42 +23,38 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author caleb
  */
-@RestController @Data @Service
+@RestController
+@Data
+@Service
 @RequestMapping
 public class RecommendationController {
+
     @Autowired
     private RecommendationService recommendationService;
-    
-   
-    
+
     @PostMapping("/recommendMovie")
-    public Recommendation recommend(@RequestBody Customer cust)
-    {
+    public Recommendation recommend(@RequestBody Customer cust) {
         return recommendationService.getRecommendation(cust);
     }
-    
+
     @GetMapping("/recommendMovie")
-    public ModelAndView recommend()
-    {
+    public ModelAndView recommend() {
         ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("recommended_movie.html");
-return modelAndView;
+        modelAndView.setViewName("recommended_movie.html");
+        return modelAndView;
     }
-    
-     @GetMapping("/recommendations")
-     public List<Recommendation> getAllRecommendations()
-     {
-         return recommendationService.getAllRecommendations();
-     }
-    
+
+    @GetMapping("/recommendations")
+    public List<Recommendation> getAllRecommendations() {
+        return recommendationService.getAllRecommendations();
+    }
+
     @GetMapping("/recommend/{id}")
-        public Recommendation recommendId(@PathVariable Long id)
-    {
+    public Recommendation recommendId(@PathVariable Long id) {
         Customer testCust = new Customer();
         testCust.setId(Long.parseLong(String.valueOf(1)));
         testCust.setName("Test");
         return recommendationService.getRecommendation(testCust);
     }
 
-    
 }
