@@ -1,4 +1,4 @@
-package org.example.assignment2spring;
+package org.example.assignment2spring.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

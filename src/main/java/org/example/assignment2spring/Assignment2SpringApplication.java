@@ -1,5 +1,13 @@
 package org.example.assignment2spring;
 
+import org.example.assignment2spring.controllers.RecommendationController;
+import org.example.assignment2spring.controllers.MovieController;
+import org.example.assignment2spring.entity.Customer;
+import org.example.assignment2spring.entity.Movies;
+import org.example.assignment2spring.entity.Recommendation;
+import org.example.assignment2spring.repos.RecommendationRepository;
+import org.example.assignment2spring.repos.MoviesRepository;
+import org.example.assignment2spring.repos.CustomerRepository;
 import lombok.Data;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

@@ -1,5 +1,7 @@
-package org.example.assignment2spring;
+package org.example.assignment2spring.controllers;
 
+import org.example.assignment2spring.entity.Movies;
+import org.example.assignment2spring.repos.MoviesRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller @Data
 @RequestMapping
-class MovieController {
+public class MovieController {
     @Autowired
     private final MoviesRepository moviesRepository;
 
