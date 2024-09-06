@@ -17,12 +17,12 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-
 @Entity
 @Data
 @NoArgsConstructor
 
 public class Recommendation {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -30,14 +30,14 @@ public class Recommendation {
     private Movies movie;
     @ManyToOne
     private Customer customer;
-    
-     public void addMovie(Movies movie) {
+
+    public void addMovie(Movies movie) {
         if (!this.movie.equals(movie)) {
             this.movie = movie;
         }
     }
-     
-     public void addCustomer(Customer cust) {
+
+    public void addCustomer(Customer cust) {
         if (!this.customer.equals(cust)) {
             this.customer = cust;
         }
