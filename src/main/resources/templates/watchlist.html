@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Data</title>
+    <title>Watchlist</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #000  ;
+            background-color: #000;
         }
         h1 {
             text-align: center;
@@ -61,36 +61,25 @@
     </style>
 </head>
 <body>
-<h1>Movie Data</h1>
-<div id="movie-container">
-    <!-- Thymeleaf will loop through the movies list and render each movie -->
-    <div th:each="movie : ${movies}" class="movie">
-        <div class="row">
-            <div class="column">
-                <h2 th:text="${movie.title}">Movie Title</h2>
-                <h3 th:text="${movie.description}">Movie Description</h3>
-                <form th:action="@{/movies/{id}/addWatchList(id=${movie.id})}" method="post">
-                    <button type="submit">Add to Watchlist</button>
-                </form>
-                <h3 th:text="${movie.isWatchList()}">Movie Description</h3>
+<h1>My Watchlist</h1>
+<div id="watchlist-container">
+    <!-- Loop through each WatchList and display its movies -->
+    <div th:each="wl : ${watchlist}" class="watchlist">
+        <h2>Watchlist ID: <span th:text="${wl.id}"></span></h2>
 
-            </div>
-            <div class="column">
-                <iframe width="560" height="315" th:src="${movie.url}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- Now, loop through each movie inside the watchlist -->
+        <div th:each="movie : ${wl.getMoveList()}">
+            <div class="row">
+                <div class="column">
+                    <h2 th:text="${movie.title}">Movie Title</h2>
+                    <h3 th:text="${movie.description}">Movie Description</h3>
+                </div>
+                <div class="column">
+                    <iframe width="560" height="315" th:src="${movie.url}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
-    <<form th:action="@{/watchlist}" method="get">
-    <button type="submit">Go to Watchlist</button>
-</form>
-
 </div>
-<script>
-function myFucntion(){
-
-
-}
-
-    </script>
 </body>
 </html>

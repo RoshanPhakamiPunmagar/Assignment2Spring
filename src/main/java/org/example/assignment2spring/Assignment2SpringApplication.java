@@ -38,12 +38,14 @@ class AppInit implements ApplicationRunner {
         moviesRepository.save(m1);
         movieController.update(m1.getId(), m1);
 
+
+
         Movies m2 = new Movies();
         m2.setTitle("The Conjuring");
         m2.setDescription("Rod and Carolyn find their pet dog dead under mysterious circumstances and experience a spirit that harms their daughter Andrea. They finally call investigators who can help them get out of the mess.");
         m2.setUrl("https://www.youtube.com/embed/JhMWopjJiI8?si=4iyYIe1xsWrDdaYG");
         moviesRepository.save(m2);
-        movieController.update(m2.getId(), m2);
+
 
         Movies m3 = new Movies();
         m3.setTitle("Say it");
