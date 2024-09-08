@@ -9,7 +9,7 @@ import java.util.Optional;
 public class MovieService {
     private final MoviesRepository moviesRepository;
     private final WatchListRepository watchListRepository;
-
+    private WatchList savedWatchList = new WatchList();
     public MovieService(MoviesRepository moviesRepository, WatchListRepository watchListRepository) {
         this.moviesRepository = moviesRepository;
         this.watchListRepository = watchListRepository;
@@ -45,7 +45,7 @@ public class MovieService {
 
 
 
-    public Optional<Movies> fetchProductById(Long id) {
+    public Optional<Movies> fetchMovieById(Long id) {
         try {
             return moviesRepository.findById(id);
         } catch (Exception e) {
@@ -54,19 +54,72 @@ public class MovieService {
         }
     }
 
-    public WatchList addWatchList(Long id) {
+
+    public WatchList addOrRemoveFromWatchList(Long id) {
+        try {
+            Optional<Movies> movie = moviesRepository.findById(id);
+
+            List<WatchList> watchLists = watchListRepository.findAll();
+
+
+            if (movie.isPresent()) {
+                long x = 0;
+
+                Movies movieToAdd = movie.get();
+                WatchList wl = new WatchList();
+                for(WatchList watchList : watchLists) {
+                    System.out.println(watchList.getId() + "X");
+                    System.out.println(id + "Xw");
+                    if(id == watchList.getMovieId()) {
+                        savedWatchList = watchList;
+
+                    }
+
+                }x = savedWatchList.getWatchListId();
+           if(movieToAdd.getWatchListStatus())
+                {
+
+                    movieToAdd.setIsWatchList();
+                    wl.removeMovie(movieToAdd);
+                    watchListRepository.deleteById(x);;
+                    System.out.println( x + "gotremoved");
+                    return null;
+                }
+                else{
+                    wl.addMovie(movieToAdd);
+                    movieToAdd.setIsWatchList();
+                    System.out.println(x + "gotaddded");
+                }
+                savedWatchList= watchListRepository.save(wl);;
+
+
+
+                return savedWatchList;
+            }
+            return null;
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to add watchlist product: " + e.getMessage());
+        }
+
+    }
+    //removes the movie from watchlist
+    public WatchList removeFromWatchList(Long id) {
         try {
             Optional<Movies> movie = moviesRepository.findById(id);
 
 
             if (movie.isPresent()) {
-                Movies movieToAdd = movie.get();
+                Movies movieToRemove = movie.get();
                 WatchList wl = new WatchList();
-                wl.addMovie(movieToAdd);
+                movieToRemove.setWatchList(false);
+                int x = Integer.parseInt(id.toString());
 
-                WatchList savedWatchList= watchListRepository.save(wl);
+                wl.getMoveList().remove(x);
 
-                return savedWatchList;
+                WatchList removeWatchList = watchListRepository.save(wl);
+
+                return removeWatchList;
             }
             return null;
         }

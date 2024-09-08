@@ -55,5 +55,14 @@ public class Movies {
             watchList.addMovie(this);
         }
     }
+
+    public void setIsWatchList() {
+        isWatchList = !isWatchList;
+    }
+
+
+    public boolean getWatchListStatus(){
+        return this.isWatchList;
+    }
 }
 

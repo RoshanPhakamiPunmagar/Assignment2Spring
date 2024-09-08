@@ -69,9 +69,17 @@
             <div class="column">
                 <h2 th:text="${movie.title}">Movie Title</h2>
                 <h3 th:text="${movie.description}">Movie Description</h3>
-                <form th:action="@{/movies/{id}/addWatchList(id=${movie.id})}" method="post">
-                    <button type="submit">Add to Watchlist</button>
+
+
+                <!-- Block/Unblock form -->
+                <form th:action="@{/movies/{id}/removeOrAddToWatchList(id=${movie.id})}" method="post">
+                    <!-- Dynamically change button text and value based on movie's watch list status -->
+                    <button type="submit" name="action"
+                            th:text="${movie.isWatchList() ? 'Remove from Watch List' : 'Add to Watch List'}"
+                            th:value="${movie.isWatchList() ? 'Remove' : 'Add'}"></button>
                 </form>
+
+
                 <h3 th:text="${movie.isWatchList()}">Movie Description</h3>
 
             </div>
@@ -86,11 +94,20 @@
 
 </div>
 <script>
-function myFucntion(){
+    document.addEventListener("DOMContentLoaded", function() {
+        // Iterate over each movie item to set the appropriate display styles
+        document.querySelectorAll('.movie').forEach(function(movieElement) {
+            var isInWatchlist = movieElement.querySelector('h3').textContent.trim() === 'true'; // Assumes that watchlist status is a boolean represented as text
 
-
-}
-
-    </script>
+            if (isInWatchlist) {
+                movieElement.querySelector(".remove").style.display = "block";
+                movieElement.querySelector(".add").style.display = "none";
+            } else {
+                movieElement.querySelector(".add").style.display = "block";
+                movieElement.querySelector(".remove").style.display = "none";
+            }
+        });
+    });
+</script>
 </body>
 </html>

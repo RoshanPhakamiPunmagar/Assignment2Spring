@@ -67,6 +67,7 @@ class AppInit implements ApplicationRunner {
         m5.setDescription("An actress notices dangerous changes in the behavior and physical make-up of her 12-year-old daughter. Meanwhile, a young priest begins to doubt his faith while dealing with his mother's sickness.");
         m5.setUrl("https://www.youtube.com/embed/bSxuXQCEC7M?si=aPw7kcVFWW-QwMER");
         moviesRepository.save(m5); // Save and automatically generate ID
+
         movieController.update(m5.getId(), m5);
 
         System.out.println("Movies created: " + moviesRepository.findAll());

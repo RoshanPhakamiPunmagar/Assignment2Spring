@@ -20,7 +20,7 @@ class MovieController {
 
     @GetMapping("/movies/{id}")
     public ResponseEntity<Movies> retrieve(@PathVariable Long id) {
-        Optional<Movies> moviesOptional = movieService.fetchProductById(id);
+        Optional<Movies> moviesOptional = movieService.fetchMovieById(id);
 
         return moviesOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()) ;   }
 
@@ -46,11 +46,12 @@ class MovieController {
         return updateProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()) ;
     }
 
-    @PostMapping("/movies/{id}/addWatchList")
-    public String addMovieToWatchList(@PathVariable Long id) {
-        movieService.addWatchList(id);  // Call your service method to add the movie to the watchlist
-        return "redirect:/allMovies"; // Redirect to movies page or another appropriate page
+    @PostMapping("/movies/{id}/removeOrAddToWatchList")
+    public String removeOrAddToWatchList(@PathVariable Long id) {
+        movieService.addOrRemoveFromWatchList(id);
+        return "redirect:/allMovies";
     }
+
 
     @GetMapping("/allMovies")
     public String getAllMovies(Model model) {
