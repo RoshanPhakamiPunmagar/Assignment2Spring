@@ -13,6 +13,9 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @Autowired
+    private MoviesRepository moviesRepository;
+
+    @Autowired
     private CustomerService customerService;
 
     // Display all users (blocked and non-blocked)
@@ -20,6 +23,13 @@ public class CustomerController {
     public String showAllUsers(Model model) {
         model.addAttribute("users", customerService.findAllUsers());
         return "user";  // This refers to the Thymeleaf template 'user.html'
+    }
+
+    // Retrieve all non-blocked movies
+    @GetMapping("/movies")
+    public String getAllNonBlockedMovies(Model model) {
+        model.addAttribute("movies", customerService.getAllNonBlockedMovies());
+        return "admin_movies";  // Refers to Thymeleaf template: admin_movies.html
     }
 
     // Handle blocking or unblocking users
@@ -39,4 +49,29 @@ public class CustomerController {
     public Customer createUser(@RequestBody Customer user) {
         return customerRepository.save(user); // Save the user and return the created entity
     }
+
+
+    // Handle blocking or unblocking movies
+    @PostMapping("/movies/{id}/action")
+    public String handleMovieAction(@PathVariable Long id, @RequestParam("action") String action) {
+        if ("block".equals(action)) {
+            customerService.blockMovie(id);  // Block the movie
+        } else if ("unblock".equals(action)) {
+            customerService.unblockMovie(id);  // Unblock the movie
+        }
+        return "redirect:/admin/movies";  // Redirect back to the list of movies
+    }
+
+
+
+    // Create a new movie
+    @PostMapping
+    @ResponseBody
+    public String createMovie(@RequestBody Movies movie) {
+        moviesRepository.save(movie);
+        return "Movie created successfully";
+    }
+
 }
+
+
