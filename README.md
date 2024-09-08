@@ -3,3 +3,5 @@ Week 1:
   Project Managenment and Spring planning: https://youtu.be/3iv4Izh13jw?feature=shared
   Conflict Managenment: https://youtu.be/WNdcGgtp4lc
   
+Week 2:
+https://youtu.be/DiMTwOm-ysc
