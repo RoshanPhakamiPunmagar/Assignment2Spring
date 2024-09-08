@@ -24,24 +24,23 @@ public class Customer {
     @NonNull
     private String name;
 
-    private boolean isBlocked = false;
+    private boolean blocked = false;  // Renamed field to 'blocked'
 
     @ManyToMany
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
-        if (!this.isBlocked && !movie.isBlocked() && !this.movies.contains(movie)) {
+        if (!this.blocked && !movie.isBlocked() && !this.movies.contains(movie)) {
             this.movies.add(movie);
             movie.addUsers(this);
         }
     }
 
     public void blockUser() {
-        this.isBlocked = true;
+        this.blocked = true;
     }
 
     public void unblockUser() {
-        this.isBlocked = false;
+        this.blocked = false;
     }
-
 }

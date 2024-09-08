@@ -5,29 +5,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/admin")
-class CustomerController {
+public class CustomerController {
 
     @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
-    private MoviesRepository moviesRepository;
-
-
-    @Autowired
     private CustomerService customerService;
 
-
+    // Display all users (blocked and non-blocked)
     @GetMapping("/users")
-    public String getAllUsers(Model model) {
-        model.addAttribute("users", customerService.getAllUsers());
-        return "user";  // Refers to Thymeleaf template: admin_users.html
+    public String showAllUsers(Model model) {
+        model.addAttribute("users", customerService.findAllUsers());
+        return "user";  // This refers to the Thymeleaf template 'user.html'
     }
 
+    // Handle blocking or unblocking users
     @PostMapping("/users/{id}/action")
     public String handleUserAction(@PathVariable Long id, @RequestParam("action") String action) {
         if ("block".equals(action)) {
@@ -38,34 +33,10 @@ class CustomerController {
         return "redirect:/admin/users";  // Redirect back to the list of users
     }
 
-
-    // Block a movie by ID
-    @PostMapping("/movies/{id}/block")
-    @ResponseBody
-    public String blockMovie(@PathVariable Long id) {
-        Movies movie = moviesRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Movie not found"));
-        movie.blockMovie(); // Block the movie
-        moviesRepository.save(movie);
-        return "Movie has been blocked successfully";
-    }
-
-    // Unblock a movie by ID
-    @PostMapping("/movies/{id}/unblock")
-    @ResponseBody
-    public String unblockMovie(@PathVariable Long id) {
-        Movies movie = moviesRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Movie not found"));
-        movie.unblockMovie(); // Unblock the movie
-        moviesRepository.save(movie);
-        return "Movie has been unblocked successfully";
-    }
-
-    // Create a new user
+    // Create a new user (using JSON data)
     @PostMapping("/create")
     @ResponseBody
     public Customer createUser(@RequestBody Customer user) {
-        return customerRepository.save(user); // Use the injected instance to save the user
+        return customerRepository.save(user); // Save the user and return the created entity
     }
-
 }

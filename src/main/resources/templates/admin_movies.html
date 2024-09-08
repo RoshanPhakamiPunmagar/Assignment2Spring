@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Admin - Manage Users</title>
+    <title>Admin - Manage Movies</title>
     <style>
         /* General Styles */
         body {
@@ -66,29 +66,29 @@
     </style>
 </head>
 <body>
-<h1>Admin - Manage Users</h1>
+<h1>Admin - Manage Movies</h1>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Title</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Loop through users -->
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.blocked ? 'Inactive' : 'Active'}"></td>
+    <!-- Loop through movies -->
+    <tr th:each="movie : ${movies}">
+        <td th:text="${movie.id}"></td>
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.blocked ? 'Blocked' : 'Active'}"></td> <!-- Status changes dynamically -->
         <td>
             <!-- Block/Unblock form -->
-            <form th:action="@{/admin/users/{id}/action(id=${user.id})}" method="post">
-                <!-- Dynamically change button text based on user's blocked status -->
-                <button type="submit" name="action" th:text="${user.blocked ? 'Unblock' : 'Block'}"
-                        th:value="${user.blocked ? 'unblock' : 'block'}"></button>
+            <form th:action="@{/admin/movies/{id}/action(id=${movie.id})}" method="post">
+                <!-- Dynamically change button text based on movie's blocked status -->
+                <button type="submit" name="action" th:text="${movie.blocked ? 'Unblock' : 'Block'}"
+                        th:value="${movie.blocked ? 'unblock' : 'block'}"></button>
             </form>
         </td>
     </tr>

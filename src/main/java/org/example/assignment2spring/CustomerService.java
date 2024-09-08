@@ -5,7 +5,7 @@ import java.util.List;
 public interface CustomerService {
 
     // Returns a list of all non-blocked users
-    List<Customer> getAllUsers();
+    List<Customer> findAllUsers();
 
     // Get user by their ID
     Customer getUserById(Long id);
@@ -16,6 +16,4 @@ public interface CustomerService {
     // Unblock a user by ID
     void unblockUser(Long id);
 
-    // Save or update a user
-    void saveUser(Customer user);
 }
