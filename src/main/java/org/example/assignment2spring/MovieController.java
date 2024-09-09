@@ -1,7 +1,6 @@
 package org.example.assignment2spring;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +18,12 @@ class MovieController {
         this.movieService = movieService;
     }
 
-
     @GetMapping("/movies/{id}")
     public ResponseEntity<Movies> retrieve(@PathVariable Long id) {
-        Optional<Movies> moviesOptional = movieService.fetchProductById(id);
+        Optional<Movies> moviesOptional = movieService.fetchMovieById(id);
 
-    return moviesOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()) ;   }
+        return moviesOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()) ;   }
+
 
 
     @GetMapping("/movies")
@@ -32,16 +31,11 @@ class MovieController {
         List<Movies> m = movieService.getAllMovies();
         return ResponseEntity.ok(m);   }
 
-    @GetMapping("/allMovies")
-    public String getAllMovies(Model model) {
-        model.addAttribute("movies", movieService.getAllMovies());
-        return "movie_page";
-    }
 
     @PostMapping("/movies")
     @ResponseBody
     public ResponseEntity<Movies> create(@RequestBody Movies movies) {
-       Movies savedMoveies= movieService.saveMovies(movies);
+        Movies savedMoveies= movieService.saveMovies(movies);
         return ResponseEntity.ok(savedMoveies);
     }
 
@@ -51,4 +45,30 @@ class MovieController {
         Optional<Movies> updateProduct = movieService.updateProduct(id, movies);
         return updateProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()) ;
     }
+
+    @PostMapping("/movies/{id}/removeOrAddToWatchList")
+    public String removeOrAddToWatchList(@PathVariable Long id) {
+        movieService.addOrRemoveFromWatchList(id);
+        return "redirect:/allMovies";
+    }
+
+
+    @GetMapping("/allMovies")
+    public String getAllMovies(Model model) {
+        model.addAttribute("movies", movieService.getAllMovies());
+        return "movie_page";
+    }
+
+    @GetMapping("/watchlist")
+    public String showWatchList(Model model) {
+        List<WatchList> watchLists = movieService.getAllWatchListMovies();  // Fetch the watchlists with movies
+        model.addAttribute("watchlist", watchLists);  // Pass the list of watchlists to the template
+        return "watchlist";  // Name of the Thymeleaf template
+    }
+
+/**
+    @RequestMapping(value="/addWatchList")
+    public void addWatchListMethod() {
+        addWatchList(m1.getId(),m1);
+    }**/
 }
