@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller @Data
-@RequestMapping
+@RequestMapping(name = "Assignment2Spring")
 class MovieController {
 
     private MovieService movieService;

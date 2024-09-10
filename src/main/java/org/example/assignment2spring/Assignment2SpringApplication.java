@@ -2,20 +2,30 @@ package org.example.assignment2spring;
 
 import jakarta.transaction.Transactional;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-@SpringBootApplication
+@SpringBootApplication @EnableDiscoveryClient
 public class Assignment2SpringApplication {
 
     public static void main(String[] args) {
+
+        //PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         SpringApplication.run(Assignment2SpringApplication.class, args);
+        //log.info("[ScreamerApplication][main] encoded password: "+passwordEncoder.encode("Pass@123"));
     }
 
 }
+
+
 @Component
 @Data @Transactional
 class AppInit implements ApplicationRunner {

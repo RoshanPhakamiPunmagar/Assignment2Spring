@@ -1,3 +1,4 @@
+/**
 package org.example.assignment2spring;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -21,3 +22,4 @@ interface MovieClient {
     @PutMapping(value ="/movies/{id}")
     Movies _update(@PathVariable Long id,Movies movies);
 }
+**/
