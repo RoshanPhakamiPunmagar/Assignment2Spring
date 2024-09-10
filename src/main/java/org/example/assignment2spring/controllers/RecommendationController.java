@@ -43,13 +43,14 @@ public class RecommendationController {
     }
 
     @GetMapping("/recommendMovie")
-    public ModelAndView recommend(@RequestParam(name="movie", required=false, defaultValue="Error No movie") String movie, ModelAndView model) {
-         model = new ModelAndView();
+    public ModelAndView recommendMovie(@RequestBody Customer cust) {
+        ModelAndView model = new ModelAndView();
         model.setViewName("recommended_movie.html");
-        
-        model.addObject("movie", "Test Movie");
-		return model;
-       
+        Recommendation recommendedMovie = recommendationService.getRecommendation(cust);
+        model.addObject("movieTitle", recommendedMovie.getMovie().getTitle());
+        model.addObject("movieUrl", recommendedMovie.getMovie().getUrl());
+        return model;
+
     }
 
     @GetMapping("/recommendations")
