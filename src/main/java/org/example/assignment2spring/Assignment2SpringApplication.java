@@ -26,13 +26,13 @@ public class Assignment2SpringApplication {
     public static void main(String[] args) {
         //SpringApplication.run(Assignment2SpringApplication.class, args);
         SpringApplicationBuilder eureka = new SpringApplicationBuilder(Assignment2SpringApplication.class);
-        eureka.properties("server.port=8761");
+        eureka.properties("server.port=8080");
         eureka.properties("eureka.client.register-with-eureka=false");
         eureka.properties("eureka.client.fetch-registry=false");
         eureka.run(args);
 
         SpringApplicationBuilder RecommendationService = new SpringApplicationBuilder(Assignment2SpringApplication.class);
-        RecommendationService.properties("server.port=9090");
+        RecommendationService.properties("server.port=8333");
         RecommendationService.properties("spring.application.name=recommendationcontroller");
         RecommendationService.run(args);
     }
