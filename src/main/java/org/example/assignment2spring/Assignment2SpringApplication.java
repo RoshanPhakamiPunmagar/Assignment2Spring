@@ -13,28 +13,38 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
+@EnableEurekaServer
 public class Assignment2SpringApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Assignment2SpringApplication.class, args);
+        //SpringApplication.run(Assignment2SpringApplication.class, args);
+        SpringApplicationBuilder eureka = new SpringApplicationBuilder(Assignment2SpringApplication.class);
+        eureka.properties("server.port=8761");
+        eureka.properties("eureka.client.register-with-eureka=false");
+        eureka.properties("eureka.client.fetch-registry=false");
+        eureka.run(args);
     }
 
 }
+
 @Component
 @Data
 class AppInit implements ApplicationRunner {
+
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
     private final RecommendationRepository recommendationRepository;
     private final CustomerRepository customerRepository;
     private final RecommendationController recomendationController;
-    
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         Movies m = new Movies();
         m.setTitle("herop");
         m.setUrl("https://www.youtube.com/watch?v=cE7vGF60cRA&pp=ygUNd3Vrb25nIHJldmlldw%3D%3D");
@@ -46,17 +56,17 @@ class AppInit implements ApplicationRunner {
         m1.setUrl("https://www.youtube.com/watch?v=F64yFFnZfkI");
         moviesRepository.save(m1); // Save and automatically generate ID
         movieController._update(m1.getId(), m1); // Use the generated ID for updating
-        
+
         Customer cust = new Customer();
-       cust.setName("TestCust");
+        cust.setName("TestCust");
         customerRepository.save(cust);
-       Recommendation testRecommendation = new Recommendation();
-       
-       testRecommendation.setCustomer(cust);
-       testRecommendation.setMovie(m1);
+        Recommendation testRecommendation = new Recommendation();
+
+        testRecommendation.setCustomer(cust);
+        testRecommendation.setMovie(m1);
         recommendationRepository.save(testRecommendation);
         System.out.println("Movies created: " + moviesRepository.findAll());
-                System.out.println("recomendations " + recommendationRepository.findAll());
+        System.out.println("recomendations " + recommendationRepository.findAll());
 
     }
 }
