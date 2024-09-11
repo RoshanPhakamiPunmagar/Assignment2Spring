@@ -14,11 +14,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
 @EnableEurekaServer
+@EnableDiscoveryClient
 public class Assignment2SpringApplication {
 
     public static void main(String[] args) {
@@ -28,6 +30,11 @@ public class Assignment2SpringApplication {
         eureka.properties("eureka.client.register-with-eureka=false");
         eureka.properties("eureka.client.fetch-registry=false");
         eureka.run(args);
+
+        SpringApplicationBuilder RecommendationService = new SpringApplicationBuilder(Assignment2SpringApplication.class);
+        RecommendationService.properties("server.port=9090");
+        RecommendationService.properties("spring.application.name=recommendationcontroller");
+        RecommendationService.run(args);
     }
 
 }
