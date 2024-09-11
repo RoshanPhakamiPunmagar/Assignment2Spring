@@ -43,7 +43,7 @@ public class CustomerController {
         return "redirect:/admin/users";  // Redirect back to the list of users
     }
 
-    // Create a new user (using JSON data)
+    // Create a new user using JSON Data
     @PostMapping("/create")
     @ResponseBody
     public Customer createUser(@RequestBody Customer user) {
@@ -62,10 +62,8 @@ public class CustomerController {
         return "redirect:/admin/movies";  // Redirect back to the list of movies
     }
 
-
-
     // Create a new movie
-    @PostMapping
+    @PostMapping("/create2")
     @ResponseBody
     public String createMovie(@RequestBody Movies movie) {
         moviesRepository.save(movie);

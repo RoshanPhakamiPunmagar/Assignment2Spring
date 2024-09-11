@@ -35,10 +35,12 @@ public class Movies {
     }
 
     public void blockMovie() {
+
         this.isBlocked = true;
     }
 
     public void unblockMovie() {
+
         this.isBlocked = false;
     }
 }
