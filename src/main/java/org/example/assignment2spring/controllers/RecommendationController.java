@@ -37,11 +37,13 @@ public class RecommendationController {
     @Autowired
     private RecommendationService recommendationService;
 
+    //recommend movie route, pass it a customer object and it will send back a recomendation based off customers information
     @PostMapping("/recommendMovie")
     public Recommendation recommend(@RequestBody Customer cust) {
         return recommendationService.getRecommendation(cust);
     }
 
+    //route that will display a web page with the recommended movie, pass a customer object.
     @GetMapping("/recommendMovie")
     public ModelAndView recommendMovie(@RequestBody Customer cust) {
         ModelAndView model = new ModelAndView();
@@ -53,11 +55,13 @@ public class RecommendationController {
 
     }
 
+    //lists all recommendations
     @GetMapping("/recommendations")
     public List<Recommendation> getAllRecommendations() {
         return recommendationService.getAllRecommendations();
     }
 
+    //takes a customer id and will return a recomendation object
     @GetMapping("/recommend/{id}")
     public Recommendation recommendId(@PathVariable Long id) {
         Customer testCust = new Customer();
