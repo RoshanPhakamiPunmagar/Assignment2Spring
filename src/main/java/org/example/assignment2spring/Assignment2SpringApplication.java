@@ -26,7 +26,7 @@ public class Assignment2SpringApplication {
     public static void main(String[] args) {
         //SpringApplication.run(Assignment2SpringApplication.class, args);
         SpringApplicationBuilder eureka = new SpringApplicationBuilder(Assignment2SpringApplication.class);
-        eureka.properties("server.port=8080");
+        eureka.properties("server.port=8761");
         eureka.properties("eureka.client.register-with-eureka=false");
         eureka.properties("eureka.client.fetch-registry=false");
         eureka.run(args);
