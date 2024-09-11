@@ -38,7 +38,7 @@ public class RecommendationController {
     private RecommendationService recommendationService;
 
     //recommend movie route, pass it a customer object and it will send back a recomendation based off customers information
-    @PostMapping("/recommendMovie")
+    @PostMapping("/getRecommendation")
     public Recommendation recommend(@RequestBody Customer cust) {
         return recommendationService.getRecommendation(cust);
     }
@@ -56,13 +56,13 @@ public class RecommendationController {
     }
 
     //lists all recommendations
-    @GetMapping("/recommendations")
+    @GetMapping("/getRecommendations")
     public List<Recommendation> getAllRecommendations() {
         return recommendationService.getAllRecommendations();
     }
 
     //takes a customer id and will return a recomendation object
-    @GetMapping("/recommend/{id}")
+    @GetMapping("/getRecommendation/{id}")
     public Recommendation recommendId(@PathVariable Long id) {
         Customer testCust = new Customer();
         testCust.setId(Long.parseLong(String.valueOf(1)));
