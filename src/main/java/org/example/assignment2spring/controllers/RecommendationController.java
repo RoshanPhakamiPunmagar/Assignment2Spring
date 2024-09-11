@@ -55,6 +55,22 @@ public class RecommendationController {
 
     }
 
+    @GetMapping("/recommendMovie/{id}")
+    public ModelAndView recommendMovie(@PathVariable Long id) {
+
+        Customer testCust = new Customer();
+        testCust.setId(Long.parseLong(String.valueOf(1)));
+        testCust.setName("Test");
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("recommended_movie.html");
+        Recommendation recommendedMovie = recommendationService.getRecommendation(testCust);
+        model.addObject("movieTitle", recommendedMovie.getMovie().getTitle());
+        model.addObject("movieUrl", recommendedMovie.getMovie().getUrl());
+        return model;
+
+    }
+
     //lists all recommendations
     @GetMapping("/getRecommendations")
     public List<Recommendation> getAllRecommendations() {
