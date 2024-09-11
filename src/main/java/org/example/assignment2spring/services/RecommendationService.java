@@ -30,7 +30,7 @@ public class RecommendationService implements RecommendationServiceInt {
         recommendation.setCustomer(cust);
         Movies movie = new Movies();
         movie.setTitle("Test movie");
-        movie.setUrl("www.youtube.com");
+        movie.setUrl("https://www.youtube.com/watch?v=RvP-FEVHapw");
         recommendation.setMovie(movie);
 
         return recommendation;
