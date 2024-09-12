@@ -10,21 +10,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data @NoArgsConstructor
-@RequiredArgsConstructor @Table
+
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue private Long id;
-    @NonNull   @Column(nullable = false) private String name;
+    @GeneratedValue
+    private Long id;
+
+    @NonNull
+    private String name;
+
+    private boolean blocked = false;  // Renamed field to 'blocked'
+
 
     @ManyToMany
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
+
+
         this.movies.add(movie);
         if(!this.movies.contains(movie)){
             movie.addCustomer(this);
+
         }
     }
 
+    public void blockUser() {
+        this.blocked = true;
+    }
+
+    public void unblockUser() {
+        this.blocked = false;
+    }
 }

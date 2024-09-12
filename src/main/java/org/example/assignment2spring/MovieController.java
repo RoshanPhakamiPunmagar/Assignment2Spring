@@ -1,7 +1,9 @@
 package org.example.assignment2spring;
 
+
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +34,6 @@ class MovieController {
         return ResponseEntity.ok(m);   }
 
 
-    @PostMapping("/movies")
-    @ResponseBody
     public ResponseEntity<Movies> create(@RequestBody Movies movies) {
         Movies savedMoveies= movieService.saveMovies(movies);
         return ResponseEntity.ok(savedMoveies);
