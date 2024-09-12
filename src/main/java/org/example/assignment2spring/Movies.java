@@ -1,7 +1,6 @@
 package org.example.assignment2spring;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -12,11 +11,13 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+
 @AllArgsConstructor
 @Table
+
 public class Movies {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @NonNull
@@ -26,6 +27,11 @@ public class Movies {
     @NonNull
     @Column(nullable = false)
     private String url;
+
+
+    private boolean isBlocked = false;
+
+    @ManyToMany(mappedBy = "movies")
 
     @NonNull
     @Column(nullable = false)
@@ -43,6 +49,7 @@ public class Movies {
     private List<WatchList> watchLists = new ArrayList<>();
 
     @ManyToMany (mappedBy = "movies")
+
     private List<Customer> customers = new ArrayList<>();
 
 
@@ -52,6 +59,16 @@ public class Movies {
             cust.addMovie(this);
         }
     }
+
+
+    public void blockMovie() {
+
+        this.isBlocked = true;
+    }
+
+    public void unblockMovie() {
+
+        this.isBlocked = false;
 
     public void addWatchList(WatchList watchList) {
         if (!watchLists.contains(watchList)) {
@@ -67,6 +84,7 @@ public class Movies {
 
     public boolean getWatchListStatus(){
         return this.isWatchList;
+
     }
 }
 

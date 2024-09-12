@@ -7,17 +7,18 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import java.util.Arrays;
 
-@SpringBootApplication @EnableDiscoveryClient @EnableFeignClients
+@SpringBootApplication
+@EnableDiscoveryClient
+
 public class Assignment2SpringApplication {
 
     public static void main(String[] args) {
@@ -33,15 +34,30 @@ public class Assignment2SpringApplication {
 }
 
 
+
+        SpringApplication.run(Assignment2SpringApplication.class, args);
+    }
+
+}
+
+
 @Component
-@Data @Transactional
+
+@Data
+@Transactional
+
 class AppInit implements ApplicationRunner {
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        // Create and save movies
         Movies m = new Movies();
+
+      
+
         m.setTitle("Getout");
         m.setSubGenre("Action");
         m.setDescription("When African-American man goes to visit Caucasian parents somthing's off");
@@ -93,6 +109,25 @@ class AppInit implements ApplicationRunner {
 
         movieController.update(m5.getId(), m5);
 
+
+        // Create and save users
+        Customer user1 = new Customer();
+        user1.setName("John Doe");
+        user1.setBlocked(false);
+        customerRepository.save(user1);
+
+        Customer user2 = new Customer();
+        user2.setName("Jane Smith");
+        user2.setBlocked(false);
+        customerRepository.save(user2);
+
+        Customer user3 = new Customer();
+        user3.setName("Bob Brown");
+        user3.setBlocked(false);
+        customerRepository.save(user3);
+
+        // Print the created entities
         System.out.println("Movies created: " + moviesRepository.findAll());
+        System.out.println("Users created: " + customerRepository.findAll());
     }
 }
