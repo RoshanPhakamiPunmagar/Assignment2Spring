@@ -1,3 +1,5 @@
+
+
 package org.example.assignment2spring;
 
 
@@ -67,8 +69,8 @@ class MovieController {
     }
 
 /**
-    @RequestMapping(value="/addWatchList")
-    public void addWatchListMethod() {
-        addWatchList(m1.getId(),m1);
-    }**/
+ @RequestMapping(value="/addWatchList")
+ public void addWatchListMethod() {
+ addWatchList(m1.getId(),m1);
+ }**/
 }
