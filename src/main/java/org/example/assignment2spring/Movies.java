@@ -33,6 +33,10 @@ public class Movies {
 
     @NonNull
     @Column(nullable = false)
+    private String subGenre;
+
+    @NonNull
+    @Column(nullable = false)
     private boolean isWatchList;
 
     @ManyToMany(mappedBy = "moveList")

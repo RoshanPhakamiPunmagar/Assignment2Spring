@@ -1,3 +1,5 @@
+
+
 package org.example.assignment2spring;
 
 import lombok.Data;
@@ -10,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller @Data
-@RequestMapping(name = "Assignment2Spring")
+@RequestMapping
 class MovieController {
 
     private MovieService movieService;
@@ -67,8 +69,8 @@ class MovieController {
     }
 
 /**
-    @RequestMapping(value="/addWatchList")
-    public void addWatchListMethod() {
-        addWatchList(m1.getId(),m1);
-    }**/
+ @RequestMapping(value="/addWatchList")
+ public void addWatchListMethod() {
+ addWatchList(m1.getId(),m1);
+ }**/
 }
