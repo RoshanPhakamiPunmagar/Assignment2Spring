@@ -46,7 +46,7 @@ public class CustomerController {
     // Create a new user using JSON Data
     @PostMapping("/create")
     @ResponseBody
-    public Customer createUser(@RequestBody Customer user) {
+    public User createUser(@RequestBody User user) {
         return customerRepository.save(user); // Save the user and return the created entity
     }
 

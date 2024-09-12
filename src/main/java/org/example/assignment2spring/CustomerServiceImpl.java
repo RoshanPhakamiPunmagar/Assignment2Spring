@@ -16,12 +16,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     // Fetch all users (both blocked and non-blocked)
     @Override
-    public List<Customer> findAllUsers() {
+    public List<User> findAllUsers() {
         return customerRepository.findAll();
     }
 
     @Override
-    public Customer getUserById(Long id) {
+    public User getUserById(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
@@ -40,14 +40,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void blockUser(Long id) {
-        Customer user = getUserById(id);
+        User user = getUserById(id);
         user.blockUser();
         customerRepository.save(user);
     }
 
     @Override
     public void unblockUser(Long id) {
-        Customer user = getUserById(id);
+       User user = getUserById(id);
         user.unblockUser();
         customerRepository.save(user);
     }

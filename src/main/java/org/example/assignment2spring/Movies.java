@@ -11,13 +11,11 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-
-@AllArgsConstructor
 @Table
-
 public class Movies {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
@@ -28,11 +26,6 @@ public class Movies {
     @Column(nullable = false)
     private String url;
 
-
-    private boolean isBlocked = false;
-
-    @ManyToMany(mappedBy = "movies")
-
     @NonNull
     @Column(nullable = false)
     private String description;
@@ -41,30 +34,30 @@ public class Movies {
     @Column(nullable = false)
     private boolean isWatchList;
 
-    @ManyToMany(mappedBy = "moveList")
+    private boolean isBlocked = false;
+
+    // Many-to-Many with WatchList
+    @ManyToMany(mappedBy = "movies")  // Ensure 'movies' field exists in WatchList
     private List<WatchList> watchLists = new ArrayList<>();
 
-    @ManyToMany (mappedBy = "movies")
+    // Many-to-Many with User
+    @ManyToMany(mappedBy = "movies")
+    private List<User> customers = new ArrayList<>();
 
-    private List<Customer> customers = new ArrayList<>();
-
-
-    public void addCustomer(Customer cust) {
-        this.customers.add(cust);
-        if (!cust.getMovies().contains(this)) {
-            cust.addMovie(this);
+    public void addUser(User user) {
+        this.customers.add(user);
+        if (!user.getMovies().contains(this)) {
+            user.addMovie(this);
         }
     }
 
-
     public void blockMovie() {
-
         this.isBlocked = true;
     }
 
     public void unblockMovie() {
-
         this.isBlocked = false;
+    }
 
     public void addWatchList(WatchList watchList) {
         if (!watchLists.contains(watchList)) {
@@ -74,13 +67,10 @@ public class Movies {
     }
 
     public void setIsWatchList() {
-        isWatchList = !isWatchList;
+        this.isWatchList = !this.isWatchList;
     }
 
-
-    public boolean getWatchListStatus(){
+    public boolean getWatchListStatus() {
         return this.isWatchList;
-
     }
 }
-

@@ -86,17 +86,17 @@ class AppInit implements ApplicationRunner {
 
 
         // Create and save users
-        Customer user1 = new Customer();
+        User user1 = new User();
         user1.setName("John Doe");
         user1.setBlocked(false);
         customerRepository.save(user1);
 
-        Customer user2 = new Customer();
+        User user2 = new User();
         user2.setName("Jane Smith");
         user2.setBlocked(false);
         customerRepository.save(user2);
 
-        Customer user3 = new Customer();
+        User user3 = new User();
         user3.setName("Bob Brown");
         user3.setBlocked(false);
         customerRepository.save(user3);

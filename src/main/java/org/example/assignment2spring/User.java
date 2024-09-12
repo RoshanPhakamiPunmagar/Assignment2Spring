@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Customer {
+public class User {
     @Id
     @GeneratedValue
     private Long id;
@@ -33,7 +33,7 @@ public class Customer {
 
         this.movies.add(movie);
         if(!this.movies.contains(movie)){
-            movie.addCustomer(this);
+            movie.addUser(this);
 
         }
     }

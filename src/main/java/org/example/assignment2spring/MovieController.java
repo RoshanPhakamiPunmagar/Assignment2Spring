@@ -35,8 +35,8 @@ class MovieController {
 
 
     public ResponseEntity<Movies> create(@RequestBody Movies movies) {
-        Movies savedMoveies= movieService.saveMovies(movies);
-        return ResponseEntity.ok(savedMoveies);
+        Movies savedMovies= movieService.saveMovies(movies);
+        return ResponseEntity.ok(savedMovies);
     }
 
     @PutMapping("/movies/{id}")

@@ -22,6 +22,14 @@ public class WatchList {
     @ManyToMany
     private List<Movies> moveList = new ArrayList<>();
 
+    // Correct Many-to-Many relationship with Movies
+    @ManyToMany
+    @JoinTable(
+            name = "movie_watchlist",
+            joinColumns = @JoinColumn(name = "watchlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+
 
     public void addMovie(Movies movie) {
         if (!this.moveList.contains(movie)) {

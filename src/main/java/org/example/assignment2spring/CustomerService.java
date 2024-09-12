@@ -5,10 +5,10 @@ import java.util.List;
 public interface CustomerService {
 
     // Returns a list of all users (blocked and non-blocked)
-    List<Customer> findAllUsers();
+    List<User> findAllUsers();
 
     // Get user by their ID
-    Customer getUserById(Long id);
+    User getUserById(Long id);
 
     // Block a user by ID
     void blockUser(Long id);
