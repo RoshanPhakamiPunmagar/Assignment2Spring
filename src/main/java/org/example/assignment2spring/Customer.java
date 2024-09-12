@@ -1,9 +1,6 @@
 package org.example.assignment2spring;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -13,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -26,13 +24,17 @@ public class Customer {
 
     private boolean blocked = false;  // Renamed field to 'blocked'
 
+
     @ManyToMany
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
-        if (!this.blocked && !movie.isBlocked() && !this.movies.contains(movie)) {
-            this.movies.add(movie);
-            movie.addUsers(this);
+
+
+        this.movies.add(movie);
+        if(!this.movies.contains(movie)){
+            movie.addCustomer(this);
+
         }
     }
 
