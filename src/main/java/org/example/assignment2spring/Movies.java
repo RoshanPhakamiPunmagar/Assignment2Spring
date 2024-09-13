@@ -77,4 +77,4 @@ public class Movies {
     public boolean getWatchListStatus() {
         return this.isWatchList;
     }
-}
+}//
