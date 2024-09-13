@@ -55,11 +55,8 @@ public class RecommendationController {
     @GetMapping("/recommendMovie/{id}")
     public ModelAndView recommendMovie(@PathVariable Long id) {
 
-        Customer testCust = new Customer();
-        testCust.setId(Long.parseLong(String.valueOf(1)));
-        testCust.setName("Test");
-        Recommendation recommendedMovie = recommendationService.getRecommendation(testCust);
-        return buildRecommendedMoviePage(recommendedMovie);
+        Customer cust = customerRepository.findById(id).get();
+        return buildRecommendedMoviePage(recommendationService.getRecommendation(cust));
 
     }
 
@@ -71,9 +68,9 @@ public class RecommendationController {
 
     //takes a customer id and will return a recomendation object
     @GetMapping("/getRecommendation/{id}")
-    public ModelAndView recommendId(@PathVariable Long id) {
+    public Recommendation recommendId(@PathVariable Long id) {
         Customer cust = customerRepository.findById(id).get();
-        return buildRecommendedMoviePage(recommendationService.getRecommendation(cust));
+        return recommendationService.getRecommendation(cust);
 
     }
 
