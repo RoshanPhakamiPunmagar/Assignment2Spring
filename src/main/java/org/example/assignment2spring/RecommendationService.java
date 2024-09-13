@@ -20,6 +20,12 @@ public class RecommendationService implements RecommendationServiceInt {
     @Autowired
     private RecommendationRepository recommendationRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+    
+    @Autowired
+    private MoviesRepository moviesRepository;
+
     @Override
     public Recommendation getRecommendation(Customer cust) {
         // access customer databaase use information such as prefered genre then randomly select a moview from the list of movies with the matchig genre
