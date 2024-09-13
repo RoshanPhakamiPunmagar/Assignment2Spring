@@ -29,6 +29,16 @@ public class Assignment2SpringApplication {
         movie.properties("eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/");
         movie.properties("eureka.instance.prefer-ip-address=true");
         movie.run(args);
+        
+        
+        
+        SpringApplicationBuilder RecommendationService = new SpringApplicationBuilder(Assignment2SpringApplication.class);
+        RecommendationService.properties("server.port=8333");
+        RecommendationService.properties("spring.application.name=recommendationcontroller");
+        RecommendationService.run(args);
+        
+        
+        
     }
 
 }
