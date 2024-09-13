@@ -41,6 +41,7 @@ public class RecommendationController {
     }
 
     //route that will display a web page with the recommended movie, pass a customer object.
+    //Rather than expecting a customer object check if user is auth and use that to grab customer info otherwise send user to login page
     @GetMapping("/recommendMovie")
     public ModelAndView recommendMovie(@RequestBody Customer cust) {
         ModelAndView model = new ModelAndView();
