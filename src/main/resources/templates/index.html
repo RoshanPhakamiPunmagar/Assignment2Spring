@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container button {
+            display: block;
+            width: 200px;
+            padding: 15px;
+            margin: 10px auto;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+        .button-container button:active {
+            background-color: #003d7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button onclick="location.href='login.html'">Login</button>
+        <button onclick="location.href='register.html'">Register</button>
+        <button onclick="location.href='movie_page.html'">Watch Movies</button>
+        <button onclick="location.href='recommended_movie.html'">Recommended Movie</button>
+    </div>
+</body>
+</html>
