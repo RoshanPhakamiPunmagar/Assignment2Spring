@@ -54,7 +54,7 @@ class MovieController {
         return "redirect:/allMovies";
     }
 
-
+    
     @GetMapping("/allMovies")
     public String getAllMovies(Model model) {
         model.addAttribute("movies", movieService.getAllMovies());
@@ -68,6 +68,11 @@ class MovieController {
         return "watchlist";  // Name of the Thymeleaf template
     }
 
+        @GetMapping("/index")
+    public String showIndex()
+    {
+        return "index";
+    }
 /**
  @RequestMapping(value="/addWatchList")
  public void addWatchListMethod() {
