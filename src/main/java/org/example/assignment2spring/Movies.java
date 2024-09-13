@@ -32,6 +32,10 @@ public class Movies {
 
     @NonNull
     @Column(nullable = false)
+    private String subGenre;
+
+    @NonNull
+    @Column(nullable = false)
     private boolean isWatchList;
 
     private boolean isBlocked = false;
@@ -54,17 +58,20 @@ public class Movies {
     public void blockMovie() {
         this.isBlocked = true;
     }
+ 
 
-    public void unblockMovie() {
+  public void unblockMovie() {
         this.isBlocked = false;
     }
 
-    public void addWatchList(WatchList watchList) {
+       public void addWatchList(WatchList watchList) {
         if (!watchLists.contains(watchList)) {
             watchLists.add(watchList);
             watchList.addMovie(this);
         }
-    }
+    }  
+
+   
 
     public void setIsWatchList() {
         this.isWatchList = !this.isWatchList;
