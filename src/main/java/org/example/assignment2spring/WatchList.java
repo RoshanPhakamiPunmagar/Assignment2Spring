@@ -18,6 +18,7 @@ public class WatchList {
     private long id;
 
     @NonNull
+
     private long movieId;
     @ManyToMany
     private List<Movies> moveList = new ArrayList<>();

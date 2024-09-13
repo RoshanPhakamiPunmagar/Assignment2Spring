@@ -1,24 +1,22 @@
 package org.example.assignment2spring;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-
 @AllArgsConstructor
 @Table
-
 public class Movies {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
@@ -28,11 +26,6 @@ public class Movies {
     @NonNull
     @Column(nullable = false)
     private String url;
-
-
-    private boolean isBlocked = false;
-
-    @ManyToMany(mappedBy = "movies")
 
     @NonNull
     @Column(nullable = false)
@@ -46,14 +39,15 @@ public class Movies {
     @Column(nullable = false)
     private boolean isWatchList;
 
-    @ManyToMany(mappedBy = "moveList")
+    private boolean isBlocked = false;
+
+    @OneToMany(mappedBy = "movieList")
     private List<WatchList> watchLists = new ArrayList<>();
 
-    @ManyToMany (mappedBy = "movies")
-
+    @ManyToMany(mappedBy = "movies")
     private List<Customer> customers = new ArrayList<>();
 
-
+    // Methods
     public void addCustomer(Customer cust) {
         this.customers.add(cust);
         if (!cust.getMovies().contains(this)) {
@@ -61,17 +55,14 @@ public class Movies {
         }
     }
 
-
     public void blockMovie() {
-
         this.isBlocked = true;
     }
 
     public void unblockMovie() {
-
         this.isBlocked = false;
     }
-        
+
     public void addWatchList(WatchList watchList) {
         if (!watchLists.contains(watchList)) {
             watchLists.add(watchList);
@@ -80,13 +71,10 @@ public class Movies {
     }
 
     public void setIsWatchList() {
-        isWatchList = !isWatchList;
+        this.isWatchList = !this.isWatchList;
     }
 
-
-    public boolean getWatchListStatus(){
+    public boolean getWatchListStatus() {
         return this.isWatchList;
-
     }
 }
-
