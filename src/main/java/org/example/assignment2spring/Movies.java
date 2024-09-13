@@ -69,7 +69,8 @@ public class Movies {
     public void unblockMovie() {
 
         this.isBlocked = false;
-
+    }
+        
     public void addWatchList(WatchList watchList) {
         if (!watchLists.contains(watchList)) {
             watchLists.add(watchList);
