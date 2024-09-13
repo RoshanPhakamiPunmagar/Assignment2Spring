@@ -27,15 +27,6 @@ public class Assignment2SpringApplication {
         );
         screamerApp.build().run(args);  // Run Screamer service on port 5050
 
-        // Create and run Recommendation service
-        SpringApplicationBuilder recommendationApp = new SpringApplicationBuilder(Assignment2SpringApplication.class);
-        recommendationApp.properties(
-                "server.port=8333",
-                "spring.application.name=RecommendationService",
-                "eureka.client.service-url.defaultZone=http://localhost:8761/eureka/",
-                "eureka.instance.prefer-ip-address=true"
-        );
-        recommendationApp.build().run(args);  // Run Recommendation service on port 8333
     }
 }
 

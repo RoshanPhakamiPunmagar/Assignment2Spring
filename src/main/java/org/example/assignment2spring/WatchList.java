@@ -20,7 +20,7 @@ public class WatchList {
     @NonNull
 
     private long movieId;
-    @ManyToMany
+    @ManyToMany(mappedBy = "watchLists")
     private List<Movies> moveList = new ArrayList<>();
 
 

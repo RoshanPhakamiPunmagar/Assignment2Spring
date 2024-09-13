@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/admin")
 public class CustomerController {
-
+    //work
+    
     @Autowired
     private CustomerRepository customerRepository;
 

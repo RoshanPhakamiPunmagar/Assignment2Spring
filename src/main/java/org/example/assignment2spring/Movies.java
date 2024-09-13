@@ -41,7 +41,7 @@ public class Movies {
 
     private boolean isBlocked = false;
 
-    @OneToMany(mappedBy = "movieList")
+    @ManyToMany
     private List<WatchList> watchLists = new ArrayList<>();
 
     @ManyToMany(mappedBy = "movies")
