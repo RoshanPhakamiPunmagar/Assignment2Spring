@@ -5,7 +5,6 @@
 package org.example.assignment2spring;
 
 import java.util.List;
-import org.example.assignment2spring.entity.Recommendation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

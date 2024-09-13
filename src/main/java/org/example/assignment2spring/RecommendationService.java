@@ -1,9 +1,6 @@
 package org.example.assignment2spring;
 
-import org.example.assignment2spring.entity.Customer;
-import org.example.assignment2spring.entity.Movies;
-import org.example.assignment2spring.entity.Recommendation;
-import org.example.assignment2spring.repos.RecommendationRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
