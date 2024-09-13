@@ -1,10 +1,10 @@
 package org.example.assignment2spring;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Random;
 
 interface RecommendationServiceInt {
 
@@ -22,18 +22,21 @@ public class RecommendationService implements RecommendationServiceInt {
 
     @Autowired
     private CustomerRepository customerRepository;
-    
+
     @Autowired
     private MoviesRepository moviesRepository;
+
+    Random random = new Random();
 
     @Override
     public Recommendation getRecommendation(Customer cust) {
         // access customer databaase use information such as prefered genre then randomly select a moview from the list of movies with the matchig genre
+
+        List<Movies> movies = moviesRepository.findAll();
+
         Recommendation recommendation = new Recommendation();
         recommendation.setCustomer(cust);
-        Movies movie = new Movies();
-        movie.setTitle("Test movie");
-        movie.setUrl("https://www.youtube.com/watch?v=RvP-FEVHapw");
+        Movies movie = movies.get(random.nextInt(movies.size()) + 1);
         recommendation.setMovie(movie);
 
         return recommendation;

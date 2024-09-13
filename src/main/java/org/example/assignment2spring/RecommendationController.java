@@ -34,6 +34,9 @@ public class RecommendationController {
     @Autowired
     private RecommendationService recommendationService;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     //recommend movie route, pass it a customer object and it will send back a recomendation based off customers information
     @PostMapping("/getRecommendation")
     public Recommendation recommend(@RequestBody Customer cust) {
@@ -44,12 +47,8 @@ public class RecommendationController {
     //Rather than expecting a customer object check if user is auth and use that to grab customer info otherwise send user to login page
     @GetMapping("/recommendMovie")
     public ModelAndView recommendMovie(@RequestBody Customer cust) {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("recommended_movie.html");
         Recommendation recommendedMovie = recommendationService.getRecommendation(cust);
-        model.addObject("movieTitle", recommendedMovie.getMovie().getTitle());
-        model.addObject("movieUrl", recommendedMovie.getMovie().getUrl());
-        return model;
+        return buildRecommendedMoviePage(recommendedMovie);
 
     }
 
@@ -59,13 +58,8 @@ public class RecommendationController {
         Customer testCust = new Customer();
         testCust.setId(Long.parseLong(String.valueOf(1)));
         testCust.setName("Test");
-
-        ModelAndView model = new ModelAndView();
-        model.setViewName("recommended_movie.html");
         Recommendation recommendedMovie = recommendationService.getRecommendation(testCust);
-        model.addObject("movieTitle", recommendedMovie.getMovie().getTitle());
-        model.addObject("movieUrl", recommendedMovie.getMovie().getUrl());
-        return model;
+        return buildRecommendedMoviePage(recommendedMovie);
 
     }
 
@@ -77,11 +71,18 @@ public class RecommendationController {
 
     //takes a customer id and will return a recomendation object
     @GetMapping("/getRecommendation/{id}")
-    public Recommendation recommendId(@PathVariable Long id) {
-        Customer testCust = new Customer();
-        testCust.setId(Long.parseLong(String.valueOf(1)));
-        testCust.setName("Test");
-        return recommendationService.getRecommendation(testCust);
+    public ModelAndView recommendId(@PathVariable Long id) {
+        Customer cust = customerRepository.findById(id).get();
+        return buildRecommendedMoviePage(recommendationService.getRecommendation(cust));
+
+    }
+
+    ModelAndView buildRecommendedMoviePage(Recommendation recommendation) {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("recommended_movie.html");
+        model.addObject("movieTitle", recommendation.getMovie().getTitle());
+        model.addObject("movieUrl", recommendation.getMovie().getUrl());
+        return model;
     }
 
 }
