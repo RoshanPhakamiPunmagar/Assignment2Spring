@@ -1,7 +1,5 @@
-package Movies;
+package com.example.Database;
 
-import WatchList.WatchList;
-import com.example.Database.Customer.Customer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,5 @@
-package com.example.Database.Customer;
+package com.example.Database;
 
-import Movies.Movies;
-import Movies.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

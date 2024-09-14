@@ -1,6 +1,5 @@
-package com.example.Database.Customer;
+package com.example.Database;
 
-import Movies.Movies;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

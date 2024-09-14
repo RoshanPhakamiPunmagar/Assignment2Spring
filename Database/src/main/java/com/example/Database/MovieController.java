@@ -1,9 +1,8 @@
 
 
-package Movies;
+package com.example.Database;
 
 
-import WatchList.WatchList;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 

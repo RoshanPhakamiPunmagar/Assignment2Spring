@@ -1,4 +1,4 @@
-package WatchList;
+package com.example.Database;
 
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
