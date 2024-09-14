@@ -9,7 +9,7 @@ public class DatabaseApplication {
 
     public static void main(String[] args) {
         SpringApplicationBuilder DatabaseService = new SpringApplicationBuilder(DatabaseApplication.class);
-        DatabaseService.properties("server.port=8001");
+        DatabaseService.properties("server.port=8000");
         // #comment in application.properties
         DatabaseService.properties("spring.application.name=Database");
         DatabaseService.run(args);
