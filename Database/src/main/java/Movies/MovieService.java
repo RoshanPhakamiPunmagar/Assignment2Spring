@@ -1,5 +1,7 @@
 package Movies;
 
+import WatchList.WatchList;
+import WatchList.WatchListRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
