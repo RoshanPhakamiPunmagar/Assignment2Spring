@@ -27,7 +27,7 @@ public class Assignment2SpringApplication {
         );
         screamerApp.build().run(args);  // Run Screamer service on port 5050
 
-    }
+    }//
 }
 
 @Component
