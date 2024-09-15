@@ -27,7 +27,7 @@ import lombok.NonNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-public class Movies {
+public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

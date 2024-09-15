@@ -36,7 +36,7 @@ public class RecommendationController {
     
     
     
-    Movies getRandomMovie()
+    Movie getRandomMovie()
     {
         recommendationClient.getMovies();
     }

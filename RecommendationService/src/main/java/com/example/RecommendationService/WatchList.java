@@ -37,9 +37,9 @@ public class WatchList {
 
     private long movieId;
     @ManyToMany(mappedBy = "watchLists")
-    private List<Movies> moveList = new ArrayList<>();
+    private List<Movie> moveList = new ArrayList<>();
 
-    public void addMovie(Movies movie) {
+    public void addMovie(Movie movie) {
         if (!this.moveList.contains(movie)) {
 
             this.moveList.add(movie);
@@ -52,9 +52,9 @@ public class WatchList {
         return this.id;
     }
 
-    public void removeMovie(Movies movie) {
+    public void removeMovie(Movie movie) {
         if (!this.moveList.contains(movie)) {
-            for (Movies m : this.moveList) {
+            for (Movie m : this.moveList) {
                 if (movie.getId().equals(m.getId())) {
                     this.moveList.remove(movie);
                 }
