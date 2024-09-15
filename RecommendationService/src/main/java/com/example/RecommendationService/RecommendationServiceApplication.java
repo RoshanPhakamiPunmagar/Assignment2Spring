@@ -14,7 +14,7 @@ public class RecommendationServiceApplication {
     public static void main(String[] args) {
         SpringApplicationBuilder recommendationService = new SpringApplicationBuilder(RecommendationServiceApplication.class);
         recommendationService.properties("server.port=8333");
-        recommendationService.properties("spring.application.name=recommendationService");
+        recommendationService.properties("spring.application.name=recommendationClient");
         recommendationService.run(args);
     }
 
