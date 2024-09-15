@@ -41,6 +41,7 @@ class AppInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // Create and save movie entries
+        /*
         Movies m = new Movies();
         m.setTitle("Getout");
         m.setSubGenre("Action");
@@ -108,5 +109,6 @@ class AppInit implements ApplicationRunner {
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());
+*/
     }
 }
