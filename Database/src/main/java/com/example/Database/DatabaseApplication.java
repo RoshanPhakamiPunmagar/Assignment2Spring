@@ -39,32 +39,13 @@ class AppInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // Create and save movie entries
-        
-        
-         Movies m = new Movies();
-        m.setTitle("Getout");
-        m.setSubGenre("Action");
-        m.setDescription("When African-American man goes to visit Caucasian parents something's off");
-        m.setUrl("https://www.youtube.com/embed/y1OhC9h3flY?si=lmulPcEtFJcbg92Z");
-        moviesRepository.save(m);
-        
-        Customer user1 = new Customer();
-        user1.setName("John Doe");
-        user1.setBlocked(false);
-        customerRepository.save(user1);
-        
-        Recommendation recommendation1 = new Recommendation();
-        recommendation1.setCustomer(user1);
-        recommendation1.setMovie(m);
-        recommendationRepository.save(recommendation1);
-        /*
+
         Movies m = new Movies();
         m.setTitle("Getout");
         m.setSubGenre("Action");
         m.setDescription("When African-American man goes to visit Caucasian parents something's off");
         m.setUrl("https://www.youtube.com/embed/y1OhC9h3flY?si=lmulPcEtFJcbg92Z");
         moviesRepository.save(m);
-        movieController.update(m.getId(), m);
 
         Movies m1 = new Movies();
         m1.setTitle("Hereditary");
@@ -72,7 +53,6 @@ class AppInit implements ApplicationRunner {
         m1.setDescription("Annie is devastated along with her family following her mother’s death. Odd things begin happening as the truth about Annie's family starts to emerge.");
         m1.setUrl("https://www.youtube.com/embed/-sM8Jrcbxdc?si=LrwCxvIWrWviyCDO");
         moviesRepository.save(m1);
-        movieController.update(m1.getId(), m1);
 
         // Additional movie entries
         Movies m2 = new Movies();
@@ -88,7 +68,6 @@ class AppInit implements ApplicationRunner {
         m3.setDescription("A Chinese immigrant must connect with different versions of herself to save the universe.");
         m3.setUrl("https://www.youtube.com/embed/JjBYmLxmT_U?si=EXJZCg7_CSgZUA8I");
         moviesRepository.save(m3);
-        movieController.update(m3.getId(), m3);
 
         Movies m4 = new Movies();
         m4.setTitle("Interstellar");
@@ -96,7 +75,6 @@ class AppInit implements ApplicationRunner {
         m4.setDescription("A NASA pilot turned farmer must find a new Earth.");
         m4.setUrl("https://www.youtube.com/embed/s_M1t0HE-Kk?si=oN8dQ9vY6YGPaufW");
         moviesRepository.save(m4);
-        movieController.update(m4.getId(), m4);
 
         Movies m5 = new Movies();
         m5.setTitle("The Exorcist");
@@ -104,7 +82,6 @@ class AppInit implements ApplicationRunner {
         m5.setDescription("An actress notices dangerous changes in her 12-year-old daughter.");
         m5.setUrl("https://www.youtube.com/embed/bSxuXQCEC7M?si=aPw7kcVFWW-QwMER");
         moviesRepository.save(m5);
-        movieController.update(m5.getId(), m5);
 
         // Create and save users
         Customer user1 = new Customer();
@@ -122,9 +99,14 @@ class AppInit implements ApplicationRunner {
         user3.setBlocked(false);
         customerRepository.save(user3);
 
+        Recommendation recommendation1 = new Recommendation();
+        recommendation1.setCustomer(user1);
+        recommendation1.setMovie(m);
+        recommendationRepository.save(recommendation1);
+
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());
-         */
+
     }
 }
