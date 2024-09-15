@@ -34,9 +34,9 @@ public class Customer {
     private boolean blocked = false;  // Renamed field to 'blocked'
 
     @ManyToMany
-    private List<Movies> movies = new ArrayList<>();
+    private List<Movie> movies = new ArrayList<>();
 
-    public void addMovie(Movies movie) {
+    public void addMovie(Movie movie) {
 
         this.movies.add(movie);
         if (!this.movies.contains(movie)) {

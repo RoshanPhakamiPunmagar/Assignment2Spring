@@ -12,6 +12,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * @author caleb
  */
 @RepositoryRestResource
-public interface MoviesRepository extends JpaRepository<Movies, Long> {
+public interface MovieRepository extends JpaRepository<Movie, Long> {
 
 }

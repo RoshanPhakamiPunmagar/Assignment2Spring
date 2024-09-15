@@ -26,11 +26,11 @@ public class Recommendation {
     @GeneratedValue
     private Long id;
     @OneToOne
-    private Movies movie;
+    private Movie movie;
     @ManyToOne
     private Customer customer;
 
-    public void addMovie(Movies movie) {
+    public void addMovie(Movie movie) {
         if (!this.movie.equals(movie)) {
             this.movie = movie;
         }

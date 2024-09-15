@@ -4,6 +4,7 @@
  */
 package com.example.RecommendationService;
 
+import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ interface RecommendationClient {
     Recommendation getRecommendation(@PathVariable long custId);
     @GetMapping("/customers/{custId}")
     Customer getCustomer(@PathVariable long custId);
+    @GetMapping("/")
     List<Movies> getMovies();
 
 }
