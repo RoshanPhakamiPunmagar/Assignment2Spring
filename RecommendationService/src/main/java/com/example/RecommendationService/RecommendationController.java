@@ -30,12 +30,15 @@ public class RecommendationController {
     @ResponseBody // can return webpage in stead
     String _retrieve(@PathVariable Long custID) {
 
-        Customer cust = recommendationClient.getCustomer(custID);
+        Customer cust = new Customer(); 
+        cust = recommendationClient.getCustomer(custID);
+        
         Recommendation recommendation = new Recommendation();
         recommendation.addCustomer(cust);
         //get random movie and add to recommendation then save recommendation
         recommendation.setMovie(getRandomMovie());
         return "<h1>" + recommendation + "</h1>";
+
     }
 
     Movie getRandomMovie() {
