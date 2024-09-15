@@ -19,8 +19,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseApplication {
 
     public static void main(String[] args) {
-           
-        
+
         SpringApplicationBuilder DatabaseService = new SpringApplicationBuilder(DatabaseApplication.class);
         DatabaseService.properties("server.port=8000");
         // #comment in application.properties
@@ -28,15 +27,14 @@ public class DatabaseApplication {
         DatabaseService.run(args);
     }
 }
-    
+
 @Component
 @Data
 @Transactional
 class AppInit implements ApplicationRunner {
 
-    private final MovieController movieController;
     private final MoviesRepository moviesRepository;
-    private final CustomerRepository customerRepository;
+    private final WatchListRepository watchListRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -109,6 +107,6 @@ class AppInit implements ApplicationRunner {
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());
-*/
+         */
     }
 }
