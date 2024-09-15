@@ -17,5 +17,8 @@ interface RecommendationClient {
 
     @GetMapping("/recommendations/{custId}")
     Recommendation getRecommendation(@PathVariable long custId);
+    @GetMapping("/customers/{custId}")
+    Customer getCustomer(@PathVariable long custId);
+    
 
 }

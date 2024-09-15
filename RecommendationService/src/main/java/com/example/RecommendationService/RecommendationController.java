@@ -25,7 +25,20 @@ public class RecommendationController {
     @GetMapping("/ui/recommendation/{custID}")
     @ResponseBody // can return webpage in stead
     String _retrieve(@PathVariable Long custID) {
-        Recommendation recommendation = recommendationClient.getRecommendation(custID);
+        
+        Customer cust = recommendationClient.getCustomer(custID);
+        Recommendation recommendation = new Recommendation();
+        recommendation.addCustomer(cust);
+        //get random movie and add to recommendation then save recommendation
+        recommendation.addMovie(movie);
         return "<h1>" + recommendation + "</h1>";
     }
+    
+    
+    
+    Movies getRandomMovie()
+    {
+        
+    }
+    
 }
