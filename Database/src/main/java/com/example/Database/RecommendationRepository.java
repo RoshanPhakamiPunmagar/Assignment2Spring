@@ -5,9 +5,11 @@
 package com.example.Database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
  *
  * @author caleb
  */
+@RepositoryRestResource
 public interface RecommendationRepository extends JpaRepository<Recommendation, Long> {}
