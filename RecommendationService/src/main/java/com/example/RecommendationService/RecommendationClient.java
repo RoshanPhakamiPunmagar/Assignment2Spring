@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "recommendationClient")
 interface RecommendationClient {
 
-    @GetMapping("/dogs/{breed}")
-    Recommendation getRecommendation(@PathVariable String breed);
+    @GetMapping("/recommendation/{custId}")
+    Recommendation getRecommendation(@PathVariable long custId);
 
 }
