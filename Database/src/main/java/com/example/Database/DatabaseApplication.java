@@ -53,6 +53,10 @@ class AppInit implements ApplicationRunner {
         user1.setBlocked(false);
         customerRepository.save(user1);
         
+        Recommendation recommendation1 = new Recommendation();
+        recommendation1.setCustomer(user1);
+        recommendation1.setMovie(m);
+        recommendationRepository.save(recommendation1);
         /*
         Movies m = new Movies();
         m.setTitle("Getout");
