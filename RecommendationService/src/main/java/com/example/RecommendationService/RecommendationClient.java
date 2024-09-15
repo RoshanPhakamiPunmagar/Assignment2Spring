@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
  *
  * @author caleb
  */
-@FeignClient(name = "Database")
+@FeignClient(name = "Database", url = "http://localhost:8000")
 interface RecommendationClient {
 
-    @GetMapping("/recommendations/{custId}")
-    Recommendation getRecommendation(@PathVariable long custId);
-    @GetMapping("/getUser/{custID}")
-    Customer getCustomer(@PathVariable long custId);
+    @GetMapping("/recommendations/{custID}")
+    Recommendation getRecommendation(@PathVariable long custID);
+    @GetMapping("/getCustomer/{custID}")
+    Customer getCustomer(@PathVariable long custID);
     @GetMapping("/movies")
     List<Movie> getMovies();
 

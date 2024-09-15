@@ -39,7 +39,7 @@ public class CustomerController {
         return ResponseEntity.ok(cust);
     }
 
-    @GetMapping("/getCustomers/")
+    @GetMapping("/getCustomers")
     public ResponseEntity<List<Customer>> getCustomers() {
         List<Customer> cust = customerRepository.findAll();
         return ResponseEntity.ok(cust);
