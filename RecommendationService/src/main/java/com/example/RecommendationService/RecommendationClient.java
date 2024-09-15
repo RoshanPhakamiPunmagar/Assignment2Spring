@@ -20,7 +20,7 @@ interface RecommendationClient {
     Recommendation getRecommendation(@PathVariable long custId);
     @GetMapping("/customers/{custId}")
     Customer getCustomer(@PathVariable long custId);
-    @GetMapping("/")
+    @GetMapping("/movies")
     List<Movie> getMovies();
 
 }
