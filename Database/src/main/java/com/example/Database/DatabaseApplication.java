@@ -19,11 +19,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseApplication {
 
     public static void main(String[] args) {
-           SpringApplicationBuilder eureka = new SpringApplicationBuilder(DatabaseApplication.class);
-        eureka.properties("server.port=8761");
-        eureka.properties("eureka.client.register-with-eureka=false");
-        eureka.properties("eureka.client.fetch-registry=false");
-        eureka.run(args);
+           
         
         SpringApplicationBuilder DatabaseService = new SpringApplicationBuilder(DatabaseApplication.class);
         DatabaseService.properties("server.port=8000");

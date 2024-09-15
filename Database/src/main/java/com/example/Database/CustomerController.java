@@ -17,19 +17,19 @@ public class CustomerController {
     private MoviesRepository moviesRepository;
 
     @Autowired
-    private CustomerService customerService;
+    //private CustomerService customerService;
 
     // Display all users (blocked and non-blocked)
     @GetMapping("/users")
     public String showAllUsers(Model model) {
-        model.addAttribute("users", customerService.findAllUsers());
+        model.addAttribute("users", customerRepository.findAllUsers());
         return "user";  // This refers to the Thymeleaf template 'user.html'
     }
 
     // Retrieve all non-blocked movies
     @GetMapping("/movies")
     public String getAllNonBlockedMovies(Model model) {
-        model.addAttribute("movies", customerService.getAllNonBlockedMovies());
+        model.addAttribute("movies", customerRepository.getAllNonBlockedMovies());
         return "admin_movies";  // Refers to Thymeleaf template: admin_movies.html
     }
 
@@ -37,9 +37,9 @@ public class CustomerController {
     @PostMapping("/users/{id}/action")
     public String handleUserAction(@PathVariable Long id, @RequestParam("action") String action) {
         if ("block".equals(action)) {
-            customerService.blockUser(id);  // Block the user
+            customerRepository.blockUser(id);  // Block the user
         } else if ("unblock".equals(action)) {
-            customerService.unblockUser(id);  // Unblock the user
+            customerRepository.unblockUser(id);  // Unblock the user
         }
         return "redirect:/admin/users";  // Redirect back to the list of users
     }
@@ -56,9 +56,9 @@ public class CustomerController {
     @PostMapping("/movies/{id}/action")
     public String handleMovieAction(@PathVariable Long id, @RequestParam("action") String action) {
         if ("block".equals(action)) {
-            customerService.blockMovie(id);  // Block the movie
+            customerRepository.blockMovie(id);  // Block the movie
         } else if ("unblock".equals(action)) {
-            customerService.unblockMovie(id);  // Unblock the movie
+            customerRepository.unblockMovie(id);  // Unblock the movie
         }
         return "redirect:/admin/movies";  // Redirect back to the list of movies
     }
