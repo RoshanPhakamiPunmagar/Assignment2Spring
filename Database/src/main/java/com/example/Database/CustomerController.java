@@ -34,29 +34,34 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @GetMapping("/getCustomer/{custID}")
-    public ResponseEntity<Customer> getUser(@PathVariable long custID) {
+    public ResponseEntity<Customer> getCustomer(@PathVariable long custID) {
         Customer cust = customerRepository.findById(custID).get();
         return ResponseEntity.ok(cust);
     }
 
     @GetMapping("/getCustomers/")
-    public ResponseEntity<List<Customer>> getUser() {
+    public ResponseEntity<List<Customer>> getCustomers() {
         List<Customer> cust = customerRepository.findAll();
         return ResponseEntity.ok(cust);
     }
 
     @DeleteMapping("/deleteCustomer/{custID}")
-    public void deleteUser(@PathVariable long custID) {
+    public void deleteCustomer(@PathVariable long custID) {
         customerRepository.deleteById(custID);
     }
 
     @PutMapping("/updateCustomer/{custID")
-    public void updateUser(@PathVariable long custID, @RequestBody Customer cust) {
+    public void updateCustomer(@PathVariable long custID, @RequestBody Customer cust) {
 
         Customer user = customerRepository.findById(custID).get();
         user = cust;
         customerRepository.save(user);
 
+    }
+
+    @PostMapping("/addCustomer")
+    public void addCustomer(@RequestBody Customer cust) {
+        customerRepository.save(cust);
     }
 
 }
