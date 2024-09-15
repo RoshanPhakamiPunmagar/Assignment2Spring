@@ -4,10 +4,15 @@
  */
 package com.example.RecommendationService;
 
+import lombok.Data;
+import org.springframework.stereotype.Controller;
+
 /**
  *
  * @author caleb
  */
+@Controller
+@Data
 public class RecommendationController {
     
 }
