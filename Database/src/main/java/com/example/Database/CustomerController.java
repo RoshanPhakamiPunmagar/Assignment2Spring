@@ -50,7 +50,7 @@ public class CustomerController {
         customerRepository.deleteById(custID);
     }
 
-    @PutMapping("/updateCustomer/{custID")
+    @PutMapping("/updateCustomer/{custID}")
     public void updateCustomer(@PathVariable long custID, @RequestBody Customer cust) {
 
         Customer user = customerRepository.findById(custID).get();

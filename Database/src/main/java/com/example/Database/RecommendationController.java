@@ -48,7 +48,7 @@ public class RecommendationController {
         recommendationRepository.deleteById(recID);
     }
 
-    @PutMapping("/updateRecommendation/{recID")
+    @PutMapping("/updateRecommendation/{recID}")
     public void updateRecommendation(@PathVariable long recID, @RequestBody Recommendation rec) {
 
         Recommendation oldRec = recommendationRepository.findById(recID).get();
