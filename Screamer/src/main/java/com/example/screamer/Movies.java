@@ -1,5 +1,7 @@
 package com.example.screamer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,11 +29,12 @@ public class Movies {
     @NonNull
     private boolean isWatchList;
 
-    @ManyToMany (mappedBy = "watchList")
-    private List<WatchList> onWatchList = new ArrayList<>();
+
+    @ManyToMany (mappedBy = "movies")
+    private List<WatchList> watchLists = new ArrayList<>();
 
     public boolean getIsWatchList() {
-        return isWatchList;
+        return this.isWatchList;
     }
 
 }

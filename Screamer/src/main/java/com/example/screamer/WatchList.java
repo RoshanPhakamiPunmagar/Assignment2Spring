@@ -1,10 +1,9 @@
 package com.example.screamer;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +17,20 @@ public class WatchList {
     private long id;
 
     @ManyToMany
-    private List<Movies> watchList = new ArrayList<>();
+    @JoinTable(
+            name = "watchlist_movies",
+            joinColumns = @JoinColumn(name = "watchlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    private List<Movies> movies = new ArrayList<>();
 
+
+    @Override
+    public String toString() {
+        return "WatchList{" +
+                "id=" + id +
+                ", movieList=" + movies +
+                '}';
+    }
 
 }

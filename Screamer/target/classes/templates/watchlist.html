@@ -66,8 +66,8 @@
     <!-- Loop through each WatchList and display its movies -->
     <div th:each="wl : ${watchlist}" class="watchlist">
         <h2>Watchlist ID: <span th:text="${wl.id}"></span></h2>
-
         <!-- Now, loop through each movie inside the watchlist -->
+
         <div th:each="movie : ${wl.getMovies()}">
             <div class="row">
                 <div class="column">

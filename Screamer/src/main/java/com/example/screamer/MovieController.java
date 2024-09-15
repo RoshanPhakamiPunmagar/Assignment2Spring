@@ -13,23 +13,37 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("all")
+    @GetMapping("/get/all")
     public ResponseEntity<List<Movies>> getAllMovies() {
         List<Movies> movies = movieService.getAllMovies();
         return ResponseEntity.ok(movies);
     }
 
-    @PutMapping("/id/{id}")
+    @GetMapping("/get/watchlist/all")
+    public ResponseEntity<WatchList> getAllWatchlistMovies() {
+        System.out.println( "xx");
+        WatchList movies = movieService.getAllWatchListMovies();
+        return ResponseEntity.ok(movies);
+    }
+    /*
+    @PostMapping("/add/watchlist/{movieId}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
+            WatchList updatedMovie = movieService.addToWatchList(movieId);
+            return ResponseEntity.ok(updatedMovie);
+    }
+    */
+
+    @PutMapping("/update/{id}")
     public ResponseEntity<Movies> updateMovieById(@PathVariable("id") Long id, @ModelAttribute Movies movie) {
 
-        System.out.println(id+  "21xx");
+        System.out.println(id + "21xx");
         try {
-            System.out.println(id+  "23xx");
+            System.out.println(id + "23xx");
             Movies updatedMovie = movieService.updateMovie(id, movie);
-            System.out.println(id+  "25xx");
+            System.out.println(id + "25xx");
             return ResponseEntity.ok(updatedMovie);
         } catch (RuntimeException e) {
             return null;
         }
-    }
-}
+
+    }}
