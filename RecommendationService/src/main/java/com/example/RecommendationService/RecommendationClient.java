@@ -4,10 +4,18 @@
  */
 package com.example.RecommendationService;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 /**
  *
  * @author caleb
  */
-public class RecommendationClient {
-    
+@FeignClient(name = "recommendationClient")
+interface RecommendationClient {
+
+    @GetMapping("/dogs/{breed}")
+    Recommendation getRecommendation(@PathVariable String breed);
+
 }
