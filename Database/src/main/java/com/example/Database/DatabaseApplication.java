@@ -33,6 +33,7 @@ class AppInit implements ApplicationRunner {
 
     private final MoviesRepository moviesRepository;
     private final WatchListRepository watchListRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -45,6 +46,11 @@ class AppInit implements ApplicationRunner {
         m.setDescription("When African-American man goes to visit Caucasian parents something's off");
         m.setUrl("https://www.youtube.com/embed/y1OhC9h3flY?si=lmulPcEtFJcbg92Z");
         moviesRepository.save(m);
+        
+        Customer user1 = new Customer();
+        user1.setName("John Doe");
+        user1.setBlocked(false);
+        customerRepository.save(user1);
         
         /*
         Movies m = new Movies();
