@@ -4,10 +4,13 @@
  */
 package com.example.Database;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author caleb
  */
-public class MoviesRepository {
-    
+
+public interface MoviesRepository extends JpaRepository<Movies, Long> {
+
 }
