@@ -34,6 +34,7 @@ class AppInit implements ApplicationRunner {
     private final MoviesRepository moviesRepository;
     private final WatchListRepository watchListRepository;
     private final CustomerRepository customerRepository;
+    private final RecommendationRepository recommendationRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
