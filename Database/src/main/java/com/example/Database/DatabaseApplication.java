@@ -22,6 +22,9 @@ public class DatabaseApplication {
         DatabaseService.properties("server.port=8000");
         // #comment in application.properties
         DatabaseService.properties("spring.application.name=Database");
+        DatabaseService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
+        DatabaseService.properties("eureka.instance.prefer-ip-address=true");
+
         DatabaseService.run(args);
     }
 }

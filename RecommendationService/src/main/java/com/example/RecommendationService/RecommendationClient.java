@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
  *
  * @author caleb
  */
-@FeignClient(name = "recommendationClient")
+@FeignClient(name = "Database")
 interface RecommendationClient {
 
-    @GetMapping("/recommendation/{custId}")
+    @GetMapping("/recommendations/{custId}")
     Recommendation getRecommendation(@PathVariable long custId);
 
 }
