@@ -12,7 +12,6 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Component;
 
-@EnableEurekaServer
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
@@ -39,6 +38,15 @@ class AppInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // Create and save movie entries
+        
+        
+         Movies m = new Movies();
+        m.setTitle("Getout");
+        m.setSubGenre("Action");
+        m.setDescription("When African-American man goes to visit Caucasian parents something's off");
+        m.setUrl("https://www.youtube.com/embed/y1OhC9h3flY?si=lmulPcEtFJcbg92Z");
+        moviesRepository.save(m);
+        
         /*
         Movies m = new Movies();
         m.setTitle("Getout");
