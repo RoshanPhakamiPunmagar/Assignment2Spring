@@ -68,9 +68,13 @@ public class WebAppController {
 
         return model;
     }
-    
-    
 
-    
-    
+    @GetMapping("/adminMovies")
+    public ModelAndView adminMovies() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("admin_movies.html");
+
+        return model;
+    }
+
 }
