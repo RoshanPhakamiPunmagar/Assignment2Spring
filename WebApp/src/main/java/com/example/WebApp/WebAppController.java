@@ -68,7 +68,7 @@ public class WebAppController {
         List<WatchList> watchLists = screamerClient.getWatchList(1);
         model.setViewName("watchlist.html");
         model.addObject("watchlist", watchLists);  
-
+        System.out.println(watchLists);
         return model;
     }
 
