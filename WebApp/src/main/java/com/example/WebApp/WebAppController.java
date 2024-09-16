@@ -27,22 +27,17 @@ public class WebAppController {
     @GetMapping("/")
     public ModelAndView getIndex() {
         ModelAndView model = new ModelAndView();
-
         model.setViewName("index.html");
-
         return model;
-
     }
 
     @GetMapping("/movieRecommendation")
     public ModelAndView recommendMovie() {
         ModelAndView model = new ModelAndView();
-
         model.setViewName("recommended_movie.html");
         Recommendation rec = webAppClient.getRecommendation(1);
         model.addObject("movieTitle", rec.getMovieTitle());
         model.addObject("movieUrl", rec.getMovieUrl());
         return model;
-
     }
 }
