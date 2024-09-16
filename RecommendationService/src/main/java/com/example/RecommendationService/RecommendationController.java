@@ -32,9 +32,9 @@ public class RecommendationController {
 
         Customer cust = recommendationClient.getCustomer(custID);
         Recommendation recommendation = new Recommendation();
-        recommendation.addCustomer(cust);
+        recommendation.setCustomerId(cust.getId());
         //get random movie and add to recommendation then save recommendation
-        recommendation.setMovie(getRandomMovie());
+        recommendation.setMovieUrl(getRandomMovie().getUrl());
 
         return "<h1>" + recommendation + "</h1>" + '\n' + "<h1>" + cust + "<h1>";
 
