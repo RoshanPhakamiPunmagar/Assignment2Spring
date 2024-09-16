@@ -26,7 +26,7 @@ public class screamerController {
         return ResponseEntity.ok(screamerClient.getMovies());
     }
 
-    @GetMapping("/getWatchList{custID}")
+    @GetMapping("/getWatchList/{custID}")
     public ResponseEntity<List<WatchList>> getWatchList(@PathVariable long custID) {
         return ResponseEntity.ok(screamerClient.getWatchList(custID));
     }

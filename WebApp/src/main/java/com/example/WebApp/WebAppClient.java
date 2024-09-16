@@ -27,6 +27,6 @@ interface ScreamerClient {
     @GetMapping("/getMovies")
     List<Movie> getAllMovies();
     
-    @GetMapping("/getWatchList{custID}")
+    @GetMapping("/getWatchList/{custID}")
     List<WatchList> getWatchList(long custID);
 }
