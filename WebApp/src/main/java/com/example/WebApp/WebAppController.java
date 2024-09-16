@@ -30,7 +30,7 @@ public class WebAppController {
 
         model.setViewName("recommended_movie.html");
         Recommendation rec = webAppClient.getRecommendation(1);
-        model.addObject("movieTitle", rec.getTitle());
+        model.addObject("movieTitle", rec.getMovieTitle());
         model.addObject("movieUrl", rec.getMovieUrl());
         return model;
 
