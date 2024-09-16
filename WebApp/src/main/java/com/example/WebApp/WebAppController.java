@@ -61,4 +61,16 @@ public class WebAppController {
         return model;
     }
 
+    @GetMapping("/watchList")
+    public ModelAndView watchList() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("watchlist.html");
+
+        return model;
+    }
+    
+    
+
+    
+    
 }
