@@ -5,6 +5,7 @@
 package com.example.Database;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,5 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Service
 @RequestMapping
 public class WatchListController {
-    
+    @Autowired
+    private WatchListRepository watchListRepository;
 }
