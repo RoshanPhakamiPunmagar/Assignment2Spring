@@ -25,20 +25,9 @@ public class Recommendation {
     @Id
     @GeneratedValue
     private Long id;
-    @OneToOne
-    private Movie movie;
-    @ManyToOne
-    private Customer customer;
 
-    public void addMovie(Movie movie) {
-        if (!this.movie.equals(movie)) {
-            this.movie = movie;
-        }
-    }
+    private String movieUrl;
 
-    public void addCustomer(Customer cust) {
-        if (!this.customer.equals(cust)) {
-            this.customer = cust;
-        }
-    }
+    private String customerId;
+
 }
