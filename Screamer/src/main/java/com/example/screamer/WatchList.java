@@ -24,6 +24,13 @@ public class WatchList {
     )
     private List<Movies> movies = new ArrayList<>();
 
+    public void addMovie(Movies movie) {
+        // Check to avoid adding duplicates
+        if (!this.movies.contains(movie)) {
+            this.movies.add(movie);
+            movie.getWatchLists().add(this); // Maintain the bidirectional relationship
+        }
+    }
 
     @Override
     public String toString() {

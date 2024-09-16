@@ -12,7 +12,8 @@ public class MovieService {
     private final MoviesRepository movieRepository;
 
     private final WatchListRepository watchListRepository;
-    private final WatchList watchListToAdd = new WatchList();
+    private WatchList watchListToAdd = new WatchList();
+    private List<Movies> moviesToAdd;
     public MovieService(MoviesRepository movieRepository, WatchListRepository watchListRepository) {
         this.movieRepository = movieRepository;
         this.watchListRepository = watchListRepository;
@@ -23,6 +24,31 @@ public class MovieService {
         System.out.println(movie.getId());
         return movieRepository.save(movie);
     }
+    @Transactional
+    public WatchList removeWatchList(Long id) {
+        Optional<Movies> movies = movieRepository.findById(id);
+        WatchList watchLists = getAllWatchList();
+
+        Movies movieToRemove = movies.get();
+        movieToRemove.setInWatchList(false);
+
+
+
+        movieRepository.save(movieToRemove);
+        watchLists.getMovies().remove(movieToRemove);
+     watchListToAdd = watchListRepository.save(watchLists);
+        // Remove the movie from the watch list's movie list
+
+            //moviesToAdd.remove(movie);
+
+
+            return watchListToAdd;
+
+    }
+
+
+
+    /*
     public WatchList removeWatchList(Long id) {
         Movies movie = movieRepository.findById(id).get();
         List<Movies> movies = movieRepository.findAll();
@@ -44,6 +70,8 @@ public class MovieService {
         return watchListRepository.save(watchList);
 
     }
+    */
+
     public WatchList postWatchlist(Long id) {
         // Retrieve the movie from the repository
         Movies movie = movieRepository.findById(id).get();
@@ -74,7 +102,15 @@ public class MovieService {
 
     public WatchList getAllWatchList() {
         System.out.println(watchListRepository.findAll().size());
-        return watchListRepository.findAll().getFirst();
+        WatchList wL = new WatchList();
+        if (watchListRepository.findAll().size() <= 0)
+        {
+            return wL;
+        }
+        else {
+            wL = watchListRepository.findAll().getFirst();
+        }
+        return wL;
     }
 
     public Optional<Movies> getMovieById(Long id) {

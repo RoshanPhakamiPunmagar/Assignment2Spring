@@ -41,6 +41,7 @@ public class Movies {
     public boolean getInWatchList() {
         return this.inWatchList;
     }
+
     public void setInWatchList(boolean inWatchList) {
         this.inWatchList = inWatchList;
     }

@@ -1,12 +1,14 @@
 package com.example.screamer;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController @RequestMapping("/movies")
 public class MovieController {
+    @Autowired
     private final MovieService movieService;
 
     public MovieController(MovieService movieService) {
@@ -24,6 +26,13 @@ public class MovieController {
         System.out.println( "xx");
         WatchList movies = movieService.getAllWatchListMovies();
         return ResponseEntity.ok(movies);
+    }
+    @PostMapping("/add/watchlist/{id}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
+            action = "Add";
+            WatchList watchList = movieService.addToWatchList(movieId);
+
+        return ResponseEntity.ok(watchList);
     }
     /*
     @PostMapping("/add/watchlist/{movieId}")
@@ -45,5 +54,4 @@ public class MovieController {
         } catch (RuntimeException e) {
             return null;
         }
-
     }}

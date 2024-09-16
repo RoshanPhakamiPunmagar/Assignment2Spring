@@ -28,6 +28,21 @@ public class WatchList {
         }
     }
 
+    @OneToOne
+    private Customer customer;
+
+    public void removeMovie(Movies movie) {
+        if (!this.movies.contains(movie)) {
+            for(Movies m : this.movies) {
+                if(movie.getId().equals( m.getId())) {
+                    this.movies.remove(movie);
+                }
+
+            }
+            System.out.println("Movie removed: " + movie.getId() + " " + this.id);
+        }
+
+    }
     @Override
     public String toString() {
         return "WatchList{" +

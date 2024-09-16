@@ -20,6 +20,7 @@ public class MovieController {
     @GetMapping("/get/all")
     public ResponseEntity<List<Movies>> retrieveAll() {
         List<Movies> movies = movieService.getAllMovies();
+        System.out.println(movies.get(0).getInWatchList());
         return ResponseEntity.ok(movies);
     }
     @GetMapping("/get/watchlist/all")
@@ -53,13 +54,13 @@ public class MovieController {
         return ResponseEntity.ok(createdMovie);
     }
 
-    @PostMapping("/add/watchlist/{movieId}")
-    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("movieId") Long movieId, @RequestParam String action) {
+    @PostMapping("/add/watchlist/{id}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long id, @RequestParam String action) {
         WatchList updatedMovie = new WatchList();
         if ("Add".equals(action)) {
-            updatedMovie    = movieService.postWatchlist(movieId);
+            updatedMovie    = movieService.postWatchlist(id);
         } else if ("Remove".equals(action)) {
-            updatedMovie    = movieService.removeWatchList(movieId);
+            updatedMovie    = movieService.removeWatchList(id);
         }
         return ResponseEntity.ok(updatedMovie);
     }

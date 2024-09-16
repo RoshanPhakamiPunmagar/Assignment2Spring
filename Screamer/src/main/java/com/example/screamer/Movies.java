@@ -25,13 +25,21 @@ public class Movies {
     @NonNull
     private String subGenre;
 
-    @Setter
+
     @NonNull
     private boolean isWatchList;
 
 
-    @ManyToMany (mappedBy = "movies")
+    @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
     private List<WatchList> watchLists = new ArrayList<>();
+
+    public void addWatchlist(WatchList watchList) {
+        // Check to avoid adding duplicates
+        if (!this.watchLists.contains(watchList)) {
+            this.watchLists.add(watchList);
+            watchList.getMovies().add(this); // Maintain the bidirectional relationship
+        }
+    }
 
     public boolean getIsWatchList() {
         return this.isWatchList;

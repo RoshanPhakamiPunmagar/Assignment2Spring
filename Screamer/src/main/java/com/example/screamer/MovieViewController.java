@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
-@Data @RequestMapping("/view")
+@RequestMapping("/view")
 public class MovieViewController {
 
 
     private final MovieService movieService;
-    private final MoviesRepository moviesRepository;
+    //private final MoviesRepository moviesRepository;
+
+    public MovieViewController(MovieService movieService) {
+        this.movieService = movieService;
+        //this.moviesRepository = moviesRepository;
+    }
+
     @GetMapping("/watchlist/all")
     public String getAllWatchlistMovies(Model model) {
         WatchList watchList = movieService.getAllWatchListMovies();
@@ -21,8 +27,9 @@ public class MovieViewController {
         return "watchlist";
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public String getAllMovies(Model model) {
+        System.out.println("called herer");
         List<Movies> m = movieService.getAllMovies();
         model.addAttribute("movies", m);
         return "movie_page";
@@ -40,8 +47,8 @@ public class MovieViewController {
         return "redirect:/view/all";
     }
     */
-    @PostMapping("/add/watchlist/{movieId}")
-    public String addMovieToWatchlist(@PathVariable("movieId") Long movieId, @RequestParam String action) {
+    @PostMapping("/add/watchlist/{id}")
+    public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
 
         System.out.println(action);
 
