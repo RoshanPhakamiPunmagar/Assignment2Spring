@@ -29,11 +29,11 @@ public class WebAppController {
         ModelAndView model = new ModelAndView();
 
         model.setViewName("index.html");
-        
+
         return model;
 
     }
-    
+
     @GetMapping("/movieRecommendation")
     public ModelAndView recommendMovie() {
         ModelAndView model = new ModelAndView();
