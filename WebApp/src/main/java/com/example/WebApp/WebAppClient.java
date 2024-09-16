@@ -24,6 +24,6 @@ interface RecommendationClient {
 @FeignClient(name = "screanerService", url = "http://localhost:8888")
 interface ScreamerClient {
 
-    @GetMapping("/screamer/getMovies")
+    @GetMapping("/getMovies")
     List<Movie> getAllMovies();
 }
