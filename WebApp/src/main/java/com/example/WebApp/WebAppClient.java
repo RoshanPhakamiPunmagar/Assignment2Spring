@@ -13,11 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
  *
  * @author caleb
  */
-@FeignClient(name = "recommendationClient", url = "http://localhost:8333")
-interface WebAppClient {
+@FeignClient(name = "recommendationService", url = "http://localhost:8333")
+interface RecommendationClient {
 
     @GetMapping("/recommendation/{custID}")
     Recommendation getRecommendation(@PathVariable long custID);
+
+}
+
+@FeignClient(name = "screanerService", url = "http://localhost:8888")
+interface ScreamerClient {
 
     @GetMapping("/screamer/getMovies")
     List<Movie> getAllMovies();

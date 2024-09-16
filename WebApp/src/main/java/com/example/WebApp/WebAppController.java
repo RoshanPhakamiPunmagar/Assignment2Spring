@@ -23,7 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class WebAppController {
 
     @Autowired
-    private WebAppClient webAppClient;
+    private RecommendationClient recommendationClient;
+
+    @Autowired
+    private ScreamerClient screamerClient;
 
     @GetMapping("/")
     public ModelAndView getIndex() {
@@ -43,16 +46,16 @@ public class WebAppController {
     public ModelAndView showAllMovies() {
         ModelAndView model = new ModelAndView();
         model.setViewName("movie_page.html");
-        model.addObject("movies", webAppClient.getAllMovies());
+        model.addObject("movies", screamerClient.getAllMovies());
         return model;
     }
-    
+
     //This is not complete it needs to know what the logged in user is
     @GetMapping("/movieRecommendation")
     public ModelAndView recommendMovie() {
         ModelAndView model = new ModelAndView();
         model.setViewName("recommended_movie.html");
-        Recommendation rec = webAppClient.getRecommendation(1);
+        Recommendation rec = recommendationClient.getRecommendation(1);
         model.addObject("movieTitle", rec.getMovieTitle());
         model.addObject("movieUrl", rec.getMovieUrl());
         return model;
