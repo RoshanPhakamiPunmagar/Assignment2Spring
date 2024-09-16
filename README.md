@@ -5,3 +5,6 @@ Week 1:
   
 Week 2:
 https://youtu.be/DiMTwOm-ysc
+
+Week 3:
+https://youtu.be/yNyc7JqQc7E
