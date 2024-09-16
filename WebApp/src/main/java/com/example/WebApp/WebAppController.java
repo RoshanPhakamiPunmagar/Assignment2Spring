@@ -24,6 +24,16 @@ public class WebAppController {
     @Autowired
     private WebAppClient webAppClient;
 
+    @GetMapping("/")
+    public ModelAndView getIndex() {
+        ModelAndView model = new ModelAndView();
+
+        model.setViewName("index.html");
+        
+        return model;
+
+    }
+    
     @GetMapping("/movieRecommendation")
     public ModelAndView recommendMovie() {
         ModelAndView model = new ModelAndView();
