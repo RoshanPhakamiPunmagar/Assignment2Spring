@@ -26,6 +26,8 @@ public class Recommendation {
     @GeneratedValue
     private Long id;
 
+    private String movieTitle;
+    
     private String movieUrl;
 
     private long customerId;
