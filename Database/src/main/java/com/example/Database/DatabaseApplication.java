@@ -102,6 +102,11 @@ class AppInit implements ApplicationRunner {
         user3.setBlocked(false);
         customerRepository.save(user3);
 
+        WatchList list = new WatchList();
+        list.addMovie(m1);
+        list.addMovie(m2);
+        watchListRepository.save(list);
+
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());

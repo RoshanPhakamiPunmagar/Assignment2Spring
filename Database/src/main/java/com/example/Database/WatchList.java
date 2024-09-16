@@ -34,7 +34,9 @@ public class WatchList {
     private long id;
 
     @NonNull
-
+    private long custID; //Customer this watchlist belongs to
+    
+    @NonNull
     private long movieId;
     @ManyToMany(mappedBy = "watchLists")
     private List<Movie> moveList = new ArrayList<>();

@@ -25,7 +25,7 @@ public class screamerController {
         return ResponseEntity.ok(screamerClient.getMovies());
     }
 
-    @GetMapping("/watchList")
+    @GetMapping("/getWatchList")
     public ResponseEntity<List<WatchList>> getWatchList() {
         return ResponseEntity.ok(screamerClient.getWatchList());
     }

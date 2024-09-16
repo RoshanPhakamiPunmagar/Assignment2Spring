@@ -32,7 +32,8 @@ public class WatchList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @NonNull
+    private long custID; //Customer this watchlist belongs to
     @NonNull
 
     private long movieId;
