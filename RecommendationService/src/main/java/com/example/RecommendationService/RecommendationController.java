@@ -41,7 +41,6 @@ public class RecommendationController {
     }
 
     Movie getRandomMovie() {
-        recommendationClient.getMovies();
         List<Movie> movies = recommendationClient.getMovies();
 
         return movies.get(random.nextInt(movies.size()) + 1);
