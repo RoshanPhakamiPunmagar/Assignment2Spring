@@ -40,9 +40,11 @@ public class WebAppController {
     }
 
     @GetMapping("/allMovies")
-    public String showAllMovies(Model model) {
-        model.addAttribute("movies", movieService.getAllMovies());
-        return "movie_page";
+    public ModelAndView showAllMovies() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("movie_page.html");
+        model.addObject("movies", webAppClient.getAllMovies());
+        return model;
     }
     
     //This is not complete it needs to know what the logged in user is
