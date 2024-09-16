@@ -4,14 +4,19 @@
  */
 package com.example.WebApp;
 
+import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
  * @author caleb
  */
 @FeignClient(name = "recommendationClient", url = "http://localhost:8333")
+interface WebAppClient {
 
-public class WebAppClient {
-    
+    @GetMapping("/recommendation/{custID}")
+    Recommendation getRecommendation(@PathVariable long custID);
+
 }
