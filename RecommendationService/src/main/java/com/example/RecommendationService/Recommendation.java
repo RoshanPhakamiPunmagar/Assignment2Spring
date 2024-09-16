@@ -28,5 +28,5 @@ public class Recommendation {
 
     private String movieUrl;
 
-    private String customerId;
+    private long customerId;
 }
