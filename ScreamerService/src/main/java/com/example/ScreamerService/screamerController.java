@@ -9,6 +9,7 @@ import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -25,9 +26,9 @@ public class screamerController {
         return ResponseEntity.ok(screamerClient.getMovies());
     }
 
-    @GetMapping("/getWatchList")
-    public ResponseEntity<List<WatchList>> getWatchList() {
-        return ResponseEntity.ok(screamerClient.getWatchList(1));
+    @GetMapping("/getWatchList{custID}")
+    public ResponseEntity<List<WatchList>> getWatchList(@PathVariable long custID) {
+        return ResponseEntity.ok(screamerClient.getWatchList(custID));
     }
 
 }

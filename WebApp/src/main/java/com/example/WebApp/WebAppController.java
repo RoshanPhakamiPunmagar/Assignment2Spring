@@ -65,7 +65,7 @@ public class WebAppController {
     @GetMapping("/watchList")
     public ModelAndView watchList() {
         ModelAndView model = new ModelAndView();
-        List<WatchList> watchLists = screamerClient.getWatchList();
+        List<WatchList> watchLists = screamerClient.getWatchList(1);
         model.setViewName("watchlist.html");
         model.addObject("watchlist", watchLists);  
 
