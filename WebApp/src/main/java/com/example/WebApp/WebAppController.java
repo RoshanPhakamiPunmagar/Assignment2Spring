@@ -29,9 +29,9 @@ public class WebAppController {
         ModelAndView model = new ModelAndView();
 
         model.setViewName("recommended_movie.html");
-
-        model.addObject("movieTitle", recommendation.getTitle());
-        model.addObject("movieUrl", recommendation.getUrl());
+        Recommendation rec = webAppClient.getRecommendation(1);
+        model.addObject("movieTitle", rec.getTitle());
+        model.addObject("movieUrl", rec.getMovieUrl());
         return model;
 
     }
