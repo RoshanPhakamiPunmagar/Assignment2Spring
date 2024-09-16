@@ -31,6 +31,17 @@ public class WebAppController {
         return model;
     }
 
+    @GetMapping("/register")
+    public ModelAndView registerCustomer() {
+
+    }
+
+    @GetMapping("/allMovies")
+    public ModelAndView showAllMovies() {
+
+    }
+
+    //This is not complete it needs to know what the logged in user is
     @GetMapping("/movieRecommendation")
     public ModelAndView recommendMovie() {
         ModelAndView model = new ModelAndView();
@@ -40,4 +51,5 @@ public class WebAppController {
         model.addObject("movieUrl", rec.getMovieUrl());
         return model;
     }
+
 }
