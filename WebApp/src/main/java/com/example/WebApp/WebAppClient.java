@@ -19,4 +19,6 @@ interface WebAppClient {
     @GetMapping("/recommendation/{custID}")
     Recommendation getRecommendation(@PathVariable long custID);
 
+    @GetMapping("/screamer/getMovies")
+    List<Movie> getAllMovies();
 }

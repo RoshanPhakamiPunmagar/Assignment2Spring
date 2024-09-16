@@ -4,6 +4,7 @@
  */
 package com.example.WebApp;
 
+import ch.qos.logback.core.model.Model;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,12 +40,11 @@ public class WebAppController {
     }
 
     @GetMapping("/allMovies")
-    public ModelAndView showAllMovies() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("movie_page.html");
-        return model;
+    public String showAllMovies(Model model) {
+        model.addAttribute("movies", movieService.getAllMovies());
+        return "movie_page";
     }
-
+    
     //This is not complete it needs to know what the logged in user is
     @GetMapping("/movieRecommendation")
     public ModelAndView recommendMovie() {
