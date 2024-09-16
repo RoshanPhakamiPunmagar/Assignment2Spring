@@ -37,7 +37,6 @@ public class WatchList {
     @NonNull
 
     private long movieId;
-    @ManyToMany(mappedBy = "watchLists")
     private List<Movie> moveList = new ArrayList<>();
 
     public void addMovie(Movie movie) {
