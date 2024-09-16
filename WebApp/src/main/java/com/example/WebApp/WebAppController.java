@@ -33,12 +33,16 @@ public class WebAppController {
 
     @GetMapping("/register")
     public ModelAndView registerCustomer() {
-
+        ModelAndView model = new ModelAndView();
+        model.setViewName("register.html");
+        return model;
     }
 
     @GetMapping("/allMovies")
     public ModelAndView showAllMovies() {
-
+        ModelAndView model = new ModelAndView();
+        model.setViewName("movie_page.html");
+        return model;
     }
 
     //This is not complete it needs to know what the logged in user is
