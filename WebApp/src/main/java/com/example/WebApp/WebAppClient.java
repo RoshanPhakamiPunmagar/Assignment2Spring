@@ -4,10 +4,14 @@
  */
 package com.example.WebApp;
 
+import org.springframework.cloud.openfeign.FeignClient;
+
 /**
  *
  * @author caleb
  */
+@FeignClient(name = "recommendationClient", url = "http://localhost:8333")
+
 public class WebAppClient {
     
 }
