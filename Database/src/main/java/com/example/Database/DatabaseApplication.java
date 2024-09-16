@@ -105,6 +105,7 @@ class AppInit implements ApplicationRunner {
         WatchList list = new WatchList();
         list.addMovie(m1);
         list.addMovie(m2);
+        list.setCustID(user1.getId());
         watchListRepository.save(list);
 
         // Log output
