@@ -18,5 +18,8 @@ interface ScreamerClient {
 
     @GetMapping("/getMovies")
     List<Movie> getMovies();
+    
+    @GetMapping("/getWatchList")
+    List<WatchList> getWatchList();
 
 }
