@@ -4,8 +4,11 @@
  */
 package com.example.ScreamerService;
 
+import java.util.List;
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -14,5 +17,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Data
 public class screamerController {
-    
+
+    private final ScreamerClient screamerClient;
+
+    @GetMapping("/getMovies")
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        return ResponseEntity.ok(screamerClient.getMovies());
+    }
 }
