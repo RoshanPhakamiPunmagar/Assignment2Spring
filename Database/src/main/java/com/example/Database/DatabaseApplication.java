@@ -102,11 +102,6 @@ class AppInit implements ApplicationRunner {
         user3.setBlocked(false);
         customerRepository.save(user3);
 
-        Recommendation recommendation1 = new Recommendation();
-        recommendation1.setCustomer(user1);
-        recommendation1.setMovie(m);
-        recommendationRepository.save(recommendation1);
-
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());
