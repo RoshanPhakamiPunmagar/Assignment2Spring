@@ -5,6 +5,7 @@
 package com.example.WebApp;
 
 import ch.qos.logback.core.model.Model;
+import java.util.List;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,9 @@ public class WebAppController {
     @GetMapping("/watchList")
     public ModelAndView watchList() {
         ModelAndView model = new ModelAndView();
+        List<WatchList> watchLists = screamerClient.getWatchList();
         model.setViewName("watchlist.html");
+        model.addObject("watchlist", watchLists);  
 
         return model;
     }
