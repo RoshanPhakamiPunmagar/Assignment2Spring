@@ -35,11 +35,11 @@ public class WatchList {
 
     @NonNull
     private long custID; //Customer this watchlist belongs to
-    
+
     @NonNull
     private long movieId;
-        @ManyToMany(mappedBy = "watchLists")
 
+    @ManyToMany
     private List<Movie> moveList = new ArrayList<>();
 
     public void addMovie(Movie movie) {

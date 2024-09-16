@@ -2,6 +2,7 @@ package com.example.Database;
 
 import jakarta.transaction.Transactional;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,9 +36,11 @@ public class DatabaseApplication {
 class AppInit implements ApplicationRunner {
 
     private final MovieRepository moviesRepository;
+    @Autowired
     private final WatchListRepository watchListRepository;
     private final CustomerRepository customerRepository;
     private final RecommendationRepository recommendationRepository;
+    private final WatchListController watchListController;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -107,7 +110,6 @@ class AppInit implements ApplicationRunner {
         list.addMovie(m2);
         list.setCustID(user1.getId());
         watchListRepository.save(list);
-
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());

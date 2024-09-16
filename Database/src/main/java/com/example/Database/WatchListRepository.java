@@ -13,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * @author caleb
  */
 @RepositoryRestResource
-public interface WatchListRepository extends JpaRepository<WatchList, Long> {
+interface WatchListRepository extends JpaRepository<WatchList, Long> {
 
-    List<WatchList> findBycustID(long custID);
+    WatchList findBycustID(long custID);
 }

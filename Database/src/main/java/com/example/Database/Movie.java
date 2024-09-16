@@ -55,7 +55,7 @@ public class Movie {
 
     private boolean isBlocked = false;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "moveList")
     private List<WatchList> watchLists = new ArrayList<>();
 
     @ManyToMany(mappedBy = "movies")

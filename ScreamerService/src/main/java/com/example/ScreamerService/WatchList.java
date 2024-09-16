@@ -4,6 +4,7 @@
  */
 package com.example.ScreamerService;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,7 @@ public class WatchList {
 
     private long movieId;
         @ManyToMany(mappedBy = "watchLists")
+        @JsonManagedReference
     private List<Movie> moveList = new ArrayList<>();
 
     public void addMovie(Movie movie) {

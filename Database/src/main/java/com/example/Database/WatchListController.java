@@ -9,10 +9,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -24,13 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class WatchListController {
 
-    @Autowired
-    private WatchListRepository watchListRepository;
+    private final WatchListRepository watchListRepository;
 
     @GetMapping("/getWatchList/{custID}")
-    public ResponseEntity<List<WatchList>> getWatchList(@PathVariable long custID) {
-        List<WatchList> watchList = watchListRepository.findBycustID(custID);
+    public ResponseEntity<WatchList> getWatchList(@PathVariable long custID) {
+        WatchList watchList = watchListRepository.findBycustID(custID);
 
+        return ResponseEntity.ok(watchList);
+    }
+
+    @GetMapping("/getWatchList")
+    public ResponseEntity<WatchList> getWatchList() {
+        WatchList watchList = watchListRepository.findById((long) 1).get();
         return ResponseEntity.ok(watchList);
     }
 }
