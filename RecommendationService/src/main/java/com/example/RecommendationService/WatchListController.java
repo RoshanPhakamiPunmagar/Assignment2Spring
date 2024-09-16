@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Data
 public class WatchListController {
-    
+     private final WatchListClient watchListClient;
 }
 
 //getWatchList
