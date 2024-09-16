@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,9 +27,10 @@ public class WatchListController {
     @Autowired
     private WatchListRepository watchListRepository;
 
-    @GetMapping("/getWatchList")
-    public ResponseEntity<List<WatchList>> getWatchList() {
-        List<WatchList> watchList = watchListRepository.findAll();
+    @GetMapping("/getWatchList/{custID}")
+    public ResponseEntity<List<WatchList>> getWatchList(@PathVariable long custID) {
+        List<WatchList> watchList = watchListRepository.findBycustID(custID);
+
         return ResponseEntity.ok(watchList);
     }
 }

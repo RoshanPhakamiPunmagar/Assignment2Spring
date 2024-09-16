@@ -19,7 +19,7 @@ interface ScreamerClient {
     @GetMapping("/getMovies")
     List<Movie> getMovies();
     
-    @GetMapping("/getWatchList")
-    List<WatchList> getWatchList();
+    @GetMapping("/getWatchList/{custID}")
+    List<WatchList> getWatchList(@PathVariable long custID);
 
 }

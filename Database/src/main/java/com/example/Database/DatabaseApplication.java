@@ -111,6 +111,7 @@ class AppInit implements ApplicationRunner {
         // Log output
         System.out.println("Movies created: " + moviesRepository.findAll());
         System.out.println("Users created: " + customerRepository.findAll());
+        System.out.println("WatchList created: " + watchListRepository.findAll());
 
     }
 }
