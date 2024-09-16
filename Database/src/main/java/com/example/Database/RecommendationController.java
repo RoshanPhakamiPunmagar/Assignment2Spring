@@ -37,7 +37,7 @@ public class RecommendationController {
         return ResponseEntity.ok(rec);
     }
 
-    @GetMapping("/getRecommendations/")
+    @GetMapping("/getRecommendations")
     public ResponseEntity<List<Recommendation>> getRecommendations() {
         List<Recommendation> rec = recommendationRepository.findAll();
         return ResponseEntity.ok(rec);
