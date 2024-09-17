@@ -28,8 +28,9 @@ public class MovieService {
         try {
             //List<Movies> movies = movieClient.getAllMovies();
 
-            System.out.println(movies.get(0).getIsWatchList() + "X" + movies.get(1).getTitle());
+            //System.out.println(movies.get(0).getIsWatchList() + "X" + movies.get(1).getTitle());
           //  movieRepository.saveAll(movies);
+          movies = movieClient.getAllMovies();
             return movies;
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
