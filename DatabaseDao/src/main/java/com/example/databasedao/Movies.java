@@ -32,6 +32,9 @@ public class Movies {
     @NonNull
     private boolean inWatchList; // Renamed for clarity
 
+    @NonNull
+    private boolean blocked;
+
     @ManyToMany(mappedBy = "movies")
     @JsonBackReference
     private List<WatchList> watchLists = new ArrayList<>();

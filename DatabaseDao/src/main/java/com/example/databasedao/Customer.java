@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity @Data
+@Entity @Data @NoArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue
@@ -23,6 +24,9 @@ public class Customer {
     private String email;
 
     private String password;
+
+    @NonNull
+    private boolean blocked;
 
     @OneToOne (mappedBy = "customer")
     @JsonBackReference

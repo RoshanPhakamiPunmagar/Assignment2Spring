@@ -30,6 +30,8 @@ public class Movies {
     @NonNull
     private boolean isWatchList;
 
+    @NonNull
+    private boolean blocked;
 
     @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
     private List<WatchList> watchLists = new ArrayList<>();

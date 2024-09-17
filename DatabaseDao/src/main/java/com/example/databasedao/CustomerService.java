@@ -20,7 +20,7 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+        return customerRepository.findByBlocked(false);
     }
 
     public Customer getCustomerById(Long id) {

@@ -77,7 +77,7 @@ public class MovieService {
 
     public List<Movies> getAllMovies() {
         System.out.println(movieRepository.findAll());
-        return movieRepository.findAll();
+        return movieRepository.findByBlocked(false);
     }
 
     public WatchList getAllWatchList() {
