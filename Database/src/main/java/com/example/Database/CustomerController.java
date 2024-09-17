@@ -38,6 +38,12 @@ public class CustomerController {
         Customer cust = customerRepository.findById(custID).get();
         return ResponseEntity.ok(cust);
     }
+    
+    @GetMapping("/getCustomerByEmail")
+    public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) {
+        Customer cust = customerRepository.findByEmail(email).get();
+        return ResponseEntity.ok(cust);
+    }
 
     @GetMapping("/getCustomers")
     public ResponseEntity<List<Customer>> getCustomers() {

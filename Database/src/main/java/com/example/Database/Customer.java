@@ -29,6 +29,12 @@ public class Customer {
     private Long id;
 
     @NonNull
+    private String email;
+    
+    @NonNull
+    private String password; //should hash this
+    
+    @NonNull
     private String name;
 
     private boolean blocked = false;  // Renamed field to 'blocked'
