@@ -3,6 +3,7 @@ package com.example.screamer;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,20 +28,7 @@ public class MovieController {
         WatchList movies = movieService.getAllWatchListMovies();
         return ResponseEntity.ok(movies);
     }
-    @PostMapping("/add/watchlist/{id}")
-    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
-            action = "Add";
-            WatchList watchList = movieService.addToWatchList(movieId);
 
-        return ResponseEntity.ok(watchList);
-    }
-    /*
-    @PostMapping("/add/watchlist/{movieId}")
-    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
-            WatchList updatedMovie = movieService.addToWatchList(movieId);
-            return ResponseEntity.ok(updatedMovie);
-    }
-    */
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Movies> updateMovieById(@PathVariable("id") Long id, @ModelAttribute Movies movie) {
@@ -54,4 +42,50 @@ public class MovieController {
         } catch (RuntimeException e) {
             return null;
         }
-    }}
+    }
+
+
+    @PostMapping("/add/watchlist/{id}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
+
+        System.out.println(action);
+        WatchList watchList = new WatchList();
+        if ("Add".equals(action)) {
+            watchList =  movieService.addToWatchList(movieId);
+        } else if ("Remove".equals(action)) {
+            watchList =     movieService.removeFromWatchList(movieId);
+        }
+        return ResponseEntity.ok(watchList);
+    }
+
+}
+
+   /*
+    @PostMapping("/add/watchlist/{id}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
+            action = "Add";
+            WatchList watchList = movieService.addToWatchList(movieId);
+
+        return ResponseEntity.ok(watchList);
+    }
+
+    @PostMapping("/add/watchlist/{movieId}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
+            WatchList updatedMovie = movieService.addToWatchList(movieId);
+            return ResponseEntity.ok(updatedMovie);
+    }
+    */
+
+  /*
+    @PostMapping("/add/watchlist/{movieId}")
+    public String addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
+        System.out.println(movieId);
+        WatchList updatedMovie = movieService.addToWatchList(movieId);
+        return "redirect:/view/all";
+    }
+    @PostMapping("/remove/watchlist/{movieId}")
+    public String removeMovieFromWatchlist(@PathVariable("movieId") Long movieId) {
+        movieService.removeFromWatchList(movieId);
+        return "redirect:/view/all";
+    }
+    */

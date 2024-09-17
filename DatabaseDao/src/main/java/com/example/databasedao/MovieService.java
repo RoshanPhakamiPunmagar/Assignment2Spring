@@ -11,11 +11,18 @@ import java.util.Optional;
 public class MovieService {
     private final MoviesRepository movieRepository;
 
+    private final CustomerRepository customerRepository;
+
+    private final CustomerService customerService;
     private final WatchListRepository watchListRepository;
     private WatchList watchListToAdd = new WatchList();
     private List<Movies> moviesToAdd;
-    public MovieService(MoviesRepository movieRepository, WatchListRepository watchListRepository) {
+
+
+    public MovieService(MoviesRepository movieRepository, CustomerRepository customerRepository, CustomerService customerService, WatchListRepository watchListRepository) {
         this.movieRepository = movieRepository;
+        this.customerRepository = customerRepository;
+        this.customerService = customerService;
         this.watchListRepository = watchListRepository;
 
     }
@@ -24,6 +31,8 @@ public class MovieService {
         System.out.println(movie.getId());
         return movieRepository.save(movie);
     }
+
+
     @Transactional
     public WatchList removeWatchList(Long id) {
         Optional<Movies> movies = movieRepository.findById(id);
@@ -48,48 +57,19 @@ public class MovieService {
 
 
 
-    /*
-    public WatchList removeWatchList(Long id) {
-        Movies movie = movieRepository.findById(id).get();
-        List<Movies> movies = movieRepository.findAll();
-        WatchList watchList = watchListRepository.findById(id).get();
-        List<Movies> moviesToAdd= watchList.getMovies();
-        Movies movieToRemove = new Movies();
-        for (Movies m : movies) {
-            if (m.getId() == (id)) {
-                movieToRemove = m;
-                break;
-            }
-        }
-            movieToRemove.setInWatchList(false);
-        // Remove the movie from the list
-        movies.remove(movieToRemove);
-        watchList.setMovies(movies);
-        movieRepository.save(movieToRemove);
-        System.out.println(movie.getInWatchList());
-        return watchListRepository.save(watchList);
 
-    }
-    */
 
     public WatchList postWatchlist(Long id) {
         // Retrieve the movie from the repository
         Movies movie = movieRepository.findById(id).get();
 
-        // Retrieve or create the watchlist
-       // Assume 1L is the ID of the watchlist for simplicity
 
-        /* Add movie to the watchlist
-        List<Movies> moviesToAdd = watchListToAdd.getMovies();
-        if (moviesToAdd == null) {
-            moviesToAdd = new ArrayList<>();
-        }
-
-        moviesToAdd.add(movie);*/
         movie.setInWatchList(true);
 
         movieRepository.save(movie);
         watchListToAdd.addMovie(movie);
+
+        watchListToAdd.setCustomer(customerService.getCustomerById(1L));
         System.out.println(movie.getInWatchList());
         // Save the updated watchlist
         return watchListRepository.save(watchListToAdd);

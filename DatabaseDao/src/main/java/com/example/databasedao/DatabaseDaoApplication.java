@@ -24,7 +24,8 @@ class AppInit implements ApplicationRunner {
 
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
-    //private final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+    private final CustomerController customerController;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -76,6 +77,38 @@ class AppInit implements ApplicationRunner {
         m5.setUrl("https://www.youtube.com/embed/bSxuXQCEC7M?si=aPw7kcVFWW-QwMER");
         moviesRepository.save(m5);
         movieController.addMovie(m);
+
+        // Create a new Customer object for Anmol
+        Customer c1 = new Customer();
+        c1.setName("Anmol");
+        c1.setEmail("anmol@gmail.com");
+        c1.setPassword("anmol123");
+        customerRepository.save(c1);
+        customerController.addCustomer(c1);
+
+        // Create a new Customer object for Roshan
+        Customer c2 = new Customer();
+        c2.setName("Roshan");
+        c2.setEmail("roshan@gmail.com");
+        c2.setPassword("roshan123");
+        customerRepository.save(c2);
+        customerController.addCustomer(c2);
+
+        // Create a new Customer object for Caleb
+        Customer c3 = new Customer();
+        c3.setName("Caleb");
+        c3.setEmail("caleb@gmail.com");
+        c3.setPassword("caleb123");
+        customerRepository.save(c3);
+        customerController.addCustomer(c3);
+
+        // Create a new Customer object for Rutvi
+        Customer c4 = new Customer();
+        c4.setName("Rutvi");
+        c4.setEmail("rutvi@gmail.com");
+        c4.setPassword("rutvi123");
+        customerRepository.save(c4);
+        customerController.addCustomer(c4);
 
     }
 }

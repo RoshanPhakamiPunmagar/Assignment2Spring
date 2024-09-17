@@ -29,6 +29,7 @@ public class WatchList {
     }
 
     @OneToOne
+    @JsonManagedReference
     private Customer customer;
 
     public void removeMovie(Movies movie) {

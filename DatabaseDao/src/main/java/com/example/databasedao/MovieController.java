@@ -23,6 +23,8 @@ public class MovieController {
         System.out.println(movies.get(0).getInWatchList());
         return ResponseEntity.ok(movies);
     }
+
+
     @GetMapping("/get/watchlist/all")
     public ResponseEntity<WatchList> retrieveAllWatchList() {
         WatchList watchLists = movieService.getAllWatchList();
@@ -53,6 +55,7 @@ public class MovieController {
         Movies createdMovie = movieService.postMovie(movie);
         return ResponseEntity.ok(createdMovie);
     }
+
 
     @PostMapping("/add/watchlist/{id}")
     public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long id, @RequestParam String action) {

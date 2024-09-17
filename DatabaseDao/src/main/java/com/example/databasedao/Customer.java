@@ -1,5 +1,7 @@
 package com.example.databasedao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NonNull;
@@ -22,11 +24,11 @@ public class Customer {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles = new ArrayList<>();
+    @OneToOne (mappedBy = "customer")
+    @JsonBackReference
+    private WatchList watchList;
 
-    @OneToOne
-    private Customer customer;
+
+
 
 }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,9 @@ public class WatchList {
     )
     private List<Movies> movies = new ArrayList<>();
 
+    @OneToOne
+    private Customer customer;
+
     public void addMovie(Movies movie) {
         // Check to avoid adding duplicates
         if (!this.movies.contains(movie)) {
@@ -31,6 +35,9 @@ public class WatchList {
             movie.getWatchLists().add(this); // Maintain the bidirectional relationship
         }
     }
+
+
+
 
     @Override
     public String toString() {

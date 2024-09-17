@@ -13,17 +13,16 @@ public class MovieService {
 
 
     private final MovieClient movieClient;
-    private final WatchListRepository watchListRepository;
-    private final MoviesRepository movieRepository;
+    private final CustomerClient customerClient;
     private List<Movies> movies;
     private WatchList savedWatchList = new WatchList();
 
-    public MovieService(MovieClient movieClient, WatchListRepository watchListRepository, MoviesRepository moviesRepository) {
-        this.movieRepository = moviesRepository;
+    public MovieService(MovieClient movieClient, WatchListRepository watchListRepository, MoviesRepository moviesRepository, CustomerClient customerClient) {
+     //   this.movieRepository = moviesRepository;
         movies = movieClient.getAllMovies();
         this.movieClient = movieClient;
-        this.watchListRepository = watchListRepository;
-
+     //   this.watchListRepository = watchListRepository;
+        this.customerClient = customerClient;
     }
 
 
@@ -32,7 +31,7 @@ public class MovieService {
             //List<Movies> movies = movieClient.getAllMovies();
 
             System.out.println(movies.get(0).getIsWatchList() + "X" + movies.get(1).getTitle());
-            movieRepository.saveAll(movies);
+          //  movieRepository.saveAll(movies);
             return movies;
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
@@ -66,50 +65,13 @@ public class MovieService {
         try {
             System.out.println(getAllMovies().get(0).getIsWatchList());
             WatchList watchLists = movieClient.getAllWatchList();
-            watchListRepository.save(watchLists);
+          //  watchListRepository.save(watchLists);
             return watchLists;
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
     }
-/*
-    public WatchList removeFromWatchList(Long id){
-        List<Movies> movies =  getAllMovies();
 
-     WatchList watchList = getAllWatchListMovies();
-
-        List<Movies> moviesToAdd= watchList.getMovies();
-        Movies movieToRemove = new Movies();
-        for (Movies m : movies) {
-            if (m.getId() == (id)) {
-                m.setWatchList(false);
-                movieToRemove = m;
-                break;
-            }
-        }
-        System.out.println(movieToRemove.getIsWatchList());
-        movieRepository.save(movieToRemove);
-        int x = 0;
-        for(Movies w: watchList.getMovies()){
-            System.out.println(w.getTitle());
-            x++;
-        }
-            // Remove the movie from the list
-        watchList.getMovies().remove(movieToRemove);
-
-            WatchList updatedWatchList = watchListRepository.save(watchList);
-            x = 0;
-            for(Movies w: updatedWatchList.getMovies()){
-                System.out.println(w.getTitle());
-                x++;
-            }
-            // Save the updated watchlist
-                movieClient.addMoveToWatchList(id, "Remove");
-
-
-        return updatedWatchList;
-
-    }*/
 public WatchList removeFromWatchList(Long id) {
     List<Movies> movies = getAllMovies();
     WatchList watchList = getAllWatchListMovies();
@@ -124,19 +86,20 @@ public WatchList removeFromWatchList(Long id) {
     }
 
 
-        movieRepository.save(movieToRemove);
+       // movieRepository.save(movieToRemove);
         watchList.getMovies().remove(movieToRemove);
-        WatchList updatedWatchList = watchListRepository.save(watchList);
+    //    WatchList updatedWatchList = watchListRepository.save(watchList);
 
         // Call Feign client to update remote watch list
         movieClient.addMoveToWatchList(id, "Remove");
 
-        return updatedWatchList;
+        return watchList;
 
 }
 
     public WatchList addToWatchList(Long id) {
         List<Movies> movies =  getAllMovies();
+
    Movies movieToAdd = new Movies();
         for (Movies m : movies) {
             if (m.getId() == id) {
@@ -145,19 +108,15 @@ public WatchList removeFromWatchList(Long id) {
                 movieToAdd = m;
             }
         }
-        //Saving to repository
+        //Adding Customer
+        Long x = 1L;
 
-        System.out.println(movieToAdd.getIsWatchList());
-        //List<Movies> moviesToAdd= new ArrayList<>();
 
-        //moviesToAdd.add(movieToAdd);
-       // movieToAdd.setWatchList(movieToAdd.getIsWatchList());
-
-        //WatchList watchList = new WatchList();
         savedWatchList.addMovie(movieToAdd);
-        movieRepository.save(movieToAdd);
+
+        savedWatchList.setCustomer(customerClient.retrieveById(x).getBody());
         movieClient.addMoveToWatchList(id, "Add");
-        savedWatchList = watchListRepository.save(savedWatchList);
+
 
         return savedWatchList;
     }
