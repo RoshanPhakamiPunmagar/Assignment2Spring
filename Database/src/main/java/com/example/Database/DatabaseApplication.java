@@ -106,7 +106,7 @@ class AppInit implements ApplicationRunner {
         
         Customer user3 = new Customer();
         user3.setName("Bob Brown");
-        user3.setEmail("test2.email.com");
+        user3.setEmail("test3.email.com");
         user3.setPassword("password1");
         user3.setBlocked(false);
         customerRepository.save(user3);

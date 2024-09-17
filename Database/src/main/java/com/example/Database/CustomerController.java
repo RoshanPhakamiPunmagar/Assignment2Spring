@@ -30,8 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class CustomerController {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @GetMapping("/getCustomer/{custID}")
     public ResponseEntity<Customer> getCustomer(@PathVariable long custID) {
@@ -39,9 +38,11 @@ public class CustomerController {
         return ResponseEntity.ok(cust);
     }
     
-    @GetMapping("/getCustomerByEmail")
+    @GetMapping("/getCustomerByEmail/{email}")
     public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) {
-        Customer cust = customerRepository.findByEmail(email);
+        System.out.println("Supplied Email: " + email);
+        Customer cust = customerRepository.findByemail(email);
+        System.out.println(cust);
         return ResponseEntity.ok(cust);
     }
 

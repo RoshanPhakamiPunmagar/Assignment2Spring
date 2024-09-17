@@ -31,4 +31,12 @@ public class screamerController {
         return ResponseEntity.ok(screamerClient.getWatchList(custID));
     }
 
+    @GetMapping("/getCustomerByEmail/{email}")
+    public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) {
+        System.out.println(screamerClient.getCustomerByEmail(email));
+        Customer cust = screamerClient.getCustomerByEmail(email);
+        System.out.println("Customer returned is: " + cust);
+        return ResponseEntity.ok(cust);
+    }
+
 }

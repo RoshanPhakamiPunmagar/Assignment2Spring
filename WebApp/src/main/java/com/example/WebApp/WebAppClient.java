@@ -31,5 +31,5 @@ interface ScreamerClient {
     List<WatchList> getWatchList(@PathVariable long custID);
     
     @GetMapping("/getCustomerByEmail/{email}")
-    List<Customer> getAllCustomer(@PathVariable String email);
+    Customer getCustomerByEmail(@PathVariable String email);
 }

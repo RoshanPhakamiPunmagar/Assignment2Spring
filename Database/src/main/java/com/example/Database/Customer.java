@@ -25,15 +25,16 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     @NonNull
     private String email;
-    
+
     @NonNull
     private String password; //should hash this
-    
+
     @NonNull
     private String name;
 
