@@ -6,8 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-@Entity @Data
+@Entity @Data @NoArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue
@@ -23,6 +25,8 @@ public class Customer {
     @OneToOne (mappedBy = "customer")
     private WatchList watchList;
 
+    @NonNull
+    private boolean blocked;
 
 
 }

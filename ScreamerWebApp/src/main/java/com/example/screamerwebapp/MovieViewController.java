@@ -9,13 +9,13 @@ import java.util.List;
 @RequestMapping("/view")
 public class MovieViewController {
 
-
+    private final CustomerService customerService;
     private final MovieService movieService;
-    //private final MoviesRepository moviesRepository;
 
-    public MovieViewController(MovieService movieService) {
+
+    public MovieViewController(CustomerService customerService, MovieService movieService) {
+        this.customerService = customerService;
         this.movieService = movieService;
-        //this.moviesRepository = moviesRepository;
     }
 
     @GetMapping("/watchlist/all")
@@ -25,6 +25,12 @@ public class MovieViewController {
         return "watchlist";
     }
 
+    @GetMapping("/recommendation")
+    public String getRecommendationMovies(Model model) {
+        Movies recommendedMovie = movieService.getRecommendation();
+        model.addAttribute("recommendation", recommendedMovie);
+        return "recommend_page";
+    }
     @GetMapping("/all")
     public String getAllMovies(Model model) {
         System.out.println("called herer");
@@ -32,19 +38,7 @@ public class MovieViewController {
         model.addAttribute("movies", m);
         return "movie_page";
     }
-    /*
-    @PostMapping("/add/watchlist/{movieId}")
-    public String addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
-        System.out.println(movieId);
-        WatchList updatedMovie = movieService.addToWatchList(movieId);
-        return "redirect:/view/all";
-    }
-    @PostMapping("/remove/watchlist/{movieId}")
-    public String removeMovieFromWatchlist(@PathVariable("movieId") Long movieId) {
-        movieService.removeFromWatchList(movieId);
-        return "redirect:/view/all";
-    }
-    */
+
     @PostMapping("/add/watchlist/{id}")
     public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
 
