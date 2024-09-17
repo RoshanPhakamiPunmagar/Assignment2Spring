@@ -92,19 +92,25 @@ class AppInit implements ApplicationRunner {
         // Create and save users
         Customer user1 = new Customer();
         user1.setName("John Doe");
+        user1.setEmail("test1.email.com");
+        user1.setPassword("password1");
         user1.setBlocked(false);
         customerRepository.save(user1);
-
+        
         Customer user2 = new Customer();
         user2.setName("Jane Smith");
+        user2.setEmail("test2.email.com");
+        user2.setPassword("password1");
         user2.setBlocked(false);
         customerRepository.save(user2);
-
+        
         Customer user3 = new Customer();
         user3.setName("Bob Brown");
+        user3.setEmail("test2.email.com");
+        user3.setPassword("password1");
         user3.setBlocked(false);
         customerRepository.save(user3);
-
+        
         WatchList list = new WatchList();
         list.addMovie(m1);
         list.addMovie(m2);
