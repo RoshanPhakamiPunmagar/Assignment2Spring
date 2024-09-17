@@ -8,14 +8,15 @@ import java.util.List;
 @Service
 public class MovieService {
 
-
+    private final RecommendationClient recommendationClient;
     private final MovieClient movieClient;
     private final CustomerClient customerClient;
     private List<Movies> movies;
     private WatchList savedWatchList = new WatchList();
 
-    public MovieService(MovieClient movieClient , CustomerClient customerClient) {
-     //   this.movieRepository = moviesRepository;
+    public MovieService(RecommendationClient recommendationClient, MovieClient movieClient , CustomerClient customerClient) {
+        this.recommendationClient = recommendationClient;
+        //   this.movieRepository = moviesRepository;
         movies = movieClient.getAllMovies();
         this.movieClient = movieClient;
      //   this.watchListRepository = watchListRepository;
@@ -33,6 +34,10 @@ public class MovieService {
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
+    }
+
+    public Movies getRecommendation(){
+        return recommendationClient.getRecomendation().getBody();
     }
     @Transactional
     public Movies updateMovie(Long id, Movies x) {
