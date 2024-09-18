@@ -18,7 +18,6 @@ public class AdminCustomerViewController {
         this.adminCustomerClient = adminCustomerClient;
     }
 
-
     @GetMapping("/all")
     public String listCustomers(Model model) {
         List<Customer> customers = adminCustomerClient.listCustomers();

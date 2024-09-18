@@ -10,6 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ *
+ * @author Roshan Phakami Pun Magar & Anmol Saru Magar
+ * File Name: MovieViewController.java
+ * Date :16/9/2024
+ * Purpose :
+ * AdminMovieViewController a controller that all the admin request go through.
+ * All the request functionality depends upon
+ * ******************************************************
+ */
 @Controller @RequestMapping("/admin/movie/view")
 public class AdminMovieViewController {
 

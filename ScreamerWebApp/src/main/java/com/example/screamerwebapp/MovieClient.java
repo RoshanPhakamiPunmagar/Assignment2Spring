@@ -4,7 +4,15 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: MovieClient.java
+ * Date :16/9/2024
+ * Purpose :
+ * MovieClient that takes request and sends that request to it assigned url
+ * ******************************************************
+ */
 @FeignClient(name = "movie", url = "http://localhost:8003/movies")
 public interface MovieClient {
 
