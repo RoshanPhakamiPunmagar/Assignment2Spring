@@ -1,5 +1,6 @@
-package com.example.databasedao;
+package com.example.databasedao.admin;
 
+import com.example.databasedao.customer.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

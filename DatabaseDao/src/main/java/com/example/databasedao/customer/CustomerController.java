@@ -1,5 +1,5 @@
-package com.example.screamerwebapp;
-/*
+package com.example.databasedao.customer;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,5 +27,9 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
-
-}*/
+    @PostMapping("/add")
+    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+        Customer createdCustomer = customerService.postCustomer(customer);
+        return ResponseEntity.ok(createdCustomer);
+    }
+}

@@ -1,5 +1,7 @@
-package com.example.databasedao;
+package com.example.databasedao.admin;
 
+import com.example.databasedao.customer.Customer;
+import com.example.databasedao.customer.CustomerRepository;
 import feign.FeignException;
 import org.springframework.stereotype.Service;
 

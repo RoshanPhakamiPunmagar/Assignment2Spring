@@ -20,10 +20,4 @@ public interface MovieClient {
     @PostMapping("/add/watchlist/{id}")
     WatchList addMoveToWatchList(@PathVariable("id") Long id, @RequestParam String action);
 
-
-
-
-    // Uncomment and update this method if needed
-    // @PostMapping("/remove/watchlist/{id}")
-    // WatchList removeWatchList(@PathVariable("id") Long id);
 }

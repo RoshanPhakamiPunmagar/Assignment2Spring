@@ -1,5 +1,11 @@
 package com.example.databasedao;
 
+import com.example.databasedao.customer.Customer;
+import com.example.databasedao.customer.CustomerController;
+import com.example.databasedao.customer.CustomerRepository;
+import com.example.databasedao.movies.MovieController;
+import com.example.databasedao.movies.Movies;
+import com.example.databasedao.movies.MoviesRepository;
 import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.boot.ApplicationArguments;

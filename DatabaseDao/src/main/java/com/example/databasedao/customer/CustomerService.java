@@ -1,4 +1,6 @@
-package com.example.databasedao;
+
+package com.example.databasedao.customer;
+
 
 
 import org.springframework.stereotype.Service;

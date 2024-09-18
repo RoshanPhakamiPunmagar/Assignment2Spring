@@ -1,5 +1,7 @@
-package com.example.databasedao;
+package com.example.databasedao.admin;
 
+import com.example.databasedao.movies.Movies;
+import com.example.databasedao.movies.MoviesRepository;
 import feign.FeignException;
 import org.springframework.stereotype.Service;
 
