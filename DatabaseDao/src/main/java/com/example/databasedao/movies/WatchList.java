@@ -1,5 +1,6 @@
-package com.example.databasedao;
+package com.example.databasedao.movies;
 
+import com.example.databasedao.customer.Customer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
