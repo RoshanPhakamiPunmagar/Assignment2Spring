@@ -105,8 +105,8 @@
                 <form th:action="@{/view/add/watchlist/{movieId}(movieId=${movie.id})}" method="post">
                     <!-- Dynamically change button text and value based on movie's watch list status -->
                     <button type="submit" name="action"
-                            th:text="${movie.isWatchList ? 'Remove from Watch List' : 'Add to Watch List'}"
-                            th:value="${movie.isWatchList ? 'Remove' : 'Add'}"></button>
+                            th:text="${movie.inWatchList ? 'Remove from Watch List' : 'Add to Watch List'}"
+                            th:value="${movie.inWatchList ? 'Remove' : 'Add'}"></button>
                 </form>
 
             </div>

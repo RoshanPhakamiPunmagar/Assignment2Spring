@@ -24,8 +24,9 @@ public class MovieController {
 
     @GetMapping("/get/watchlist/all")
     public ResponseEntity<WatchList> getAllWatchlistMovies() {
-        System.out.println( "xx");
+        
         WatchList movies = movieService.getAllWatchListMovies();
+        System.out.println("Debug: " + movies);
         return ResponseEntity.ok(movies);
     }
 

@@ -41,8 +41,9 @@ public class MovieViewController {
     //gets all the movies and returns movie_page.html
     @GetMapping("/all")
     public String getAllMovies(Model model) {
-        System.out.println("called herer");
+        
         List<Movies> m = movieService.getAllMovies();
+        System.out.println(m);
         model.addAttribute("movies", m);
         return "movie_page";
     }
