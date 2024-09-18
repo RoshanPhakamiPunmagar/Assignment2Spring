@@ -62,8 +62,8 @@ public class ScreamerWebAppApplication {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     
-                    auth.requestMatchers("/view/**").hasRole("ADMIN");
-                    auth.requestMatchers("/admin/**").hasRole("USER");
+                    auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
                 .formLogin(Customizer.withDefaults())
                 .build();
