@@ -8,7 +8,15 @@ import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: Customer.java
+ * Date :16/9/2024
+ * Purpose :
+ * Customer class that defines the Customer Entity
+ * ******************************************************
+ */
 @Entity @Data @NoArgsConstructor
 public class Customer {
     @Id
@@ -21,6 +29,7 @@ public class Customer {
     private String email;
 
     private String password;
+    private String roll;
 
     @OneToOne (mappedBy = "customer")
     private WatchList watchList;

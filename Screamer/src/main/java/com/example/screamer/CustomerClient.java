@@ -15,6 +15,9 @@ public interface CustomerClient {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Customer> retrieveById(@RequestParam Long id);
+    
+     @GetMapping("/getByEmail/{email}")
+     public Customer getByEmail(@RequestParam String email);
 
     // Uncomment and update this method if needed
     // @PostMapping("/remove/watchlist/{id}")

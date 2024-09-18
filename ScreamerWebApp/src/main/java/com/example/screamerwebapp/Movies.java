@@ -9,6 +9,15 @@ import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: Movies.java
+ * Date :16/9/2024
+ * Purpose :
+ * Movies class that defines the Movie Entity
+ * ******************************************************
+ */
 @Entity @Data @NoArgsConstructor @RequiredArgsConstructor
 public class Movies {
     @Id @GeneratedValue
@@ -26,9 +35,8 @@ public class Movies {
     @NonNull
     private String subGenre;
 
-
     @NonNull
-    private boolean isWatchList;
+    private boolean inWatchList;
 
     @NonNull
     private boolean blocked;
@@ -36,16 +44,5 @@ public class Movies {
     @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
     private List<WatchList> watchLists = new ArrayList<>();
 
-    public void addWatchlist(WatchList watchList) {
-        // Check to avoid adding duplicates
-        if (!this.watchLists.contains(watchList)) {
-            this.watchLists.add(watchList);
-            watchList.getMovies().add(this); // Maintain the bidirectional relationship
-        }
-    }
-
-    public boolean getIsWatchList() {
-        return this.isWatchList;
-    }
 
 }

@@ -27,7 +27,7 @@ public class Movies {
 
 
     @NonNull
-    private boolean isWatchList;
+    private boolean inWatchList;
 
 
     @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
@@ -42,7 +42,7 @@ public class Movies {
     }
 
     public boolean getIsWatchList() {
-        return this.isWatchList;
+        return this.inWatchList;
     }
 
 }

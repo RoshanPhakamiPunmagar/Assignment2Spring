@@ -7,10 +7,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-
-
+/**
+ *
+ * @author Anmol Saru Magar & Roshan Phakami PunMagar
+ * File Name: ServerApplication.java
+ * Date :16/9/2024
+ * Purpose :
+ * Runs ServerApplicaiton
+ * ******************************************************
+ */
+//admin feign client interface
 @FeignClient(name = "admin-customer", url = "http://localhost:8007/admin/customer")
-public interface AdminCustomerClient {
+public interface AdminCustomerClient{
     @GetMapping("/get/all")
     List<Customer> listCustomers();
 

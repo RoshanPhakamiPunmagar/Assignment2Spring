@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Entity class representing the Movies.
- * This class defines the properties of a movie and its relationship with watch lists.
- * It is annotated with JPA annotations to facilitate ORM with the database.
- *
- * @author Anmol Saru Magar
- * Date: 16/9/2024
+ * Movies.java
+ * @author : Anmol Saru Magar
+ * Date: 16/09/2024
+ * Purpose:
+ * This entity class represents a movie. It contains the properties of a movie
+ * and manages its relationship with the WatchList entity through a many-to-many mapping.
  */
 @Entity
 @Data
@@ -23,42 +23,51 @@ import java.util.List;
 public class Movies {
     @Id
     @GeneratedValue
-    private Long id; // Unique identifier for each movie
+    private Long id;
 
     @NonNull
-    private String title; // Title of the movie
+    private String title;
 
     @NonNull
-    private String url; // URL for the movie (e.g., YouTube link)
+    private String url;
 
     @NonNull
-    private String description; // Description of the movie
+    private String description;
 
     @NonNull
-    private String subGenre; // Sub-genre of the movie (e.g., Horror, Comedy)
+    private String subGenre;
 
     @NonNull
-    private boolean inWatchList; // Indicates if the movie is in the user's watch list
+    private boolean inWatchList;
 
     @NonNull
-    private boolean blocked; // Indicates if the movie is blocked
+    private boolean blocked;
 
-    // Many-to-many relationship with WatchList, where the Movies are the inverse side
+    // Many-to-many relationship between Movies and WatchList
     @ManyToMany(mappedBy = "movies")
-    @JsonBackReference // Prevents infinite recursion during JSON serialization
-    private List<WatchList> watchLists = new ArrayList<>(); // List of watch lists containing this movie
+    @JsonBackReference // Prevents circular reference during serialization to JSON
+    private List<WatchList> watchLists = new ArrayList<>();
 
-    // Getter for inWatchList
+    /**
+     * Getter method for the 'inWatchList' field.
+     * @return boolean indicating if the movie is in the watch list
+     */
     public boolean getInWatchList() {
         return this.inWatchList;
     }
 
-    // Setter for inWatchList
+    /**
+     * Setter method for the 'inWatchList' field.
+     * @param inWatchList boolean flag to set the watch list status
+     */
     public void setInWatchList(boolean inWatchList) {
         this.inWatchList = inWatchList;
     }
 
-    // Custom toString method for easier debugging and logging
+    /**
+     * Custom toString method for easier debugging and logging.
+     * @return String representation of the movie object
+     */
     @Override
     public String toString() {
         return "Movies{" +

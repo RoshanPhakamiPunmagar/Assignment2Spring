@@ -30,20 +30,6 @@ public class MovieController {
     }
 
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Movies> updateMovieById(@PathVariable("id") Long id, @ModelAttribute Movies movie) {
-
-        System.out.println(id + "21xx");
-        try {
-            System.out.println(id + "23xx");
-            Movies updatedMovie = movieService.updateMovie(id, movie);
-            System.out.println(id + "25xx");
-            return ResponseEntity.ok(updatedMovie);
-        } catch (RuntimeException e) {
-            return null;
-        }
-    }
-
 
     @PostMapping("/add/watchlist/{id}")
     public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {

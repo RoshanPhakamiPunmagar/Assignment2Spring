@@ -28,6 +28,30 @@
             gap: 15px;
             align-items: center;
         }
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #000;
+        }
         .column {
             flex: 1;
         }
@@ -61,7 +85,14 @@
     </style>
 </head>
 <body>
-<h1>Movie Data</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/view/all}" th:class="ui-state-active">Screamer</a></li>
+        <li><a th:href="@{/view/recommendation}">Recommendation</a></li>
+        <li><a th:href="@{/view/watchlist/all}">Watchlist</a></li>
+    </ul>
+</nav>
+<h1>Movies</h1>
 <div id="movie-container">
     <!-- Thymeleaf will loop through the movies list and render each movie -->
     <div th:each="movie : ${movies}" class="movie">
@@ -85,14 +116,6 @@
 
     </div>
     </div>
-    <form th:action="@{/view/watchlist/all}" method="get">
-    <button type="submit">Go to Watchlist</button>
-</form>
-
-    <form th:action="@{/view/recommendation}" method="get">
-        <button type="submit">Need Recommendation? </button>
-    </form>
-
 </div>
 <script>
 

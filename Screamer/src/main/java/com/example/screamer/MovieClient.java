@@ -1,11 +1,13 @@
 package com.example.screamer;
 
+import jakarta.transaction.Transactional;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @FeignClient(name = "movie", url = "http://localhost:8009/movies")
+@Transactional
 public interface MovieClient {
 
     @GetMapping("/get/all")

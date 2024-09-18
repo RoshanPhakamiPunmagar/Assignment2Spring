@@ -15,9 +15,6 @@ public interface MoviesRepository extends JpaRepository<Movies, Long> {
 
     /**
      * Retrieves a list of Movies based on their blocked status.
-     *
-     * @param blocked the blocked status to filter movies
-     * @return a list of Movies with the specified blocked status
      */
     List<Movies> findByBlocked(boolean blocked); // Custom query method to find movies by their blocked status
 }

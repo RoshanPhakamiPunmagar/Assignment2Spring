@@ -1,5 +1,6 @@
 package com.example.screamer;
 
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

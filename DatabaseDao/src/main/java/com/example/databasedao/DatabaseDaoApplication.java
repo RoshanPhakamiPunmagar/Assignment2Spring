@@ -14,7 +14,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
-
+/**
+ * Movies.java
+ * @author : Teams
+ * Date: 16/09/2024
+ * Initalzing data
+ */
 @SpringBootApplication @EnableDiscoveryClient
 public class DatabaseDaoApplication {
 
