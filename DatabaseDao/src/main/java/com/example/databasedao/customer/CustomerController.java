@@ -1,4 +1,4 @@
-package com.example.databasedao;
+package com.example.databasedao.customer;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
