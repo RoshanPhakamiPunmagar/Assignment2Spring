@@ -32,4 +32,10 @@ public class CustomerController {
         Customer createdCustomer = customerService.postCustomer(customer);
         return ResponseEntity.ok(createdCustomer);
     }
+    
+     @GetMapping("/getByEmail/{email}")
+    public Customer getByEmail(@RequestParam String email)
+    {
+        return customerService.getByEmail(email);
+    }
 }

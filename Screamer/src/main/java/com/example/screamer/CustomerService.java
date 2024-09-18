@@ -39,4 +39,9 @@ public class CustomerService {
             }
         return null;
     }
+    
+    public Customer getByEmail(String email)
+    {
+        return customerClient.getByEmail(email);
+    }
 }

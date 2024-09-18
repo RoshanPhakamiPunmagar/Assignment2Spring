@@ -8,4 +8,5 @@ import java.util.List;
 @RepositoryRestResource
 interface CustomerRepository extends JpaRepository<Customer,Long> {
     List<Customer> findByBlocked(boolean blocked);
+    Customer findByemail(String email);
 }

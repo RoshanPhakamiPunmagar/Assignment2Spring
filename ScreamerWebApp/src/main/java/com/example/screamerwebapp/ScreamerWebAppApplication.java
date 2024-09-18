@@ -78,10 +78,9 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String email) {
-        //final Customer cust = this.screamerClient.getCustomerByEmail(email);
-        Customer cust = new Customer();
-        cust.setEmail("test1.email.com");
-        cust.setPassword("password1");
+        final Customer cust = this.custClient.getByEmail(email);
+        
+      
         if (cust == null) {
             System.out.println("Error no user with email: " + email);
         }

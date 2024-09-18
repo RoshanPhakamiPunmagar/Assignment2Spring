@@ -26,4 +26,8 @@ public class CustomerService {
     public Customer getCustomerById(Long id) {
         return customerRepository.findById(id).get();
     }
+
+    Customer getByEmail(String email) {
+        return customerRepository.findByemail(email);
+    }
 }
