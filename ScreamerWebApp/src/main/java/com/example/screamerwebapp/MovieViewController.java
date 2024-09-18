@@ -41,6 +41,12 @@ public class MovieViewController {
         return "watchlist";
     }
 
+    @GetMapping("/")
+    public String getIndex() {
+
+        return "index";
+    }
+
     //Gets recommendation and return recommend_page.html
     @GetMapping("/recommendation")
     public String getRecommendationMovies(Model model) {
@@ -54,7 +60,6 @@ public class MovieViewController {
     public String getAllMovies(Model model) {
 
         List<Movies> m = movieService.getAllMovies();
-        System.out.println(m);
         model.addAttribute("movies", m);
         return "movie_page";
     }
