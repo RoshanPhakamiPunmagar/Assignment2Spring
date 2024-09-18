@@ -64,6 +64,7 @@ public class ScreamerWebAppApplication {
                 .authorizeHttpRequests(auth -> {
                     
                     auth.requestMatchers("/").permitAll();
+                    auth.requestMatchers("/register").permitAll();
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
