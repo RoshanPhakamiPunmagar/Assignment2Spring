@@ -1,12 +1,22 @@
 package com.example.screamer;
 
-import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: MovieViewController.java
+ * Date :16/9/2024
+ * Purpose :
+ * MovieViewController a controller that all the user request go through.
+ * All the request functionality depends upon
+ * All the request return ResposnseEntity type
+ * ******************************************************
+ */
 @RestController @RequestMapping("/movies")
 public class MovieController {
     @Autowired
@@ -24,8 +34,8 @@ public class MovieController {
 
     @GetMapping("/get/watchlist/all")
     public ResponseEntity<WatchList> getAllWatchlistMovies() {
+        System.out.println( "xx");
         WatchList movies = movieService.getAllWatchListMovies();
-        System.out.println("Debug: " + movies);
         return ResponseEntity.ok(movies);
     }
 
@@ -46,3 +56,32 @@ public class MovieController {
 
 }
 
+   /*
+    @PostMapping("/add/watchlist/{id}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
+            action = "Add";
+            WatchList watchList = movieService.addToWatchList(movieId);
+
+        return ResponseEntity.ok(watchList);
+    }
+
+    @PostMapping("/add/watchlist/{movieId}")
+    public ResponseEntity<WatchList> addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
+            WatchList updatedMovie = movieService.addToWatchList(movieId);
+            return ResponseEntity.ok(updatedMovie);
+    }
+    */
+
+  /*
+    @PostMapping("/add/watchlist/{movieId}")
+    public String addMovieToWatchlist(@PathVariable("movieId") Long movieId) {
+        System.out.println(movieId);
+        WatchList updatedMovie = movieService.addToWatchList(movieId);
+        return "redirect:/view/all";
+    }
+    @PostMapping("/remove/watchlist/{movieId}")
+    public String removeMovieFromWatchlist(@PathVariable("movieId") Long movieId) {
+        movieService.removeFromWatchList(movieId);
+        return "redirect:/view/all";
+    }
+    */

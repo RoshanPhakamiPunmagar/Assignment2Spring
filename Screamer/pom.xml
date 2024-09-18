@@ -9,17 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-<<<<<<<< HEAD:Screamer/pom.xml
     <artifactId>Screamer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Screamer</name>
     <description>Screamer</description>
-========
-    <artifactId>Admin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Admin</name>
-    <description>Admin</description>
->>>>>>>> master:Admin/pom.xml
     <url/>
     <licenses>
         <license/>

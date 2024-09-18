@@ -5,7 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: CustomerClient.java
+ * Date :16/9/2024
+ * Purpose :
+ * CustomerClient that takes request and sends that request to it assigned url
+ * ******************************************************
+ */
 @FeignClient(name = "customer", url = "http://localhost:8009/user")
 public interface CustomerClient {
 
@@ -14,12 +22,9 @@ public interface CustomerClient {
 
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Customer> retrieveById(@RequestParam Long id);
+    ResponseEntity<Customer> retrieveById(@RequestParam Long id);
     
      @GetMapping("/getByEmail/{email}")
-     public Customer getByEmail(@RequestParam String email);
+    Customer getByEmail(@RequestParam String email);
 
-    // Uncomment and update this method if needed
-    // @PostMapping("/remove/watchlist/{id}")
-    // WatchList removeWatchList(@PathVariable("id") Long id);
 }
