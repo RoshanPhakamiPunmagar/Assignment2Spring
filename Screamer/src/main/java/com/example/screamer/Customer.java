@@ -4,7 +4,15 @@ package com.example.screamer;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: Movies.java
+ * Date :16/9/2024
+ * Purpose :
+ * Customer class that defines the Customer Entity
+ * ******************************************************
+ */
 
 @Entity @Data
 public class Customer {

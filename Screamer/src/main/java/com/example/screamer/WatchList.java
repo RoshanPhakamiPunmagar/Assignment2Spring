@@ -1,16 +1,22 @@
 package com.example.screamer;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: ServerApplication.java
+ * Date :16/9/2024
+ * Purpose :
+ * Entity Class For WatchList
+ * ******************************************************
+ */
 @Entity @Data
 @NoArgsConstructor
 public class WatchList {
