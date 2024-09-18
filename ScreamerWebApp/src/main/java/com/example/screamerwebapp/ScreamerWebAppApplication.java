@@ -50,8 +50,8 @@ public class ScreamerWebAppApplication {
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(request
-                        -> request.requestMatchers(HttpMethod.GET, "/allMovies/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/admin/**").hasAnyRole("ADMIN")
+                        -> request.requestMatchers(HttpMethod.GET, "/view/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/admin/customer/view/**").hasAnyRole("ADMIN")
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(Customizer.withDefaults())
