@@ -48,12 +48,23 @@ public class ScreamerWebAppApplication {
 
     @Bean
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
+        /*
         return http
                 .authorizeHttpRequests(request
                         -> request.requestMatchers(HttpMethod.GET, "/view/**").hasAnyRole("User", "Admin")
-                        .requestMatchers(HttpMethod.POST, "/admin/customer/view/**").hasAnyRole("Admin")
+                        .requestMatchers(HttpMethod.GET, "/admin/customer/view/**").hasAnyRole("Admin")
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(Customizer.withDefaults())
+                .build();
+        */
+        return http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> {
+                    
+                    auth.requestMatchers("/view/**").hasRole("ADMIN");
+                    auth.requestMatchers("/admin/**").hasRole("USER");
+                })
                 .formLogin(Customizer.withDefaults())
                 .build();
     }
@@ -80,7 +91,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(final String email) {
         final Customer cust = this.custClient.getByEmail(email);
         
-      
+      System.out.println("Customer auth debug: " + cust);
         if (cust == null) {
             System.out.println("Error no user with email: " + email);
         }
