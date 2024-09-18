@@ -1,6 +1,6 @@
 package com.example.screamerwebapp;
 
-
+/*
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,3 +32,4 @@ public class CustomerService {
         return null;
     }
 }
+*/
