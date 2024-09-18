@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Movies</h1>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Sub-Genre</th>
+            <th>URL</th>
+            <th>Blocked</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movies : ${movies}">
+            <td th:text="${movies.id}">ID</td>
+            <td th:text="${movies.title}">Title</td>
+            <td th:text="${movies.description}">Description</td>
+            <td th:text="${movies.subGenre}">Sub-Genre</td>
+            <td>
+                <a th:href="@{${movies.url}}" target="_blank">Watch</a>
+            </td>
+            <td th:text="${movies.blocked ? 'Yes' : 'No'}">Blocked</td>
+            <td>
+                <!-- Block Movie Form -->
+                <form action="#" th:action="@{/admin/movie/view/block/{id}(id=${movies.id})}" method="post" th:if="${!movies.blocked}">
+                    <button type="submit" class="btn btn-warning">Block</button>
+                </form>
+
+                <!-- Unblock Movie Form -->
+                <form action="#" th:action="@{/admin/movie/view/unblock/{id}(id=${movies.id})}" method="post" th:if="${movies.blocked}">
+                    <button type="submit" class="btn btn-success">Unblock</button>
+                </form>
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

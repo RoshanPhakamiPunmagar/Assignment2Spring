@@ -58,7 +58,6 @@ public class ScreamerWebAppApplication {
 
     @Bean
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
-
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
@@ -100,7 +99,6 @@ class UserDetailsServiceImpl implements UserDetailsService {
         }
         return User.withUsername(cust.getEmail())
                 .password(cust.getPassword())
-                .authorities(cust.getRoll())
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)

@@ -33,14 +33,20 @@ public class MovieViewController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails) {
-             username = ((UserDetails) principal).getUsername();
+            username = ((UserDetails) principal).getUsername();
         } else {
-             username = principal.toString();
+            username = principal.toString();
         }
         System.out.println("Debug: " + username);
         WatchList watchList = movieService.getAllWatchListMovies();
         model.addAttribute("watchlist", watchList);
         return "watchlist";
+    }
+
+    @GetMapping("/")
+    public String getIndex() {
+
+        return "index";
     }
 
     //Gets recommendation and return recommend_page.html
@@ -53,10 +59,7 @@ public class MovieViewController {
     //gets all the movies and returns movie_page.html
     @GetMapping("/all")
     public String getAllMovies(Model model) {
-
-       
         List<Movies> m = movieService.getAllMovies();
-        System.out.println(m);
         model.addAttribute("movies", m);
         return "movie_page";
     }
