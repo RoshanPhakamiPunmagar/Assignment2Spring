@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
@@ -24,9 +26,18 @@ public class MovieViewController {
     public MovieViewController(MovieService movieService) {
         this.movieService = movieService;
     }
+
     //Gets all the watchlist movies and returns watchlist.html
     @GetMapping("/watchlist/all")
     public String getAllWatchlistMovies(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        System.out.println("Debug: " + username);
         WatchList watchList = movieService.getAllWatchListMovies();
         model.addAttribute("watchlist", watchList);
         return "watchlist";
@@ -48,7 +59,6 @@ public class MovieViewController {
     //gets all the movies and returns movie_page.html
     @GetMapping("/all")
     public String getAllMovies(Model model) {
-        System.out.println("called herer");
         List<Movies> m = movieService.getAllMovies();
         model.addAttribute("movies", m);
         return "movie_page";

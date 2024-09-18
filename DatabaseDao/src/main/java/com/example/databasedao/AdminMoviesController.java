@@ -1,13 +1,14 @@
-package com.example.admin;
+package com.example.databasedao;
 
-import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController @RequestMapping("/admin/movies") @Data
+@RestController
+@RequestMapping("admin/movies")
 public class AdminMoviesController {
+
     private final AdminMoviesService adminMoviesService;
 
     public AdminMoviesController(AdminMoviesService adminMoviesService) {
