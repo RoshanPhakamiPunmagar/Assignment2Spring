@@ -9,12 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
- * @author Anmol Saru Magar
- * File Name: MovieViewController.java
- * Date :16/9/2024
- * Purpose :
- * MovieViewController a controller that all the user request go through.
- * All the request functionality depends upon
+ * @author Anmol Saru Magar File Name: MovieViewController.java Date :16/9/2024
+ * Purpose : MovieViewController a controller that all the user request go
+ * through. All the request functionality depends upon
  * ******************************************************
  */
 @Controller
@@ -22,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class MovieViewController {
 
     private final MovieService movieService;
+
     //Constructor
     public MovieViewController(MovieService movieService) {
         this.movieService = movieService;
@@ -33,9 +31,9 @@ public class MovieViewController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails) {
-             username = ((UserDetails) principal).getUsername();
+            username = ((UserDetails) principal).getUsername();
         } else {
-             username = principal.toString();
+            username = principal.toString();
         }
         System.out.println("Debug: " + username);
         WatchList watchList = movieService.getAllWatchListMovies();
@@ -50,16 +48,17 @@ public class MovieViewController {
         model.addAttribute("recommendation", recommendedMovie);
         return "recommend_page";
     }
+
     //gets all the movies and returns movie_page.html
     @GetMapping("/all")
     public String getAllMovies(Model model) {
 
-       
         List<Movies> m = movieService.getAllMovies();
         System.out.println(m);
         model.addAttribute("movies", m);
         return "movie_page";
     }
+
     //Adds movie to watchlist and redirects user ot /view/all
     @PostMapping("/add/watchlist/{id}")
     public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
@@ -71,7 +70,7 @@ public class MovieViewController {
         } else if ("Remove".equals(action)) {
             movieService.removeFromWatchList(movieId);
         }
-      return "redirect:/view/all";
+        return "redirect:/view/all";
     }
 
 }
