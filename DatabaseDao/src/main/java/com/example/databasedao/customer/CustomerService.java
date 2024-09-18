@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:DatabaseDao/src/main/java/com/example/databasedao/CustomerService.java
 package com.example.databasedao;
+=======
+package com.example.databasedao.customer;
+>>>>>>> Stashed changes:DatabaseDao/src/main/java/com/example/databasedao/customer/CustomerService.java
 
 
 import org.springframework.stereotype.Service;

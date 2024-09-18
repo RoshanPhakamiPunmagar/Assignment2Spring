@@ -1,5 +1,6 @@
-package com.example.databasedao;
+package com.example.databasedao.recommendation;
 
+import com.example.databasedao.movies.Movies;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
