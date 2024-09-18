@@ -19,15 +19,15 @@ public class AdminCustomerService {
             Customer customer = customerRepository.findById(custId).orElseThrow(() -> new RuntimeException("Movie not found"));
             customer.setBlocked(true);
             customerRepository.save(customer);
-            System.out.println("Movie blocked");
+            System.out.println("Customer blocked");
         } catch (FeignException e) {
             // Log specific details of FeignException
-            System.err.println("Feign exception while blocking movie: " + e.getMessage());
+            System.err.println("Feign exception while blocking customer: " + e.getMessage());
             throw new RuntimeException("Failed to block movie", e);
         } catch (Exception e) {
             // Log general exceptions
-            System.err.println("Exception while blocking movie: " + e.getMessage());
-            throw new RuntimeException("Failed to block movie", e);
+            System.err.println("Exception while blocking customer: " + e.getMessage());
+            throw new RuntimeException("Failed to block customer", e);
         }
     }
 
@@ -35,23 +35,23 @@ public class AdminCustomerService {
     public void unblockCustomer(Long custId) {
         try {
 
-            Customer customer = customerRepository.findById(custId).orElseThrow(() -> new RuntimeException("Movie not found"));
+            Customer customer = customerRepository.findById(custId).orElseThrow(() -> new RuntimeException("Customer not found"));
             customer.setBlocked(false);
             customerRepository.save(customer);
-            System.out.println("Movie unblocked");
+            System.out.println("Customer unblocked");
         } catch (FeignException e) {
-            System.err.println("Feign exception while unblocking movie: " + e.getMessage());
-            throw new RuntimeException("Failed to unblock movie", e);
+            System.err.println("Feign exception while unblocking customer: " + e.getMessage());
+            throw new RuntimeException("Failed to unblock customer", e);
         } catch (Exception e) {
-            System.err.println("Exception while unblocking movie: " + e.getMessage());
-            throw new RuntimeException("Failed to unblock movie", e);
+            System.err.println("Exception while unblocking customer: " + e.getMessage());
+            throw new RuntimeException("Failed to unblock customer", e);
         }
     }
 
     public boolean isCustomerBlocked(Long custId) {
         try {
-            Customer customer = customerRepository.findById(custId).orElseThrow(() -> new RuntimeException("Movie not found"));
-            System.out.println("Movie with ID: " + custId + " is blocked: " + customer.isBlocked());
+            Customer customer = customerRepository.findById(custId).orElseThrow(() -> new RuntimeException("Customer not found"));
+            System.out.println("Customer with ID: " + custId + " is blocked: " + customer.isBlocked());
             return customer.isBlocked();
         } catch (Exception e) {
             throw new RuntimeException("Failed to check movie status", e);
