@@ -31,6 +31,13 @@ public class MovieViewController {
         model.addAttribute("watchlist", watchList);
         return "watchlist";
     }
+
+    @GetMapping("/")
+    public String getIndex() {
+
+        return "index";
+    }
+
     //Gets recommendation and return recommend_page.html
     @GetMapping("/recommendation")
     public String getRecommendationMovies(Model model) {
