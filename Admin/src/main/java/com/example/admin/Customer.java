@@ -22,6 +22,8 @@ public class Customer {
     private String email;
     @NonNull
     private String password;
+    
+    private String roll;
 
     @NonNull
     private boolean blocked;

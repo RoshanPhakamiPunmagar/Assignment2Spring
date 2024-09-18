@@ -50,8 +50,8 @@ public class ScreamerWebAppApplication {
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(request
-                        -> request.requestMatchers(HttpMethod.GET, "/view/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/admin/customer/view/**").hasAnyRole("ADMIN")
+                        -> request.requestMatchers(HttpMethod.GET, "/view/**").hasAnyRole("User", "Admin")
+                        .requestMatchers(HttpMethod.POST, "/admin/customer/view/**").hasAnyRole("Admin")
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(Customizer.withDefaults())
@@ -86,7 +86,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
         }
         return User.withUsername(cust.getEmail())
                 .password(cust.getPassword())
-                .authorities("USER")// need to add this to databsae
+                .authorities(cust.getRoll())// need to add this to databsae
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)

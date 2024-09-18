@@ -23,6 +23,8 @@ public class Customer {
     private String email;
 
     private String password;
+    
+    private String roll;
 
     @NonNull
     private boolean blocked;

@@ -123,6 +123,7 @@ class AppInit implements ApplicationRunner {
         c1.setName("Anmol");
         c1.setEmail("anmol@gmail.com");
         c1.setPassword("anmol123");
+        c1.setRoll("Admin");
         customerRepository.save(c1);
         customerController.addCustomer(c1);
 
@@ -131,6 +132,7 @@ class AppInit implements ApplicationRunner {
         c2.setName("Roshan");
         c2.setEmail("roshan@gmail.com");
         c2.setPassword("roshan123");
+        c2.setRoll("Admin");
         customerRepository.save(c2);
         customerController.addCustomer(c2);
 
@@ -139,6 +141,7 @@ class AppInit implements ApplicationRunner {
         c3.setName("Caleb");
         c3.setEmail("caleb@gmail.com");
         c3.setPassword("caleb123");
+        c3.setRoll("User");
         customerRepository.save(c3);
         customerController.addCustomer(c3);
 
@@ -147,6 +150,7 @@ class AppInit implements ApplicationRunner {
         c4.setName("Rutvi");
         c4.setEmail("rutvi@gmail.com");
         c4.setPassword("rutvi123");
+        c4.setRoll("User");
         customerRepository.save(c4);
         customerController.addCustomer(c4);
 

@@ -21,6 +21,7 @@ public class Customer {
     private String email;
 
     private String password;
+    private String roll;
 
     @OneToOne (mappedBy = "customer")
     private WatchList watchList;
