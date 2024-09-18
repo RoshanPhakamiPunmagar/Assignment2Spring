@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -65,7 +66,7 @@ public class WebAppApplication {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 
 }
@@ -79,10 +80,14 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private ScreamerClient screamerClient;
+    
 
     @Override
     public UserDetails loadUserByUsername(final String email) {
-        final Customer cust = this.screamerClient.getCustomerByEmail(email);
+        //final Customer cust = this.screamerClient.getCustomerByEmail(email);
+        Customer cust = new Customer();
+        cust.setEmail("test1.email.com");
+        cust.setPassword("password1");
         if (cust == null) {
             System.out.println("Error no user with email: " + email);
         }
