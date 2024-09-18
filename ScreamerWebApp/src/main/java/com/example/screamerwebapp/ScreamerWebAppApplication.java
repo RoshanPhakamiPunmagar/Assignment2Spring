@@ -58,20 +58,12 @@ public class ScreamerWebAppApplication {
 
     @Bean
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
-        /*
-        return http
-                .authorizeHttpRequests(request
-                        -> request.requestMatchers(HttpMethod.GET, "/view/**").hasAnyRole("User", "Admin")
-                        .requestMatchers(HttpMethod.GET, "/admin/customer/view/**").hasAnyRole("Admin")
-                        .anyRequest().authenticated())
-                .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(Customizer.withDefaults())
-                .build();
-        */
+
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     
+                    auth.requestMatchers("/").permitAll();
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
@@ -107,7 +99,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
         }
         return User.withUsername(cust.getEmail())
                 .password(cust.getPassword())
-                .authorities(cust.getRoll())// need to add this to databsae
+                .authorities(cust.getRoll())
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)
