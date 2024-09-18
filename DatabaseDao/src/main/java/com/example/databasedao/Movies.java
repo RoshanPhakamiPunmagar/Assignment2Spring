@@ -48,6 +48,7 @@ public class Movies {
     public void setInWatchList(boolean inWatchList) {
         this.inWatchList = inWatchList;
     }
+
     @Override
     public String toString() {
         return "Movies{" +
@@ -56,7 +57,7 @@ public class Movies {
                 ", url='" + url + '\'' +
                 ", description='" + description + '\'' +
                 ", subGenre='" + subGenre + '\'' +
-                ", inWatchList=" + inWatchList +
+                ", inWatchList=" + this.inWatchList +
                 '}';
     }
 }

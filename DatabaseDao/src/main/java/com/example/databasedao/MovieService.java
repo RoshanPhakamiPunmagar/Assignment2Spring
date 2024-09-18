@@ -2,8 +2,6 @@ package com.example.databasedao;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,26 +35,14 @@ public class MovieService {
     public WatchList removeWatchList(Long id) {
         Optional<Movies> movies = movieRepository.findById(id);
         WatchList watchLists = getAllWatchList();
-
         Movies movieToRemove = movies.get();
         movieToRemove.setInWatchList(false);
-
-
-
         movieRepository.save(movieToRemove);
         watchLists.getMovies().remove(movieToRemove);
      watchListToAdd = watchListRepository.save(watchLists);
-        // Remove the movie from the watch list's movie list
-
-            //moviesToAdd.remove(movie);
-
-
-            return watchListToAdd;
+        return watchListToAdd;
 
     }
-
-
-
 
 
     public WatchList postWatchlist(Long id) {

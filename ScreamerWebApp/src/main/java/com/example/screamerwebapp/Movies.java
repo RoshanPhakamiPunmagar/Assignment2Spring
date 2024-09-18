@@ -28,7 +28,7 @@ public class Movies {
 
 
     @NonNull
-    private boolean isWatchList;
+    private boolean inWatchList;
 
     @NonNull
     private boolean blocked;
@@ -45,7 +45,7 @@ public class Movies {
     }
 
     public boolean getIsWatchList() {
-        return this.isWatchList;
+        return this.inWatchList;
     }
 
 }

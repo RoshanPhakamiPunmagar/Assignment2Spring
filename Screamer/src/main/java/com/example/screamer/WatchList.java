@@ -38,13 +38,4 @@ public class WatchList {
 
 
 
-
-    @Override
-    public String toString() {
-        return "WatchList{" +
-                "id=" + id +
-                ", movieList=" + movies +
-                '}';
-    }
-
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @FeignClient(name = "admin-customer", url = "http://localhost:8007/admin/customer")
-public interface AdminCustomerClient {
+public interface AdminCustomerClient{
     @GetMapping("/get/all")
     List<Customer> listCustomers();
 
