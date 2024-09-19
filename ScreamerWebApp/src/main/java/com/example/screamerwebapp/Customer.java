@@ -1,31 +1,41 @@
-package com.example.admin;
+package com.example.screamerwebapp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: Movies.java
+ * Date :16/9/2024
+ * Purpose :
+ * Customer class that defines the Customer Entity
+ * ******************************************************
+ */
+@Entity @Data @NoArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue
     private long id;
 
-    @NonNull
+
     private String name;
-    @NonNull
+
     private String email;
-    @NonNull
+
     private String password;
-    
     private String roll;
+
+    @OneToOne (mappedBy = "customer")
+    private WatchList watchList;
 
     @NonNull
     private boolean blocked;
+
 
 }
