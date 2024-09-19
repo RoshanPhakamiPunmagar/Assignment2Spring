@@ -97,6 +97,11 @@ class mainPageController {
 
     @GetMapping("/register")
     public String register() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+                    System.out.println("Debug: " + "User is logged in");
+                    return "landing";
+        }
         return "register";
     }
 
