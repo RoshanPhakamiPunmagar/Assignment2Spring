@@ -9,6 +9,14 @@ import lombok.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Movies.java
+ * @author : Anmol Saru Magar
+ * Date: 16/09/2024
+ * Purpose:
+ * This entity class represents a movie. It contains the properties of a movie
+ * and manages its relationship with the WatchList entity through a many-to-many mapping.
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -30,25 +38,33 @@ public class Movies {
     private String subGenre;
 
     @NonNull
-    private boolean inWatchList; // Renamed for clarity
+    private boolean inWatchList;
 
     @NonNull
     private boolean blocked;
 
+    // Many-to-many relationship between Movies and WatchList
     @ManyToMany(mappedBy = "movies")
-    @JsonBackReference
+    @JsonBackReference // Prevents circular reference during serialization to JSON
     private List<WatchList> watchLists = new ArrayList<>();
 
-
-    // Optionally, add a toggle method
+    /**
+     * Getter method for the 'inWatchList' field.
+     */
     public boolean getInWatchList() {
         return this.inWatchList;
     }
 
+    /**
+     * Setter method for the 'inWatchList' field.
+     */
     public void setInWatchList(boolean inWatchList) {
         this.inWatchList = inWatchList;
     }
 
+    /**
+     * Custom toString method for easier debugging and logging.
+     */
     @Override
     public String toString() {
         return "Movies{" +

@@ -8,12 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
-/**
- * Movies.java
- * @author : Teams
- * Date: 16/09/2024
- * Initalzing data
- */
+
 @SpringBootApplication @EnableDiscoveryClient
 public class DatabaseDaoApplication {
 
@@ -42,18 +37,25 @@ class AppInit implements ApplicationRunner {
         m.setUrl("https://www.youtube.com/embed/y1OhC9h3flY?si=lmulPcEtFJcbg92Z");
         moviesRepository.save(m);
 
+
         Movies m1 = new Movies();
         m1.setTitle("Hereditary");
         m1.setSubGenre("Comedy");
         m1.setDescription("Annie is devastated along with her family following her mother’s death. Odd things begin happening as the truth about Annie's family starts to emerge.");
+        m1.setUrl("https://www.youtube.com/embed/-sM8Jrcbxdc?si=fCDhEViO7quuwUvv");
         moviesRepository.save(m1);
+
 
         // Additional movie entries
         Movies m2 = new Movies();
         m2.setTitle("The Conjuring");
+        m2.setSubGenre("Mystery");
         m2.setDescription("Rod and Carolyn find their pet dog dead and experience a spirit that harms their daughter.");
         m2.setUrl("https://www.youtube.com/embed/JhMWopjJiI8?si=4iyYIe1xsWrDdaYG");
         moviesRepository.save(m2);
+
+
+
         Movies m3 = new Movies();
         m3.setTitle("Say it");
         m3.setSubGenre("Action");
@@ -61,12 +63,14 @@ class AppInit implements ApplicationRunner {
         m3.setUrl("https://www.youtube.com/embed/JjBYmLxmT_U?si=EXJZCg7_CSgZUA8I");
         moviesRepository.save(m3);
 
+
         Movies m4 = new Movies();
         m4.setTitle("Interstellar");
         m4.setSubGenre("Melodrama");
         m4.setDescription("A NASA pilot turned farmer must find a new Earth.");
         m4.setUrl("https://www.youtube.com/embed/s_M1t0HE-Kk?si=oN8dQ9vY6YGPaufW");
         moviesRepository.save(m4);
+
 
         Movies m5 = new Movies();
         m5.setTitle("The Exorcist");
@@ -119,6 +123,7 @@ class AppInit implements ApplicationRunner {
         c1.setName("Anmol");
         c1.setEmail("anmol@gmail.com");
         c1.setPassword("anmol123");
+        c1.setRoll("ROLE_ADMIN");
         customerRepository.save(c1);
         customerController.addCustomer(c1);
 
@@ -127,6 +132,7 @@ class AppInit implements ApplicationRunner {
         c2.setName("Roshan");
         c2.setEmail("roshan@gmail.com");
         c2.setPassword("roshan123");
+        c2.setRoll("ROLE_ADMIN");
         customerRepository.save(c2);
         customerController.addCustomer(c2);
 
@@ -135,6 +141,7 @@ class AppInit implements ApplicationRunner {
         c3.setName("Caleb");
         c3.setEmail("caleb@gmail.com");
         c3.setPassword("caleb123");
+        c3.setRoll("ROLE_USER");
         customerRepository.save(c3);
         customerController.addCustomer(c3);
 
@@ -143,6 +150,7 @@ class AppInit implements ApplicationRunner {
         c4.setName("Rutvi");
         c4.setEmail("rutvi@gmail.com");
         c4.setPassword("rutvi123");
+        c4.setRoll("ROLE_USER");
         customerRepository.save(c4);
         customerController.addCustomer(c4);
 
