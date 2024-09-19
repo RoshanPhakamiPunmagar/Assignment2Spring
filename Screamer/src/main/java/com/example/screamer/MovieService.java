@@ -37,21 +37,20 @@ public class MovieService {
         try {
             System.out.println(getAllMovies().get(0).getIsWatchList());
             WatchList watchLists = movieClient.getAllWatchList();
-            //  watchListRepository.save(watchLists);
             return watchLists;
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
     }
     //removes movie from watchlist
-    public WatchList removeFromWatchList(Long id) {
+    public void removeFromWatchList(Long id, Customer customer) {
 
-        return  movieClient.addMoveToWatchList(id, "Remove");
+       movieClient.addMoveToWatchList(id, "Remove", customer);
 
     }
     //adds movie from watchlist
-    public WatchList addToWatchList(Long id) {
+    public void addToWatchList(Long id, Customer customer) {
 
-        return movieClient.addMoveToWatchList(id, "Add");
+        movieClient.addMoveToWatchList(id, "Add", customer);
     }
 }

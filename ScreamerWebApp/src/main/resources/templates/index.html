@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,8 +122,18 @@
     </div>
 
     <div class="text-center">
-        <a href="//placeholderlogin" class="btn btn-danger btn-lg mt-4">Login</a>
+        <a th:href="@{/view/all}" class="btn btn-danger btn-lg mt-4">View All Movies</a>
+
+        <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin/movie/view/all}" class="btn btn-primary btn-lg mt-4">Admin Panel</a>
+        </div>
+
+            <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+
     </div>
+
 </div>
 
 <footer class="text-center mt-5">

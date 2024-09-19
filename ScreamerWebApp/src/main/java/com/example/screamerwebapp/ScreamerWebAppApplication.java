@@ -5,9 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.DispatcherType;
-import static org.springframework.boot.web.servlet.DispatcherType.ERROR;
-import static org.springframework.boot.web.servlet.DispatcherType.FORWARD;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
@@ -30,20 +27,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author Anmol Saru Magar & Roshan Phakami PunMagar File Name:
- * ServerApplication.java Date :16/9/2024 Purpose : Runs ServerApplicaiton
+ * @author Anmol Saru Magar & Roshan Phakami PunMagar
+ * File Name: ServerApplication.java
+ * Date :16/9/2024
+ * Purpose :
+ * Runs ServerApplicaiton
  * ******************************************************
  */
 //admin feign client interface
-@SpringBootApplication
-@EnableFeignClients
+@SpringBootApplication @EnableFeignClients
 @EnableDiscoveryClient
 public class ScreamerWebAppApplication {
 
@@ -53,35 +49,32 @@ public class ScreamerWebAppApplication {
 
 }
 
-@Controller
-@RequestMapping()
-class MainPage {
-
-    @GetMapping("/register")
-    public String getRegister() {
-        return "register";
-    }
-
-}
 
 @Configuration // Marks this class as a configuration class for Spring.
 @EnableWebSecurity // Enables web security for the application.
-class WebSecurityConfiguration {
-
+ class WebSecurityConfiguration  {
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
+
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.dispatcherTypeMatchers().permitAll();
-                    auth.requestMatchers("/", "/register", "/error").permitAll();
+                    
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
-                .formLogin(Customizer.withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/view/", true) // true ensures it always redirects to /posts after login
+                        .failureUrl("/login?error")
+                        .permitAll()
+                ) .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                )
                 .build();
     }
 
@@ -92,23 +85,28 @@ class WebSecurityConfiguration {
 
 }
 
+
+
+
 @Service
 @RequiredArgsConstructor
 class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private CustomerClient custClient;
+    
 
     @Override
     public UserDetails loadUserByUsername(final String email) {
         final Customer cust = this.custClient.getByEmail(email);
-
-        System.out.println("Customer auth debug: " + cust);
+        
+      System.out.println("Customer auth debug: " + cust);
         if (cust == null) {
             System.out.println("Error no user with email: " + email);
         }
         return User.withUsername(cust.getEmail())
                 .password(cust.getPassword())
+                .authorities(cust.getRoll())
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)
@@ -117,3 +115,11 @@ class UserDetailsServiceImpl implements UserDetailsService {
     }
 
 }
+
+
+
+
+
+
+
+

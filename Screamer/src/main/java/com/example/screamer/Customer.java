@@ -4,6 +4,8 @@ package com.example.screamer;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NonNull;
+
 /**
  *
  * @author Anmol Saru Magar
@@ -26,6 +28,8 @@ public class Customer {
 
     private String password;
     private String roll;
+
+    private boolean blocked;
 
     @OneToOne (mappedBy = "customer")
     private WatchList watchList;

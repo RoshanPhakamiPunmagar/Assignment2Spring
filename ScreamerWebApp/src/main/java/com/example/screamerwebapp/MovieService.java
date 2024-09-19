@@ -50,13 +50,13 @@ public class MovieService {
         }
     }
     //removes movie from watchlist
-public WatchList removeFromWatchList(Long id) {
-        return  movieClient.addMoveToWatchList(id, "Remove");
+public void removeFromWatchList(Long id, Customer customer) {
+        movieClient.addMovieToWatchList(id, "Remove", customer);
 
 }
         //adds movie from watchlist
-    public WatchList addToWatchList(Long id) {
-        return  movieClient.addMoveToWatchList(id, "Add");
+    public void addToWatchList(Long id,  Customer customer) {
+        movieClient.addMovieToWatchList(id, "Add", customer);
     }
 }
 

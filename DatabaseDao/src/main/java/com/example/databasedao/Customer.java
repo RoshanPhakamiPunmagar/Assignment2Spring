@@ -1,20 +1,17 @@
-
-
 package com.example.databasedao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-/**
- * Customer.java
- * @author : Anmol Saru Magar
- * Date: 16/09/2024
- * Purpose:
- * This entity class represents a Customer. It contains the properties of a Customer
- * and manages its relationship with the WatchList entity through a one-to-one mapping.
- */
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity @Data @NoArgsConstructor
 public class Customer {
     @Id
@@ -26,6 +23,8 @@ public class Customer {
     private String email;
 
     private String password;
+    
+    private String roll;
 
     @NonNull
     private boolean blocked;
@@ -34,5 +33,7 @@ public class Customer {
     @JsonBackReference
     private WatchList watchList;
 
-}
 
+
+
+}

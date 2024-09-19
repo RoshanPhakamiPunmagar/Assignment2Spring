@@ -8,7 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
-
+/**
+ * Movies.java
+ * @author : Teams
+ * Date: 16/09/2024
+ * Initalzing data
+ */
 @SpringBootApplication @EnableDiscoveryClient
 public class DatabaseDaoApplication {
 
@@ -29,6 +34,7 @@ class AppInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        // Create and save movie entries
         // Create and save movie entries
         Movies m = new Movies();
         m.setTitle("Getout");
@@ -97,14 +103,14 @@ class AppInit implements ApplicationRunner {
 
         Movies m8 = new Movies();
         m8.setTitle("The Wailing");
-        m8.setSubGenre("Mystery, Action");
+        m8.setSubGenre("Mystery");
         m8.setDescription("When an outsider visits a village, its inhabitants experience a mysterious epidemic. A police officer then tries to solve the mystery behind the outbreak to save his sick daughter.");
         m8.setUrl("https://www.youtube.com/embed/43uAputjI4k?si=xCUh51ATGqvJdDJs");
         moviesRepository.save(m8);
 
         Movies m9 = new Movies();
         m9.setTitle("The Conjuring");
-        m9.setSubGenre("Paranormal, Realistic");
+        m9.setSubGenre("Paranormal");
         m9.setDescription("A crew of an online horror show decides to go to an asylum and stream from the inside to gain more viewers. Things take an unexpected turn when they begin to experience more than they imagined.");
         m9.setUrl("https://www.youtube.com/embed/AAjQTfXQePw?si=QYL44ek2Tmil24sr");
         moviesRepository.save(m9);
@@ -115,7 +121,6 @@ class AppInit implements ApplicationRunner {
         m10.setDescription("A light-hearted comedy about the adventures of a quirky family.");
         m10.setUrl("https://www.youtube.com/embed/JhMWopjJiI8?si=4iyYIe1xsWrDdaYG");
         moviesRepository.save(m10);
-
 
 
         // Create a new Customer object for Anmol
@@ -153,6 +158,5 @@ class AppInit implements ApplicationRunner {
         c4.setRoll("ROLE_USER");
         customerRepository.save(c4);
         customerController.addCustomer(c4);
-
     }
 }
