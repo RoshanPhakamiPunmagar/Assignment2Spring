@@ -16,15 +16,19 @@ import java.util.List;
  */
 @FeignClient(name = "customer", url = "http://localhost:8009/user")
 public interface CustomerClient {
-    //gets list of customer
+
     @GetMapping("/get/all")
     List<Customer> getAllCustomer();
 
-    //retrieves customer based on id
+
     @GetMapping("/get/{id}")
     ResponseEntity<Customer> retrieveById(@RequestParam Long id);
-        //gets Email by Id
+    
      @GetMapping("/getByEmail/{email}")
-     Customer getByEmail(@RequestParam String email);
+    Customer getByEmail(@RequestParam String email);
+    
+    @PostMapping("/add")
+    @ResponseBody
+    ResponseEntity<Customer> addCustomer(@RequestBody Customer customer);
 
 }

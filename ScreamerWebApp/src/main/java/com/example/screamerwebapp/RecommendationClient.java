@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @FeignClient(name = "recommendation", url = "http://localhost:8001/recommendation")
 public interface RecommendationClient {
-    //get recommendation
+
     @GetMapping("/get")
     ResponseEntity<Movies> getRecomendation();
 }

@@ -1,6 +1,7 @@
 package com.example.databasedao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,15 +9,7 @@ import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author Anmol Saru Magar
- * File Name: Movies.java
- * Date :16/9/2024
- * Purpose :
- * Movies class that defines the Movie Entity
- * ******************************************************
- */
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -43,9 +36,9 @@ public class Movies {
     @NonNull
     private boolean blocked;
 
-    @ManyToMany(mappedBy = "movies")
-    @JsonBackReference
-    private List<WatchList> watchLists = new ArrayList<>();
+    @ManyToOne
+    @JsonBackReference(value="watchlist-class")
+    private WatchList watchList;
 
 
     // Optionally, add a toggle method

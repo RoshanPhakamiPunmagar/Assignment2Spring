@@ -1,5 +1,6 @@
 package com.example.databasedao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,15 +9,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Anmol Saru Magar
- * File Name: WatchList.java
- * Date :16/9/2024
- * Purpose :
- * Entity Class For WatchList
- * ******************************************************
- */
 @Entity
 @Data
 @NoArgsConstructor
@@ -25,20 +17,19 @@ public class WatchList {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
-    @JsonManagedReference
+    @OneToMany
+    @JsonManagedReference(value="watchlist-class")
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
         // Check to avoid adding duplicates
         if (!this.movies.contains(movie)) {
             this.movies.add(movie);
-            movie.getWatchLists().add(this); // Maintain the bidirectional relationship
         }
     }
 
     @OneToOne
-    @JsonManagedReference
+    @JsonBackReference(value="customer-class")
     private Customer customer;
 
     public void removeMovie(Movies movie) {

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * Movies.java
  * @author : Teams
  * Date: 16/09/2024
- * This runs the project and initazlizes the data which is stored in local repository
+ * Initalzing data
  */
 @SpringBootApplication @EnableDiscoveryClient
 public class DatabaseDaoApplication {

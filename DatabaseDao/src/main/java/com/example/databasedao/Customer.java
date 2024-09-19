@@ -7,16 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-/**
- *
- * @author Anmol Saru Magar
- * File Name: Customer.java
- * Date :16/9/2024
- * Purpose :
- * Customer class that defines the Customer Entity
- * ******************************************************
- */
-
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity @Data @NoArgsConstructor
 public class Customer {
@@ -31,14 +25,15 @@ public class Customer {
     private String password;
     
     private String roll;
-
-    @NonNull
-    private boolean blocked;
+private String genre;
+    
+    
 
     @OneToOne (mappedBy = "customer")
-    @JsonBackReference
+    @JsonManagedReference(value="customer-class")
     private WatchList watchList;
-
+@NonNull
+    private boolean blocked;
 
 
 

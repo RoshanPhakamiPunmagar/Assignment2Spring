@@ -36,10 +36,18 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
-    //gets customer and returns http response
     @GetMapping("/getByEmail/{email}")
     public Customer getByEmail(@RequestParam String email)
     {
         return customerService.getByEmail(email);
     }
+    
+      @PostMapping("/addCustomer")
+    @ResponseBody
+    public ResponseEntity<Void> addNew(@RequestBody Customer customer) {
+        System.out.println("Debug: " + customer);
+        customerService.addCustomer(customer);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
+
 }
