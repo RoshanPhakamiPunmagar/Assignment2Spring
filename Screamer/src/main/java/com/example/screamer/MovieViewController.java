@@ -1,6 +1,5 @@
 package com.example.screamer;
 
-import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,8 @@ public class MovieViewController {
     }
 
     @GetMapping("/watchlist/all")
-    public String getAllWatchlistMovies(Model model) {
-        WatchList watchList = movieService.getAllWatchListMovies();
+    public String getAllWatchlistMovies(Model model, Long customerId) {
+        WatchList watchList = movieService.getAllWatchListMovies(customerId);
         model.addAttribute("watchlist", watchList);
         return "watchlist";
     }
@@ -49,14 +48,14 @@ public class MovieViewController {
     }
     */
     @PostMapping("/add/watchlist/{id}")
-    public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
+    public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action, @RequestBody Long customerId) {
 
         System.out.println(action);
 
         if ("Add".equals(action)) {
-            movieService.addToWatchList(movieId);
+            movieService.addToWatchList(movieId, customerId);
         } else if ("Remove".equals(action)) {
-            movieService.removeFromWatchList(movieId);
+            movieService.removeFromWatchList(movieId, customerId);
         }
       return "redirect:/view/all";
     }

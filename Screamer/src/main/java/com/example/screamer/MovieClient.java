@@ -2,10 +2,19 @@ package com.example.screamer;
 
 import jakarta.transaction.Transactional;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: MovieClient.java
+ * Date :16/9/2024
+ * Purpose :
+ * MovieClient that takes request and sends that request to it assigned url
+ * ******************************************************
+ */
 @FeignClient(name = "movie", url = "http://localhost:8009/movies")
 @Transactional
 public interface MovieClient {
@@ -14,18 +23,12 @@ public interface MovieClient {
     List<Movies> getAllMovies();
 
     @GetMapping("/get/watchlist/all")
-    WatchList getAllWatchList();
+    WatchList getAllWatchList(@RequestParam Long custId);
 
     @PutMapping("/update/{id}")
     Movies updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie);
 
-    @PostMapping("/add/watchlist/{id}")
-    WatchList addMoveToWatchList(@PathVariable("id") Long id, @RequestParam String action);
+    @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    void addMoveToWatchList(@PathVariable("id") Long id, @RequestParam("action") String action, @RequestBody Long customerId);
 
-
-
-
-    // Uncomment and update this method if needed
-    // @PostMapping("/remove/watchlist/{id}")
-    // WatchList removeWatchList(@PathVariable("id") Long id);
 }

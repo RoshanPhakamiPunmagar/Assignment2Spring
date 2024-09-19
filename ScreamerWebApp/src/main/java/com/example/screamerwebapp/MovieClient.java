@@ -1,6 +1,7 @@
 package com.example.screamerwebapp;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,12 @@ public interface MovieClient {
     List<Movies> getAllMovies();
 
     @GetMapping("/get/watchlist/all")
-    WatchList getAllWatchListMovies();
+    WatchList getAllWatchListMovies(@RequestParam("custId") Long custId);
 
     @PutMapping("/update/{id}")
     Movies updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie);
 
-    @PostMapping("/add/watchlist/{id}")
-    WatchList addMoveToWatchList(@PathVariable("id") Long id, @RequestParam String action);
+    @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    void addMovieToWatchList(@PathVariable("id") Long id, @RequestParam("action") String action, @RequestBody Long customerId);
+
 }

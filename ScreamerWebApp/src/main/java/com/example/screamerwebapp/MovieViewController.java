@@ -22,9 +22,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class MovieViewController {
 
     private final MovieService movieService;
+    private final CustomerClient customerClient;
+    String username;
     //Constructor
-    public MovieViewController(MovieService movieService) {
+    public MovieViewController(MovieService movieService, CustomerClient customerClient) {
         this.movieService = movieService;
+        this.customerClient = customerClient;
+
+
     }
 
     //Gets all the watchlist movies and returns watchlist.html
@@ -37,8 +42,9 @@ public class MovieViewController {
         } else {
             username = principal.toString();
         }
-        System.out.println("Debug: " + username);
-        WatchList watchList = movieService.getAllWatchListMovies();
+        long custId = customerClient.getByEmail(username).getId();
+
+        WatchList watchList = movieService.getAllWatchListMovies(custId);
         model.addAttribute("watchlist", watchList);
         return "watchlist";
     }
@@ -52,29 +58,45 @@ public class MovieViewController {
     //Gets recommendation and return recommend_page.html
     @GetMapping("/recommendation")
     public String getRecommendationMovies(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
         Movies recommendedMovie = movieService.getRecommendation();
         model.addAttribute("recommendation", recommendedMovie);
         return "recommend_page";
     }
+
     //gets all the movies and returns movie_page.html
     @GetMapping("/all")
     public String getAllMovies(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
         List<Movies> m = movieService.getAllMovies();
         model.addAttribute("movies", m);
         return "movie_page";
     }
+
     //Adds movie to watchlist and redirects user ot /view/all
     @PostMapping("/add/watchlist/{id}")
     public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
-
-        System.out.println(action);
+        long cust = customerClient.getByEmail(username).getId();
 
         if ("Add".equals(action)) {
-            movieService.addToWatchList(movieId);
+            movieService.addToWatchList(movieId, cust);
         } else if ("Remove".equals(action)) {
-            movieService.removeFromWatchList(movieId);
+            movieService.removeFromWatchList(movieId, cust);
         }
-      return "redirect:/view/all";
+        return "redirect:/view/all";
     }
 
 }
+

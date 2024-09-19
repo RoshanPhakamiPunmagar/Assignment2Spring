@@ -42,21 +42,21 @@ public class MovieService {
         return recommendationClient.getRecomendation().getBody();
     }
     //gets all the watchlist added and returns it to controller
-    public WatchList getAllWatchListMovies() {
+    public WatchList getAllWatchListMovies(Long custId) {
         try {
-            return movieClient.getAllWatchListMovies();
+            return movieClient.getAllWatchListMovies(custId);
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
     }
     //removes movie from watchlist
-public WatchList removeFromWatchList(Long id) {
-        return  movieClient.addMoveToWatchList(id, "Remove");
+public void removeFromWatchList(Long id, Long customer) {
+        movieClient.addMovieToWatchList(id, "Remove", customer);
 
 }
         //adds movie from watchlist
-    public WatchList addToWatchList(Long id) {
-        return  movieClient.addMoveToWatchList(id, "Add");
+    public void addToWatchList(Long id, Long customer) {
+        movieClient.addMovieToWatchList(id, "Add", customer);
     }
 }
 
