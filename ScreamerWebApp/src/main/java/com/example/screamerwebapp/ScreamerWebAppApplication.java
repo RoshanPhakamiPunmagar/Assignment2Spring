@@ -102,20 +102,13 @@ class mainPageController {
 
     @GetMapping("/login")
     public String login() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username;
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
+        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
                     System.out.println("Debug: " + "User is logged in");
                     return "landing";
         }
         
-        System.out.println("Debug: " + username);
         return "login";
     }
 
