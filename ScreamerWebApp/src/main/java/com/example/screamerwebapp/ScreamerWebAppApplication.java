@@ -10,6 +10,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -18,6 +20,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,7 +31,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -58,16 +68,23 @@ public class ScreamerWebAppApplication {
 
     @Bean
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
+
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    
-                    auth.requestMatchers("/").permitAll();
-                    auth.requestMatchers("/register").permitAll();
+                    auth.requestMatchers("/", "/register", "/error").permitAll();
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
-                .formLogin(Customizer.withDefaults())
+                .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/view/landing", true) // true ensures it always redirects to /posts after login
+                .failureUrl("/login?error")
+                .permitAll()
+                ).logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                )
                 .build();
     }
 
@@ -77,9 +94,6 @@ public class ScreamerWebAppApplication {
     }
 
 }
-
-
-
 
 @Service
 @RequiredArgsConstructor
@@ -99,8 +113,9 @@ class UserDetailsServiceImpl implements UserDetailsService {
         }
         return User.withUsername(cust.getEmail())
                 .password(cust.getPassword())
+                .authorities(cust.getRoll())
                 .accountExpired(false)
-                .accountLocked(false)
+                .accountLocked(cust.isBlocked())
                 .credentialsExpired(false)
                 .disabled(false)
                 .build();

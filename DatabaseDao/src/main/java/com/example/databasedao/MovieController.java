@@ -25,10 +25,9 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
-    @GetMapping("/get/watchlist/all")
-    public ResponseEntity<WatchList> retrieveAllWatchList(@RequestParam("custId") Long id) {
-        System.out.println(("custId") +id);
-        WatchList watchLists = movieService.getAllWatchList(id);
+    @GetMapping("/get/watchlist/all/{custID}")
+    public ResponseEntity<WatchList> retrieveAllWatchList(@PathVariable String custID) {
+        WatchList watchLists = movieService.getAllWatchList(custID);
         return ResponseEntity.ok(watchLists);
     }
 
@@ -37,20 +36,34 @@ public class MovieController {
         Optional<Movies> movie = movieService.getMovieById(id);
         return movie.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+    @PutMapping("/update/{id}")
+    @ResponseBody
+    public ResponseEntity<Movies> updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie) {
 
+        System.out.println(id+  "21xx");
+        try {
+            System.out.println(id+  "23xx");
+            Movies updatedMovie = movieService.updateMovie(id, movie);
+            System.out.println(id+  "25xx");
+            return ResponseEntity.ok(updatedMovie);
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
     @PostMapping("/add")
     public ResponseEntity<Movies> addMovie(@RequestBody Movies movie) {
         Movies createdMovie = movieService.postMovie(movie);
         return ResponseEntity.ok(createdMovie);
     }
 
+
     @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addMovieToWatchlist(@PathVariable("id") Long id, @RequestParam String action, @RequestBody Long customerId) {
+    public void addMovieToWatchlist(@PathVariable("id") Long id, @RequestParam String action, @RequestBody Customer customer) {
         WatchList updatedMovie = new WatchList();
         if ("Add".equals(action)) {
-            movieService.postWatchlist(id, customerId);
+            movieService.postWatchlist(id, customer);
         } else if ("Remove".equals(action)) {
-            movieService.removeWatchList(id, customerId);
+            movieService.removeWatchList(id, customer);
         }
 
     }

@@ -83,6 +83,11 @@
       <li><a th:href="@{/view/all}" th:class="ui-state-active">Screamer</a></li>
       <li><a th:href="@{/view/recommendation}">Recommendation</a></li>
       <li><a th:href="@{/view/watchlist/all}">Watchlist</a></li>
+      <li>
+        <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+      </li>
     </ul>
   </ul>
 </nav>

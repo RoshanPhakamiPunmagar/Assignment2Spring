@@ -25,14 +25,15 @@ public class Customer {
     private String password;
     
     private String roll;
-
-    @NonNull
-    private boolean blocked;
+private String genre;
+    
+    
 
     @OneToOne (mappedBy = "customer")
-    @JsonBackReference
+    @JsonManagedReference(value="customer-class")
     private WatchList watchList;
-
+@NonNull
+    private boolean blocked;
 
 
 

@@ -82,6 +82,11 @@
         <li><a th:href="@{/view/all}" th:class="ui-state-active">Screamer</a></li>
         <li><a th:href="@{/view/recommendation}">Recommendation</a></li>
         <li><a th:href="@{/view/watchlist/all}">Watchlist</a></li>
+        <li>
+            <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </li>
     </ul>
 </nav>
 <h1>My Watchlist</h1>
@@ -102,8 +107,9 @@
                 </div>
             </div>
             <form th:action="@{/view/add/watchlist/{movieId}(movieId=${movie.id})}" method="post"
-                  th:if="${movie.isWatchList}">
+                  th:if="${movie.inWatchList}">
                 <button type="submit" name="action" th:text="'Remove from Watch List'" th:value="'Remove'"></button>
+            </form>
             </form>
 
         </div>

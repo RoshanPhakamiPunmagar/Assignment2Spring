@@ -9,12 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
- * @author Anmol Saru Magar
- * File Name: MovieViewController.java
- * Date :16/9/2024
- * Purpose :
- * MovieViewController a controller that all the user request go through.
- * All the request functionality depends upon
+ * @author Anmol Saru Magar File Name: MovieViewController.java Date :16/9/2024
+ * Purpose : MovieViewController a controller that all the user request go
+ * through. All the request functionality depends upon
  * ******************************************************
  */
 @Controller
@@ -42,18 +39,16 @@ public class MovieViewController {
         } else {
             username = principal.toString();
         }
-        long custId = customerClient.getByEmail(username).getId();
-
-        WatchList watchList = movieService.getAllWatchListMovies(custId);
+        System.out.println("Debug: " + username);
+        WatchList watchList = movieService.getAllWatchListMovies(username);
+        
+        
+        
         model.addAttribute("watchlist", watchList);
         return "watchlist";
     }
 
-    @GetMapping("/")
-    public String getIndex() {
-
-        return "index";
-    }
+   
 
     //Gets recommendation and return recommend_page.html
     @GetMapping("/recommendation")
@@ -88,7 +83,14 @@ public class MovieViewController {
     //Adds movie to watchlist and redirects user ot /view/all
     @PostMapping("/add/watchlist/{id}")
     public String addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action) {
-        long cust = customerClient.getByEmail(username).getId();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        
+        Customer cust = customerClient.getByEmail(username);
 
         if ("Add".equals(action)) {
             movieService.addToWatchList(movieId, cust);
@@ -96,6 +98,12 @@ public class MovieViewController {
             movieService.removeFromWatchList(movieId, cust);
         }
         return "redirect:/view/all";
+    }
+    
+    @GetMapping("/landing")
+    public String landing()
+    {
+        return "landing";
     }
 
 }

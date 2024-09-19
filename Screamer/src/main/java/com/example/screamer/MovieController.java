@@ -32,26 +32,24 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
-    @GetMapping("/get/watchlist/all")
-    public ResponseEntity<WatchList> getAllWatchlistMovies(@RequestParam("custId") Long custId) {
-        System.out.println("custId: " + custId);
+    @GetMapping("/get/watchlist/all/{custID}")
+    public ResponseEntity<WatchList> getAllWatchlistMovies(@PathVariable("custID") String custID) {
         System.out.println( "xx");
-        WatchList movies = movieService.getAllWatchListMovies(custId);
-
+        WatchList movies = movieService.getAllWatchListMovies(custID);
         return ResponseEntity.ok(movies);
     }
 
 
 
     @PostMapping("/add/watchlist/{id}")
-    public void addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action, @RequestBody Long customerId) {
+    public void addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action, @RequestBody Customer customer) {
 
         System.out.println(action);
         WatchList watchList = new WatchList();
         if ("Add".equals(action)) {
-            movieService.addToWatchList(movieId, customerId);
+            movieService.addToWatchList(movieId, customer);
         } else if ("Remove".equals(action)) {
-            movieService.removeFromWatchList(movieId, customerId);
+            movieService.removeFromWatchList(movieId, customer);
         }
 
     }

@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <style>
+        nav {
+            margin-bottom: 20px;
+            color: #f0f0f0;
+            background-color: #000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #b2f;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #000;
+            color: #212529ff;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Movie List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-4">
+
+    <nav>
+    <ul>
+        <li><a th:href="@{/admin/customer/view/all}">Customer</a></li>
+        <li><a th:href="@{/admin/movie/view/all}">Movies</a></li>
+        <li>
+            <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </li>
+    </ul>
+    </nav>
     <h1 class="mb-4">Movies</h1>
 
     <table class="table table-bordered">

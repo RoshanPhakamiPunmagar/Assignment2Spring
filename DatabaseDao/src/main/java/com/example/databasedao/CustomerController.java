@@ -38,4 +38,14 @@ public class CustomerController {
     {
         return customerService.getByEmail(email);
     }
+    
+    /*
+      @PostMapping("/addCustomer")
+    @ResponseBody
+    public ResponseEntity<Void> addCustomer(@RequestBody Customer customer) {
+        System.out.println("Debug: " + customer);
+        customerService.addCustomer(customer);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
+*/
 }

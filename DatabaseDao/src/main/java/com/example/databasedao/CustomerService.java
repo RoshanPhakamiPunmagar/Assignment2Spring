@@ -15,7 +15,7 @@ public class CustomerService {
     }
 
     public Customer postCustomer(Customer customer) {
-        System.out.println(customer.getId());
+        System.out.println("Debug: " + customer);
         return customerRepository.save(customer);
     }
 
@@ -30,4 +30,6 @@ public class CustomerService {
     Customer getByEmail(String email) {
         return customerRepository.findByemail(email);
     }
+    
+    
 }

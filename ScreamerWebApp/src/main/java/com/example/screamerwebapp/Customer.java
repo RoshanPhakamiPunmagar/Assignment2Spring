@@ -1,6 +1,8 @@
 package com.example.screamerwebapp;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,7 +13,7 @@ import lombok.NonNull;
 /**
  *
  * @author Anmol Saru Magar
- * File Name: Customer.java
+ * File Name: Movies.java
  * Date :16/9/2024
  * Purpose :
  * Customer class that defines the Customer Entity
@@ -30,7 +32,8 @@ public class Customer {
 
     private String password;
     private String roll;
-
+private String genre;
+    
     @OneToOne (mappedBy = "customer")
     private WatchList watchList;
 

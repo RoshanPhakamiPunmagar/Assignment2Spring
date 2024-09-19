@@ -20,13 +20,13 @@ public interface MovieClient {
     @GetMapping("/get/all")
     List<Movies> getAllMovies();
 
-    @GetMapping("/get/watchlist/all")
-    WatchList getAllWatchListMovies(@RequestParam("custId") Long custId);
+    @GetMapping("/get/watchlist/all/{custID}")
+    WatchList getAllWatchListMovies(@PathVariable("custID") String custID);
 
     @PutMapping("/update/{id}")
     Movies updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie);
 
     @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    void addMovieToWatchList(@PathVariable("id") Long id, @RequestParam("action") String action, @RequestBody Long customerId);
+    void addMovieToWatchList(@PathVariable("id") Long id, @RequestParam("action") String action, @RequestBody Customer customer);
 
 }

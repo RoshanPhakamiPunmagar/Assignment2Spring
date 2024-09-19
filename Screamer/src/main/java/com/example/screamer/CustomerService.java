@@ -4,44 +4,40 @@ package com.example.screamer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: CustomerService.java
+ * Date :16/9/2024
+ * Purpose :
+ * CustomerService gets request from controller then sends the request to its corresponding client
+ * And then it fetches the data it recived from its corresponding client to user
+ * ******************************************************
+ */
 @Service
 public class CustomerService {
 
-    private final CustomerRepository customerRepository;
     private final CustomerClient customerClient;
     private List<Customer> customers;
-    public CustomerService(CustomerRepository customerRepository, CustomerClient customerClient) {
-        this.customerRepository = customerRepository;
+    public CustomerService(CustomerClient customerClient) {
         this.customerClient = customerClient;
          customers = customerClient.getAllCustomer();
     }
-
-    public Customer postCustomer(Customer customer) {
-        System.out.println(customer.getId());
-        return customerRepository.save(customer);
-    }
-
+    //gets customer by all customers
     public List<Customer> getAllCustomers() {
-
         return customerClient.getAllCustomer();
     }
-
+    //gets customer by id
     public Customer getCustomerById(Long id) {
-            Customer customer = new Customer();
-            for(Customer cust: customers)
-            {
-                if(cust.getId() == id)
-                {
-                    customer = cust;
-                    return customer;
-                }
-            }
-        return null;
+        return customerClient.retrieveById(id).getBody();
     }
-    
+    //gets customer by email
     public Customer getByEmail(String email)
     {
         return customerClient.getByEmail(email);
+    }
+    
+    void addCustomer(Customer customer) {
+        customerClient.addCustomer(customer);
     }
 }
