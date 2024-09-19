@@ -48,23 +48,16 @@ public class MovieViewController {
         model.addAttribute("watchlist", watchList);
         return "watchlist";
     }
-
+    //return index html
     @GetMapping("/")
     public String getIndex() {
-
         return "index";
     }
 
     //Gets recommendation and return recommend_page.html
     @GetMapping("/recommendation")
     public String getRecommendationMovies(Model model) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username;
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
+
         Movies recommendedMovie = movieService.getRecommendation();
         model.addAttribute("recommendation", recommendedMovie);
         return "recommend_page";
@@ -79,8 +72,8 @@ public class MovieViewController {
         } else {
             username = principal.toString();
         }
-
-        List<Movies> m = movieService.getAllMovies();
+        long cust = customerClient.getByEmail(username).getId();
+        List<Movies> m = movieService.getAllMovies(cust);
         model.addAttribute("movies", m);
         return "movie_page";
     }

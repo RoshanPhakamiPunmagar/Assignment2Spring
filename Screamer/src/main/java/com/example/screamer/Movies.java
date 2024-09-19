@@ -7,7 +7,15 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: Movies.java
+ * Date :16/9/2024
+ * Purpose :
+ * Movies class that defines the Movie Entity
+ * ******************************************************
+ */
 @Entity @Data @NoArgsConstructor @RequiredArgsConstructor
 public class Movies {
     @Id @GeneratedValue

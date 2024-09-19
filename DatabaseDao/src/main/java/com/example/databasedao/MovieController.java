@@ -1,15 +1,22 @@
 package com.example.databasedao;
 
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ *
+ * @author Roshan Phakami Pun Magar & Anmol Saru Magar
+ * File Name: CustomerController.java
+ * Date :16/9/2024
+ * Purpose :
+ * CustomerController a controller that all the user request go through.
+ * All the request functionality depends upon
+ * ******************************************************
+ */
 @RestController @RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
@@ -19,8 +26,8 @@ public class MovieController {
     }
 
     @GetMapping("/get/all")
-    public ResponseEntity<List<Movies>> retrieveAll() {
-        List<Movies> movies = movieService.getAllMovies();
+    public ResponseEntity<List<Movies>> retrieveAll(Long customerId) {
+        List<Movies> movies = movieService.getAllMovies(customerId);
         System.out.println(movies.get(0).getInWatchList());
         return ResponseEntity.ok(movies);
     }

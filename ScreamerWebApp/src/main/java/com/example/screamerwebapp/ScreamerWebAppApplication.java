@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Anmol Saru Magar & Roshan Phakami PunMagar
+ * @author Anmol Saru Magar & Roshan Phakami PunMagar & Caleb Davidson
  * File Name: ServerApplication.java
  * Date :16/9/2024
  * Purpose :
@@ -52,22 +52,29 @@ public class ScreamerWebAppApplication {
 
 @Configuration // Marks this class as a configuration class for Spring.
 @EnableWebSecurity // Enables web security for the application.
- class WebSecurityConfiguration  {
+class WebSecurityConfiguration  {
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
     SecurityFilterChain _filterChain(HttpSecurity http) throws Exception {
+
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    
-                    auth.requestMatchers("/").permitAll();
-                    auth.requestMatchers("/register").permitAll();
+
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
-                .formLogin(Customizer.withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/view/", true) // true ensures it always redirects to /posts after login
+                        .failureUrl("/login?error")
+                        .permitAll()
+                ) .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                )
                 .build();
     }
 
@@ -87,18 +94,19 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private CustomerClient custClient;
-    
+
 
     @Override
     public UserDetails loadUserByUsername(final String email) {
         final Customer cust = this.custClient.getByEmail(email);
-        
-      System.out.println("Customer auth debug: " + cust);
+
+        System.out.println("Customer auth debug: " + cust);
         if (cust == null) {
             System.out.println("Error no user with email: " + email);
         }
         return User.withUsername(cust.getEmail())
                 .password(cust.getPassword())
+                .authorities(cust.getRoll())
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)

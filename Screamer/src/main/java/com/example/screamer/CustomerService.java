@@ -8,19 +8,15 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    private final CustomerRepository customerRepository;
+
     private final CustomerClient customerClient;
     private List<Customer> customers;
-    public CustomerService(CustomerRepository customerRepository, CustomerClient customerClient) {
-        this.customerRepository = customerRepository;
+    public CustomerService(CustomerClient customerClient) {
+
         this.customerClient = customerClient;
          customers = customerClient.getAllCustomer();
     }
 
-    public Customer postCustomer(Customer customer) {
-        System.out.println(customer.getId());
-        return customerRepository.save(customer);
-    }
 
     public List<Customer> getAllCustomers() {
 

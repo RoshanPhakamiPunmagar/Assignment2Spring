@@ -30,9 +30,9 @@ public class MovieService {
     }
 
     //fetches all movies from the client and returns it to controller
-    public List<Movies> getAllMovies() {
+    public List<Movies> getAllMovies(Long cust) {
         try {
-            return movieClient.getAllMovies();
+            return movieClient.getAllMovies(cust);
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
