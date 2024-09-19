@@ -11,7 +11,7 @@ import lombok.NonNull;
 /**
  *
  * @author Anmol Saru Magar
- * File Name: Movies.java
+ * File Name: Customer.java
  * Date :16/9/2024
  * Purpose :
  * Customer class that defines the Customer Entity
