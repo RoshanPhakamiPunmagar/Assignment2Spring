@@ -13,6 +13,12 @@ public class AdminCustomerService {
         this.customerRepository = customerRepository;
     }
 
+    
+    public void addCustomer(Customer customer)
+    {
+        customerRepository.save(customer);
+    }
+    
     public void blockCustomer(Long custId) {
         try {
 

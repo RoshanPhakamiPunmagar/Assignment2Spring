@@ -1,10 +1,7 @@
 package com.example.admin;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -33,5 +30,34 @@ public class Movies {
     private String subGenre;
 
     @NonNull
+    private boolean inWatchList; // Renamed for clarity
+
+    @NonNull
     private boolean blocked;
+
+    @ManyToMany(mappedBy = "movies")
+    @JsonBackReference
+    private List<WatchList> watchLists = new ArrayList<>();
+
+
+    // Optionally, add a toggle method
+    public boolean getInWatchList() {
+        return this.inWatchList;
+    }
+
+    public void setInWatchList(boolean inWatchList) {
+        this.inWatchList = inWatchList;
+    }
+
+    @Override
+    public String toString() {
+        return "Movies{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", subGenre='" + subGenre + '\'' +
+                ", inWatchList=" + this.inWatchList +
+                '}';
+    }
 }

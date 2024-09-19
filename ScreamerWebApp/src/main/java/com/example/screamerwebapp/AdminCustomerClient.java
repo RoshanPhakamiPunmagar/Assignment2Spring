@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *
  * @author Anmol Saru Magar & Roshan Phakami PunMagar
@@ -36,4 +37,8 @@ public interface AdminCustomerClient{
 
     @PostMapping("/unblock/{id}")
     ResponseEntity<Void> unblockCustomers(@PathVariable Long id);
+    
+    @PostMapping("/addCustomer")
+    @ResponseBody
+    ResponseEntity<Void> addCustomer(Customer customer);
 }

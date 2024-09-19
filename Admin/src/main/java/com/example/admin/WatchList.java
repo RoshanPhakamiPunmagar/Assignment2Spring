@@ -1,4 +1,4 @@
-package com.example.screamerwebapp;
+package com.example.admin;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

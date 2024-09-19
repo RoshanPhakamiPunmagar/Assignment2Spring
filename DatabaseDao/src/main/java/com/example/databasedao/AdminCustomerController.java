@@ -49,4 +49,11 @@ public class AdminCustomerController {
         adminCustomerService.unblockCustomer(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+    
+    @PostMapping("/addCustomer")
+    @ResponseBody
+    public ResponseEntity<Void> addCustomer(@RequestBody Customer customer) {
+        adminCustomerService.addCustomer(customer);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
 }

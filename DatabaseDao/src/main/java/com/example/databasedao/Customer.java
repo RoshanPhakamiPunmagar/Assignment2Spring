@@ -12,8 +12,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity @Data @NoArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
 public class Customer {
+
     @Id
     @GeneratedValue
     private long id;
@@ -23,17 +26,13 @@ public class Customer {
     private String email;
 
     private String password;
-    
-    private String roll;
 
+    private String roll;
+    private String genre;
     @NonNull
     private boolean blocked;
 
-    @OneToOne (mappedBy = "customer")
-    @JsonBackReference
+    @OneToOne(mappedBy = "customer")
     private WatchList watchList;
-
-
-
 
 }

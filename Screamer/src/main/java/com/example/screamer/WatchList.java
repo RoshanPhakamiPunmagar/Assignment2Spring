@@ -1,38 +1,24 @@
 package com.example.screamer;
 
-
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Anmol Saru Magar
- * File Name: ServerApplication.java
- * Date :16/9/2024
- * Purpose :
- * Entity Class For WatchList
- * ******************************************************
- */
-@Entity @Data
+@Entity
+@Data
 @NoArgsConstructor
 public class WatchList {
-    @Id @GeneratedValue
-    private long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @ManyToMany
-    @JoinTable(
-            name = "watchlist_movies",
-            joinColumns = @JoinColumn(name = "watchlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id")
-    )
+    @JsonManagedReference
     private List<Movies> movies = new ArrayList<>();
-
-    @OneToOne
-    private Customer customer;
 
     public void addMovie(Movies movie) {
         // Check to avoid adding duplicates
@@ -42,6 +28,27 @@ public class WatchList {
         }
     }
 
+    @OneToOne
+    @JsonManagedReference
+    private Customer customer;
 
+    public void removeMovie(Movies movie) {
+        if (!this.movies.contains(movie)) {
+            for(Movies m : this.movies) {
+                if(movie.getId().equals( m.getId())) {
+                    this.movies.remove(movie);
+                }
 
+            }
+            System.out.println("Movie removed: " + movie.getId() + " " + this.id);
+        }
+
+    }
+    @Override
+    public String toString() {
+        return "WatchList{" +
+                "id=" + id +
+                ", moviesCount=" + (movies != null ? movies.size() : 0) +
+                '}';
+    }
 }

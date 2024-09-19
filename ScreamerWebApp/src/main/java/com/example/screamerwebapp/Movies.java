@@ -1,27 +1,21 @@
 package com.example.screamerwebapp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Anmol Saru Magar
- * File Name: Movies.java
- * Date :16/9/2024
- * Purpose :
- * Movies class that defines the Movie Entity
- * ******************************************************
- */
-@Entity @Data @NoArgsConstructor @RequiredArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
 public class Movies {
-    @Id @GeneratedValue
-    private long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @NonNull
     private String title;
@@ -36,13 +30,34 @@ public class Movies {
     private String subGenre;
 
     @NonNull
-    private boolean inWatchList;
+    private boolean inWatchList; // Renamed for clarity
 
     @NonNull
     private boolean blocked;
 
-    @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies")
+    @JsonBackReference
     private List<WatchList> watchLists = new ArrayList<>();
 
 
+    // Optionally, add a toggle method
+    public boolean getInWatchList() {
+        return this.inWatchList;
+    }
+
+    public void setInWatchList(boolean inWatchList) {
+        this.inWatchList = inWatchList;
+    }
+
+    @Override
+    public String toString() {
+        return "Movies{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", subGenre='" + subGenre + '\'' +
+                ", inWatchList=" + this.inWatchList +
+                '}';
+    }
 }

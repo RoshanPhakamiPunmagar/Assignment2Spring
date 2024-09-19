@@ -14,8 +14,15 @@ public class AdminCustomerController {
             this.adminCustomerService = adminCustomerService;
         }
 
-        @GetMapping("/get/all")
-        public ResponseEntity<List<Customer>> listCustomers() {
+    @PostMapping("/addCustomer")
+    @ResponseBody
+    public ResponseEntity<Void> addNew(@RequestBody Customer customer) {
+        adminCustomerService.addCustomer(customer);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
+
+         @GetMapping("/get/all")
+         public ResponseEntity<List<Customer>> listCustomers() {
             List<Customer> customers = adminCustomerService.getAllCustomers();
             return ResponseEntity.ok(customers);
         }

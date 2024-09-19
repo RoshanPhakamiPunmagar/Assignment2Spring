@@ -35,7 +35,7 @@ public class MovieService {
     //gets all the watchlist added and returns it to controller
     public WatchList getAllWatchListMovies() {
         try {
-            System.out.println(getAllMovies().get(0).getIsWatchList());
+            System.out.println(getAllMovies().get(0).getInWatchList());
             WatchList watchLists = movieClient.getAllWatchList();
             return watchLists;
         } catch (Exception e) {

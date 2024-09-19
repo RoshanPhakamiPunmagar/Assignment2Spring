@@ -36,4 +36,8 @@ public class AdminCustomerService {
     public List<Customer> getAllCustomers() {
         return adminClient.listCustomers();
     }
+
+    void addCustomer(Customer customer) {
+        adminClient.addCustomer(customer);
+    }
 }

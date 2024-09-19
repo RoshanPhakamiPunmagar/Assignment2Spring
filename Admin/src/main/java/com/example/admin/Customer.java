@@ -1,31 +1,39 @@
 package com.example.admin;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Data
+@NoArgsConstructor
 public class Customer {
+
     @Id
     @GeneratedValue
     private long id;
 
-    @NonNull
     private String name;
-    @NonNull
-    private String email;
-    @NonNull
-    private String password;
-    
-    private String roll;
 
+    private String email;
+
+    private String password;
+
+    private String roll;
+    private String genre;
     @NonNull
     private boolean blocked;
+
+    @OneToOne(mappedBy = "customer")
+    
+    private WatchList watchList;
 
 }

@@ -1,41 +1,38 @@
 package com.example.screamerwebapp;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-/**
- *
- * @author Anmol Saru Magar
- * File Name: Movies.java
- * Date :16/9/2024
- * Purpose :
- * Customer class that defines the Customer Entity
- * ******************************************************
- */
-@Entity @Data @NoArgsConstructor
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Data
+@NoArgsConstructor
 public class Customer {
+
     @Id
     @GeneratedValue
     private long id;
-
 
     private String name;
 
     private String email;
 
     private String password;
+
     private String roll;
-
-    @OneToOne (mappedBy = "customer")
-    private WatchList watchList;
-
+    private String genre;
     @NonNull
     private boolean blocked;
 
+    @OneToOne(mappedBy = "customer")
+    private WatchList watchList;
 
 }
