@@ -5,7 +5,16 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
+/**
+ * Repository interface for managing Movies entities.
+ *
+ * @author: Anmol Saru Magar
+ */
+@RepositoryRestResource // Exposes the repository as a REST resource
 public interface MoviesRepository extends JpaRepository<Movies, Long> {
-    List<Movies> findByBlocked(boolean blocked);
+
+    /**
+     * Retrieves a list of Movies based on their blocked status.
+     */
+    List<Movies> findByBlocked(boolean blocked); // Custom query method to find movies by their blocked status
 }

@@ -8,6 +8,15 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MovieService.java
+ * Author: Anmol Saru Magar
+ * Date: 16/09/2024
+ * Purpose:
+ * Entity class representing a user's watchlist.
+ * This class defines the properties and behavior of a watchlist,
+ * including its relationship with Movies and Customers.
+ */
 @Entity
 @Data
 @NoArgsConstructor
