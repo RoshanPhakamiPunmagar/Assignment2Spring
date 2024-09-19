@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *
  * @author Anmol Saru Magar
@@ -20,18 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @FeignClient(name = "customer", url = "http://localhost:8003/user")
 public interface CustomerClient {
-
+    //gets list of all customer
     @GetMapping("/get/all")
     List<Customer> getAllCustomer();
-
+    //retrieve customer by id
     @GetMapping("/get/{id}")
     ResponseEntity<Customer> retrieveById(@RequestParam Long id);
-    
+    //get customer by email
     @GetMapping("/getByEmail/{email}")
     Customer getByEmail(@RequestParam String email);
-    
-    @PostMapping("/addCustomer")
-    @ResponseBody
-    ResponseEntity<Void> addCustomer(@RequestBody Customer customer);
 
 }

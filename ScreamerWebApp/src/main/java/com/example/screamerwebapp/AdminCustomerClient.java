@@ -10,40 +10,30 @@ import java.util.List;
 /**
  *
  * @author Anmol Saru Magar & Roshan Phakami PunMagar
- * File Name: AdminCustomerClient.java
+ * File Name: ServerApplication.java
  * Date :16/9/2024
  * Purpose :
  * Runs ServerApplicaiton
  * ******************************************************
  */
-// Admin Feign Client interface for interacting with the customer service
-// This interface defines methods for various operations related to customers
-// through the Feign client, which simplifies HTTP communication and serialization.
-
+//admin feign client interface
 @FeignClient(name = "admin-customer", url = "http://localhost:8007/admin/customer")
-public interface AdminCustomerClient {
-
-    // Fetch a list of all customers
+public interface AdminCustomerClient{
     @GetMapping("/get/all")
     List<Customer> listCustomers();
 
-    // Fetch a list of all blocked customers
     @GetMapping("/blocked")
     List<Customer> listBlockedCustomers();
 
-    // Fetch a list of all unblocked customers
     @GetMapping("/unblocked")
     List<Customer> listUnblockedCustomers();
 
-    // Check if a specific customer is blocked based on their ID
     @GetMapping("/status/{id}")
     Boolean checkCustomerStatus(@PathVariable Long id);
 
-    // Block a customer based on their ID
     @PostMapping("/block/{id}")
     ResponseEntity<Void> blockCustomers(@PathVariable Long id);
 
-    // Unblock a customer based on their ID
     @PostMapping("/unblock/{id}")
     ResponseEntity<Void> unblockCustomers(@PathVariable Long id);
 }

@@ -9,10 +9,10 @@ import java.util.List;
 /**
  *
  * @author Anmol Saru Magar
- * File Name: MovieViewController.java
+ * File Name: MovieController.java
  * Date :16/9/2024
  * Purpose :
- * MovieViewController a controller that all the user request go through.
+ * MovieController a controller that all the user request go through.
  * All the request functionality depends upon
  * All the request return ResposnseEntity type
  * ******************************************************
@@ -25,31 +25,26 @@ public class MovieController {
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
-
+    //gets all movie based upon user movie status
     @GetMapping("/get/all")
-    public ResponseEntity<List<Movies>> getAllMovies() {
-        List<Movies> movies = movieService.getAllMovies();
+    public ResponseEntity<List<Movies>> getAllMovies(Long customerId) {
+        List<Movies> movies = movieService.getAllMovies(customerId);
         return ResponseEntity.ok(movies);
     }
+    //gets all the watchlist movies
+    @GetMapping("/get/watchlist/all")
+    public ResponseEntity<WatchList> getAllWatchlistMovies(@RequestParam("custId") Long custId) {
+        WatchList movies = movieService.getAllWatchListMovies(custId);
 
-    @GetMapping("/get/watchlist/all/{custID}")
-    public ResponseEntity<WatchList> getAllWatchlistMovies(@PathVariable("custID") String custID) {
-        System.out.println( "xx");
-        WatchList movies = movieService.getAllWatchListMovies(custID);
         return ResponseEntity.ok(movies);
     }
-
-
-
+    //adds movie to watchlists
     @PostMapping("/add/watchlist/{id}")
-    public void addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action, @RequestBody Customer customer) {
-
-        System.out.println(action);
-        WatchList watchList = new WatchList();
+    public void addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action, @RequestBody Long customerId) {
         if ("Add".equals(action)) {
-            movieService.addToWatchList(movieId, customer);
+            movieService.addToWatchList(movieId, customerId);
         } else if ("Remove".equals(action)) {
-            movieService.removeFromWatchList(movieId, customer);
+            movieService.removeFromWatchList(movieId, customerId);
         }
 
     }

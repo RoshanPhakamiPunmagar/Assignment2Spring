@@ -22,32 +22,24 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
-
+    //gets the list of customer and return http response
     @GetMapping("/get/all")
     public ResponseEntity<List<Customer>> retrieveAll() {
         List<Customer> movies = customerService.getAllCustomers();
 
         return ResponseEntity.ok(movies);
     }
-
+    //gets customer by id and return http response
     @GetMapping("/get/{id}")
     public ResponseEntity<Customer> retrieveById(@RequestParam Long id) {
         Customer customer =  customerService.getCustomerById(id);
         return ResponseEntity.ok(customer);
     }
 
+    //gets customer and returns http response
     @GetMapping("/getByEmail/{email}")
     public Customer getByEmail(@RequestParam String email)
     {
         return customerService.getByEmail(email);
     }
-    
-      @PostMapping("/addCustomer")
-    @ResponseBody
-    public ResponseEntity<Void> addNew(@RequestBody Customer customer) {
-        System.out.println("Debug: " + customer);
-        customerService.addCustomer(customer);
-        return ResponseEntity.noContent().build(); // 204 No Content
-    }
-
 }

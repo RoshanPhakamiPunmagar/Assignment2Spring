@@ -11,32 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * AdminMovieViewController
  *
- * Author: Roshan Phakami Pun Magar & Anmol Saru Magar
+ * @author Roshan Phakami Pun Magar & Anmol Saru Magar
  * File Name: MovieViewController.java
- * Date: 16/9/2024
- * Purpose:
- * It is responsible for handling requests related to movie management
- *  by the admin. It interacts with the AdminMoviesClient to perform operations on movie data.
- *
+ * Date :16/9/2024
+ * Purpose :
+ * AdminMovieViewController a controller that all the admin request go through.
+ * All the request functionality depends upon
+ * ******************************************************
  */
-@Controller
-@RequestMapping("/admin/movie/view")
+@Controller @RequestMapping("/admin/movie/view")
 public class AdminMovieViewController {
 
-    private final AdminMoviesClient adminMoviesClient;
+    private final AdminMoviesClient  adminMoviesClient;
 
-    /**
-     * Constructor for AdminMovieViewController.
-     */
     public AdminMovieViewController(AdminMoviesClient adminMoviesClient) {
+
         this.adminMoviesClient = adminMoviesClient;
     }
 
-    /**
-     * Handles GET requests to list all movies.
-     */
     @GetMapping("/all")
     public String listMovies(Model model) {
         List<Movies> movies = adminMoviesClient.listMovies();
@@ -44,29 +37,19 @@ public class AdminMovieViewController {
         return "movie-list";
     }
 
-    /**
-     * Handles GET requests to list blocked movies.
-     */
     @GetMapping("/blocked")
     public String listBlockedMovies(Model model) {
         List<Movies> blockedMovies = adminMoviesClient.listBlockedMovies();
-        // Note: Redirecting to "/all" instead of displaying blocked movies directly
         return "redirect:/admin/movie/view/all";
     }
 
-    /**
-     * Handles GET requests to list unblocked movies.
-     */
     @GetMapping("/unblocked")
     public String listUnblockedMovies(Model model) {
         List<Movies> unblockedMovies = adminMoviesClient.listUnblockedMovies();
-        // Note: Redirecting to "/all" instead of displaying unblocked movies directly
+        model.addAttribute("movies", unblockedMovies);
         return "redirect:/admin/movie/view/all";
     }
 
-    /**
-     * Handles GET requests to check the status of a specific movie.
-     */
     @GetMapping("/status/{id}")
     public String checkMovieStatus(@PathVariable Long id, Model model) {
         boolean isBlocked = adminMoviesClient.checkMovieStatus(id);
@@ -74,36 +57,28 @@ public class AdminMovieViewController {
         return "movie-status";
     }
 
-    /**
-     * Handles POST requests to block a specific movie.
-     */
     @PostMapping("/block/{id}")
     public String blockMovie(@PathVariable Long id) {
         try {
             adminMoviesClient.blockMovie(id);
         } catch (FeignException e) {
-            // Log the Feign exception details for troubleshooting
+            // Log the Feign exception details
             System.err.println("Feign exception while blocking movie: " + e.getMessage());
         } catch (Exception e) {
             // Log the general exception details
-            System.err.println("Exception while blocking movie: " + e.getMessage());
         }
         return "redirect:/admin/movie/view/all";
     }
 
-    /**
-     * Handles POST requests to unblock a specific movie.
-     */
+
     @PostMapping("/unblock/{id}")
     public String unblockMovie(@PathVariable Long id) {
         try {
             adminMoviesClient.unblockMovie(id);
-        } catch (FeignException e) {
-            // Log the Feign exception details for troubleshooting
-            System.err.println("Feign exception while unblocking movie: " + e.getMessage());
         } catch (Exception e) {
-            // Log the general exception details
-            System.err.println("Exception while unblocking movie: " + e.getMessage());
+            // Log the Feign exception details
+            System.err.println("Feign exception while blocking movie: " + e.getMessage());
+            e.printStackTrace();
         }
         return "redirect:/admin/movie/view/all";
     }

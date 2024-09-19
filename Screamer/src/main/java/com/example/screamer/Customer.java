@@ -2,12 +2,8 @@ package com.example.screamer;
 
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 /**
  *
@@ -18,13 +14,11 @@ import lombok.NonNull;
  * Customer class that defines the Customer Entity
  * ******************************************************
  */
-
-@Entity @Data @NoArgsConstructor
+@Entity @Data
 public class Customer {
     @Id
     @GeneratedValue
     private long id;
-
 
     private String name;
 
@@ -32,13 +26,10 @@ public class Customer {
 
     private String password;
     private String roll;
-private String genre;
-    
+
     @OneToOne (mappedBy = "customer")
     private WatchList watchList;
 
-    @NonNull
-    private boolean blocked;
 
 
 }
