@@ -30,7 +30,7 @@ public class RecomendationService {
     }
 
     Movies getRandomMovie() {
-        List<Movies> movies = movieService.getAllMovies();
+        List<Movies> movies = movieService.getAllMoviesForRandom();
 
         return movies.get(random.nextInt(movies.size()));
     }

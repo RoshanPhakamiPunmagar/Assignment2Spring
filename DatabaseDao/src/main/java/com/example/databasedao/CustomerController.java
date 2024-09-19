@@ -4,7 +4,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ *
+ * @author Roshan Phakami Pun Magar & Anmol Saru Magar
+ * File Name: CustomerController.java
+ * Date :16/9/2024
+ * Purpose :
+ * CustomerController a controller that all the user request go through.
+ * All the request functionality depends upon
+ * ******************************************************
+ */
 @RestController @RequestMapping("/user")
 public class CustomerController {
 
@@ -38,14 +47,4 @@ public class CustomerController {
     {
         return customerService.getByEmail(email);
     }
-    
-    /*
-      @PostMapping("/addCustomer")
-    @ResponseBody
-    public ResponseEntity<Void> addCustomer(@RequestBody Customer customer) {
-        System.out.println("Debug: " + customer);
-        customerService.addCustomer(customer);
-        return ResponseEntity.noContent().build(); // 204 No Content
-    }
-*/
 }

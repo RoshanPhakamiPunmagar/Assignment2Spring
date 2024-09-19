@@ -8,42 +8,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-/**
- * Author: Roshan Phakami PunMagar
- * File Name: AdminCustomerClient.java
- * Date: 16/9/2024
- * Purpose:
- * Interface for communicating with customer-related services in the AdminApplication.
- * Handles requests like fetching, blocking, and unblocking customers.
- * ******************************************************
- */
-
 @FeignClient(name = "admin-customer", url = "http://localhost:8009/admin/customer")
-// This interface uses Feign to communicate with the "admin-customer" microservice
-// Base URL: http://localhost:8009/admin/customer
 public interface AdminCustomerClient {
-
     @GetMapping("/get/all")
-        // Retrieves a list of all customers
     List<Customer> listCustomers();
 
     @GetMapping("/blocked")
-        // Retrieves a list of blocked customers
     List<Customer> listBlockedCustomers();
 
     @GetMapping("/unblocked")
-        // Retrieves a list of unblocked customers
     List<Customer> listUnblockedCustomers();
 
     @GetMapping("/status/{id}")
-        // Checks whether a customer with the given ID is blocked or not
     Boolean checkCustomerStatus(@PathVariable Long id);
 
     @PostMapping("/block/{id}")
-        // Blocks the customer with the given ID and returns a ResponseEntity<Void> indicating success or failure
     ResponseEntity<Void> blockCustomers(@PathVariable Long id);
 
     @PostMapping("/unblock/{id}")
-        // Unblocks the customer with the given ID and returns a ResponseEntity<Void> indicating success or failure
     ResponseEntity<Void> unblockCustomers(@PathVariable Long id);
 }
