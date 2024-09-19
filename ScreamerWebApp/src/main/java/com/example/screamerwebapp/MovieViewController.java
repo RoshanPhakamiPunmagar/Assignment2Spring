@@ -45,10 +45,10 @@ public class MovieViewController {
         return "watchlist";
     }
 
-    @GetMapping("/")
+    @GetMapping("/landing")
     public String getIndex() {
 
-        return "index";
+        return "landing";
     }
 
     //Gets recommendation and return recommend_page.html

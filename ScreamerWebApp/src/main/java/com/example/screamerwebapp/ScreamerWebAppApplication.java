@@ -27,7 +27,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -62,18 +65,18 @@ public class ScreamerWebAppApplication {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    
+                    auth.requestMatchers("/", "/register", "/error").permitAll();
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/view/", true) // true ensures it always redirects to /posts after login
-                        .failureUrl("/login?error")
-                        .permitAll()
-                ) .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                .loginPage("/login")
+                .defaultSuccessUrl("/view/landing", true) // true ensures it always redirects to /posts after login
+                .failureUrl("/login?error")
+                .permitAll()
+                ).logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
                 )
                 .build();
     }
@@ -85,8 +88,21 @@ public class ScreamerWebAppApplication {
 
 }
 
+@Controller
+@RequestMapping()
+class mainPageController {
 
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+}
 
 @Service
 @RequiredArgsConstructor
