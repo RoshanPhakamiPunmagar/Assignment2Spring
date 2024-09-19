@@ -30,9 +30,9 @@ public class MovieService {
     }
 
     //fetches all movies from the client and returns it to controller
-    public List<Movies> getAllMovies() {
+    public List<Movies> getAllMovies(Long cust) {
         try {
-            return movieClient.getAllMovies();
+            return movieClient.getAllMovies(cust);
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
@@ -42,21 +42,21 @@ public class MovieService {
         return recommendationClient.getRecomendation().getBody();
     }
     //gets all the watchlist added and returns it to controller
-    public WatchList getAllWatchListMovies() {
+    public WatchList getAllWatchListMovies(Long custId) {
         try {
-            return movieClient.getAllWatchListMovies();
+            return movieClient.getAllWatchListMovies(custId);
         } catch (Exception e) {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
     }
     //removes movie from watchlist
-public void removeFromWatchList(Long id, Customer customer) {
-        movieClient.addMovieToWatchList(id, "Remove", customer);
+public void removeFromWatchList(Long id, Long customerId) {
+        movieClient.addMovieToWatchList(id, "Remove", customerId);
 
 }
         //adds movie from watchlist
-    public void addToWatchList(Long id,  Customer customer) {
-        movieClient.addMovieToWatchList(id, "Add", customer);
+    public void addToWatchList(Long id, Long customerId) {
+        movieClient.addMovieToWatchList(id, "Add", customerId);
     }
 }
 

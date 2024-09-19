@@ -8,6 +8,15 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: WatchList.java
+ * Date :16/9/2024
+ * Purpose :
+ * Entity Class For WatchList
+ * ******************************************************
+ */
 @Entity
 @Data
 @NoArgsConstructor

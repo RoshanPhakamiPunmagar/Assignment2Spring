@@ -17,14 +17,19 @@ import java.util.List;
 @Service
 public class CustomerService {
 
+
     private final CustomerClient customerClient;
     private List<Customer> customers;
     public CustomerService(CustomerClient customerClient) {
+
         this.customerClient = customerClient;
          customers = customerClient.getAllCustomer();
     }
+
+
     //gets customer by all customers
     public List<Customer> getAllCustomers() {
+
         return customerClient.getAllCustomer();
     }
     //gets customer by id

@@ -36,6 +36,7 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
+    //gets customer and returns http response
     @GetMapping("/getByEmail/{email}")
     public Customer getByEmail(@RequestParam String email)
     {

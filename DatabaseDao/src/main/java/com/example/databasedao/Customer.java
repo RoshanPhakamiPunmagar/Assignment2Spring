@@ -7,10 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+/**
+ *
+ * @author Anmol Saru Magar
+ * File Name: Customer.java
+ * Date :16/9/2024
+ * Purpose :
+ * Customer class that defines the Customer Entity
+ * ******************************************************
+ */
+
 
 @Entity @Data @NoArgsConstructor
 public class Customer {
