@@ -78,6 +78,26 @@ public class MovieViewController {
         }
 
         List<Movies> m = movieService.getAllMovies();
+        for (Movies i : m) {
+            i.setInWatchList(false);
+        }
+        if (customerClient.getByEmail(username).getWatchList() != null) {
+            System.out.println("Customer: " + username + " watchlist is not null");
+            if (customerClient.getByEmail(username).getWatchList().getMovies() != null) {
+                System.out.println("Customer: " + customerClient.getByEmail(username) + " movie list is not null");
+
+                for (Movies i : customerClient.getByEmail(username).getWatchList().getMovies()) {
+                    for (Movies i2 : m) {
+                        if (i2.getId() == i.getId()) {
+                            System.out.println("IDs match " + i2.getId());
+                            i2.setInWatchList(true);
+                        }
+                    }
+                }
+
+            }
+        }
+
         model.addAttribute("movies", m);
         return "movie_page";
     }

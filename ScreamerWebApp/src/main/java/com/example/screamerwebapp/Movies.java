@@ -44,5 +44,13 @@ public class Movies {
     @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
     private List<WatchList> watchLists = new ArrayList<>();
 
+      public boolean getInWatchList() {
+        return this.inWatchList;
+    }
+
+    public void setInWatchList(boolean inWatchList) {
+        this.inWatchList = inWatchList;
+    }
+
 
 }
