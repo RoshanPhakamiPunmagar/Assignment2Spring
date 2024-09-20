@@ -43,3 +43,7 @@ Roshan Phakami Magar & Amnol Saru Magar Week 1: https://youtu.be/E7fQVZGBHC0
 Roshan Phakami Magar & Amnol Saru Magar Week 2: https://youtu.be/IxIJlfpAZ3Y
 
 Anmol Saru Magar & Caleb Davidson: https://youtu.be/JEEgCJa7jYY
+
+Non Functional Designs:
+
+
