@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController@Data @RequestMapping("/recommendation")
+@RestController
+@Data
+@RequestMapping("/recommendation")
 public class RecommendationController {
 
     @Autowired
@@ -13,7 +15,7 @@ public class RecommendationController {
 
     @GetMapping("/get")
     @ResponseBody
-        // can return webpage in stead
+    // can return webpage in stead
     ResponseEntity<Movies> getRecommendation() {
 
         Movies recommendation = recommendationService.getRecommendation().getBody();

@@ -17,8 +17,10 @@ import java.util.List;
  * All the request return ResposnseEntity type
  * ******************************************************
  */
-@RestController @RequestMapping("/movies")
+@RestController
+@RequestMapping("/movies")
 public class MovieController {
+
     @Autowired
     private final MovieService movieService;
 
@@ -34,12 +36,10 @@ public class MovieController {
 
     @GetMapping("/get/watchlist/all/{custID}")
     public ResponseEntity<WatchList> getAllWatchlistMovies(@PathVariable("custID") String custID) {
-        System.out.println( "xx");
+        System.out.println("xx");
         WatchList movies = movieService.getAllWatchListMovies(custID);
         return ResponseEntity.ok(movies);
     }
-
-
 
     @PostMapping("/add/watchlist/{id}")
     public void addMovieToWatchlist(@PathVariable("id") Long movieId, @RequestParam String action, @RequestBody Customer customer) {
@@ -55,4 +55,3 @@ public class MovieController {
     }
 
 }
-

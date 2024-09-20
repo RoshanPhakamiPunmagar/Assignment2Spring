@@ -20,13 +20,12 @@ public interface CustomerClient {
     @GetMapping("/get/all")
     List<Customer> getAllCustomer();
 
-
     @GetMapping("/get/{id}")
     ResponseEntity<Customer> retrieveById(@RequestParam Long id);
-    
-     @GetMapping("/getByEmail/{email}")
+
+    @GetMapping("/getByEmail/{email}")
     Customer getByEmail(@RequestParam String email);
-    
+
     @PostMapping("/add")
     @ResponseBody
     ResponseEntity<Customer> addCustomer(@RequestBody Customer customer);

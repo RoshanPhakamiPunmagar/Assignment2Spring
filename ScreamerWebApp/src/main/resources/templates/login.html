@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>SpringBoot Security</title>
-</head>
-<body>
-<form action="login" th:action="@{/login}" method="post">
-    <div th:if="${param.error}">
-        <span>Invalid Email and Password.</span>
-    </div>
-    <input type="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="checkbox" name="remember-me"> Remember Me
-    <button type="submit">LogIn</button>
-    <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
-        <button type="submit" class="btn btn-danger btn-lg mt-4">Logout</button>
-    </form>
-</form>
-</body>
+    <head>
+        <title>SpringBoot Security</title>
+    </head>
+    <body>
+        <form action="login" th:action="@{/login}" method="post">
+            <div th:if="${param.error}">
+                <span>Invalid Email and Password.</span>
+            </div>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="checkbox" name="remember-me"> Remember Me
+            <button type="submit">LogIn</button>
+            <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-lg mt-4">Logout</button>
+            </form>
+        </form>
+    </body>
 </html>

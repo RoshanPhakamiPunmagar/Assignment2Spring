@@ -19,24 +19,27 @@ public class CustomerService {
 
     private final CustomerClient customerClient;
     private List<Customer> customers;
+
     public CustomerService(CustomerClient customerClient) {
         this.customerClient = customerClient;
-         customers = customerClient.getAllCustomer();
+        customers = customerClient.getAllCustomer();
     }
+
     //gets customer by all customers
     public List<Customer> getAllCustomers() {
         return customerClient.getAllCustomer();
     }
+
     //gets customer by id
     public Customer getCustomerById(Long id) {
         return customerClient.retrieveById(id).getBody();
     }
+
     //gets customer by email
-    public Customer getByEmail(String email)
-    {
+    public Customer getByEmail(String email) {
         return customerClient.getByEmail(email);
     }
-    
+
     void addCustomer(Customer customer) {
         customerClient.addCustomer(customer);
     }

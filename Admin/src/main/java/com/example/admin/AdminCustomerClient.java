@@ -24,26 +24,26 @@ import java.util.List;
 public interface AdminCustomerClient {
 
     @GetMapping("/get/all")
-        // Retrieves a list of all customers
+    // Retrieves a list of all customers
     List<Customer> listCustomers();
 
     @GetMapping("/blocked")
-        // Retrieves a list of blocked customers
+    // Retrieves a list of blocked customers
     List<Customer> listBlockedCustomers();
 
     @GetMapping("/unblocked")
-        // Retrieves a list of unblocked customers
+    // Retrieves a list of unblocked customers
     List<Customer> listUnblockedCustomers();
 
     @GetMapping("/status/{id}")
-        // Checks whether a customer with the given ID is blocked or not
+    // Checks whether a customer with the given ID is blocked or not
     Boolean checkCustomerStatus(@PathVariable Long id);
 
     @PostMapping("/block/{id}")
-        // Blocks the customer with the given ID and returns a ResponseEntity<Void> indicating success or failure
+    // Blocks the customer with the given ID and returns a ResponseEntity<Void> indicating success or failure
     ResponseEntity<Void> blockCustomers(@PathVariable Long id);
 
     @PostMapping("/unblock/{id}")
-        // Unblocks the customer with the given ID and returns a ResponseEntity<Void> indicating success or failure
+    // Unblocks the customer with the given ID and returns a ResponseEntity<Void> indicating success or failure
     ResponseEntity<Void> unblockCustomers(@PathVariable Long id);
 }

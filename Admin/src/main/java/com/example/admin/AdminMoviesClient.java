@@ -24,31 +24,29 @@ import java.util.List;
 interface AdminMoviesClient {
 
     @GetMapping("/get/all")
-        // Fetches a list of all movies from the movies microservice.
+    // Fetches a list of all movies from the movies microservice.
     List<Movies> listMovies();
 
     @GetMapping("/blocked")
-        // Fetches a list of all blocked movies.
+    // Fetches a list of all blocked movies.
     List<Movies> listBlockedMovies();
 
     @GetMapping("/unblocked")
-        // Fetches a list of all unblocked movies.
+    // Fetches a list of all unblocked movies.
     List<Movies> listUnblockedMovies();
 
     @GetMapping("/status/{id}")
-        // Checks if a movie with the given ID is blocked.
-        // Returns true if blocked, false otherwise.
+    // Checks if a movie with the given ID is blocked.
+    // Returns true if blocked, false otherwise.
     Boolean checkMovieStatus(@PathVariable Long id);
 
     @PostMapping("/block/{id}")
-        // Blocks a movie by its ID.
-        // Returns a ResponseEntity<Void> indicating the result of the operation.
+    // Blocks a movie by its ID.
+    // Returns a ResponseEntity<Void> indicating the result of the operation.
     ResponseEntity<Void> blockMovie(@PathVariable Long id);
 
     @PostMapping("/unblock/{id}")
-        // Unblocks a movie by its ID.
-        // Returns a ResponseEntity<Void> indicating the result of the operation.
+    // Unblocks a movie by its ID.
+    // Returns a ResponseEntity<Void> indicating the result of the operation.
     ResponseEntity<Void> unblockMovie(@PathVariable Long id);
 }
-
-

@@ -13,12 +13,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class WatchList {
+
     @Id
     @GeneratedValue
     private Long id;
 
     @OneToMany
-    @JsonManagedReference(value="watchlist-class")
+    @JsonManagedReference(value = "watchlist-class")
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
@@ -29,13 +30,13 @@ public class WatchList {
     }
 
     @OneToOne
-    @JsonBackReference(value="customer-class")
+    @JsonBackReference(value = "customer-class")
     private Customer customer;
 
     public void removeMovie(Movies movie) {
         if (!this.movies.contains(movie)) {
-            for(Movies m : this.movies) {
-                if(movie.getId().equals( m.getId())) {
+            for (Movies m : this.movies) {
+                if (movie.getId().equals(m.getId())) {
                     this.movies.remove(movie);
                 }
 
@@ -44,11 +45,12 @@ public class WatchList {
         }
 
     }
+
     @Override
     public String toString() {
-        return "WatchList{" +
-                "id=" + id +
-                ", moviesCount=" + (movies != null ? movies.size() : 0) +
-                '}';
+        return "WatchList{"
+                + "id=" + id
+                + ", moviesCount=" + (movies != null ? movies.size() : 0)
+                + '}';
     }
 }

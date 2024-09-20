@@ -15,9 +15,14 @@ import java.util.List;
  * Movies class that defines the Movie Entity
  * ******************************************************
  */
-@Entity @Data @NoArgsConstructor @RequiredArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Movies {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     private long id;
 
     @NonNull
@@ -32,12 +37,10 @@ public class Movies {
     @NonNull
     private String subGenre;
 
-
     @NonNull
     private boolean inWatchList;
 
-
-    @ManyToMany (fetch = FetchType.EAGER, mappedBy = "movies")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "movies")
     private List<WatchList> watchLists = new ArrayList<>();
 
     public void addWatchlist(WatchList watchList) {

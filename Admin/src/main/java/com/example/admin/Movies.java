@@ -54,4 +54,3 @@ public class Movies {
     // Indicates whether the movie is blocked or not. This field is required (non-nullable).
     private boolean blocked;
 }
-

@@ -11,7 +11,7 @@ public class RecommendationService {
         this.recommendationClient = recommendationClient;
     }
 
-    public Movies getRecomendation(){
+    public Movies getRecomendation() {
         return recommendationClient.getRecomendation().getBody();
     }
 }

@@ -53,4 +53,3 @@ public class Customer {
     // Indicates whether the customer is blocked or not. This field is required (non-nullable).
     private boolean blocked;
 }
-

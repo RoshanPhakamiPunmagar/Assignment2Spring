@@ -13,7 +13,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * Runs ServerApplicaiton
  * ******************************************************
  */
-@SpringBootApplication @EnableFeignClients @EnableDiscoveryClient
+@SpringBootApplication
+@EnableFeignClients
+@EnableDiscoveryClient
 public class ScreamerApplication {
 
     public static void main(String[] args) {

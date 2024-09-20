@@ -44,12 +44,14 @@ public class MainPageController {
     public String registerNew(@ModelAttribute Customer customer) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
-                    System.out.println("Debug: " + "User is logged in");
-                    return "landing";
+            System.out.println("Debug: " + "User is logged in");
+            return "landing";
         }
-        	customer.setRoll("ROLE_USER");
-                System.out.println("Debug: " + customer);
-                customerClient.addCustomer(customer);
+        customer.setRoll("ROLE_USER");
+        customer.setWatchList(new WatchList());
+
+        System.out.println("Debug: " + customer);
+        customerClient.addCustomer(customer);
         return "login";
     }
 

@@ -55,5 +55,3 @@ public class AdminMoviesService {
         return adminClient.listMovies();
     }
 }
-
-

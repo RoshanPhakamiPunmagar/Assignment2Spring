@@ -7,5 +7,6 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface MoviesRepository extends JpaRepository<Movies, Long> {
+
     List<Movies> findByBlocked(boolean blocked);
 }

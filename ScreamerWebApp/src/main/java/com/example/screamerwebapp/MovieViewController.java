@@ -40,10 +40,12 @@ public class MovieViewController {
             username = principal.toString();
         }
         System.out.println("Debug: " + username);
+        System.out.println("Debug: ------------------------------------------------ view watchlist ------------------------------------------- ");
+
         WatchList watchList = movieService.getAllWatchListMovies(username);
-        
-        
-        
+        System.out.println("Debug: watchlist contents" + watchList);
+        System.out.println("Debug: ------------------------------------------------ END ------------------------------------------- ");
+
         model.addAttribute("watchlist", watchList);
         return "watchlist";
     }

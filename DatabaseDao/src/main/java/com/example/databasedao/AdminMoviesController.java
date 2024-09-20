@@ -76,5 +76,3 @@ public class AdminMoviesController {
         return ResponseEntity.noContent().build(); // 204 No Content on successful unblocking
     }
 }
-
-

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 @Service
 public class MovieService {
+
     private final MoviesRepository movieRepository;
 
     private final CustomerRepository customerRepository;
@@ -15,7 +16,6 @@ public class MovieService {
     private final WatchListRepository watchListRepository;
     private WatchList watchListToAdd = new WatchList();
     private List<Movies> moviesToAdd;
-
 
     public MovieService(MoviesRepository movieRepository, CustomerRepository customerRepository, CustomerService customerService, WatchListRepository watchListRepository) {
         this.movieRepository = movieRepository;
@@ -30,7 +30,6 @@ public class MovieService {
         return movieRepository.save(movie);
     }
 
-
     @Transactional
     public void removeWatchList(Long id, Customer customer) {
         Optional<Movies> movies = movieRepository.findById(id);
@@ -39,26 +38,44 @@ public class MovieService {
         movieToRemove.setInWatchList(false);
         movieRepository.save(movieToRemove);
         watchLists.getMovies().remove(movieToRemove);
-     watchListToAdd = watchListRepository.save(watchLists);
-
+        watchListToAdd = watchListRepository.save(watchLists);
 
     }
-
 
     public void postWatchlist(Long id, Customer customer) {
         // Retrieve the movie from the repository
         Movies movie = movieRepository.findById(id).get();
-
+        Customer cust = customerRepository.findByemail(customer.getEmail());
 
         movie.setInWatchList(true);
 
-        movieRepository.save(movie);
-        watchListToAdd.addMovie(movie);
+        //movieRepository.save(movie);
+        //watchListToAdd.addMovie(movie);
+        if (cust.getWatchList() == null) {
+            System.out.println("Debug: --------------------------------------ADD TO WATCHLIST-----------------------------------------------------------------------------");
 
-        watchListToAdd.setCustomer(customerService.getCustomerById(customer.getId()));
-        System.out.println(movie.getInWatchList());
+            System.out.println("Debug: watch list is null adding new ");
+            WatchList newWatchlist = new WatchList();
+            newWatchlist.setCustomer(cust);
+            newWatchlist.addMovie(movie);
+            cust.setWatchList(newWatchlist);
+            watchListRepository.save(newWatchlist);
+            customerRepository.save(cust);
+
+        } else {
+            System.out.println("Debug: watch list is not null adding just movies ");
+
+            cust.getWatchList().addMovie(movie);
+            watchListRepository.findById(cust.getWatchList().getId()).get().addMovie(movie);
+            customerRepository.save(cust);
+
+        }
+        System.out.println("Debug : WatchListContents: " + cust);
+
+        System.out.println("Debug: ----------------------------------------------END DEBUG------------------------------------------------------------------");
+
+        //watchListToAdd.setCustomer(customerService.getCustomerById(customer.getId()));
         // Save the updated watchlist
-        watchListRepository.save(watchListToAdd);
     }
 
     public List<Movies> getAllMovies() {
@@ -70,14 +87,24 @@ public class MovieService {
         System.out.println(watchListRepository.findAll().size());
         Customer cust = customerRepository.findByemail(custId);
         WatchList wL = new WatchList();
-        if (watchListRepository.findAll().size() <= 0)
-        {
+        System.out.println("Debug: ------------------------------------GETWatchList--------------------------------------------------------------------------");
+        if (cust.getWatchList() == null || cust.getWatchList().getMovies().isEmpty()) {
+            System.out.println("Debug: watchlist size 0 no watchlist");
             return wL;
+        } else {
+            System.out.println("Debug: watchlist size above 0 returning watchlist");
+
+            wL = cust.getWatchList();
+            WatchList wL2 = watchListRepository.findBycustomer(cust);
+            System.out.println("Debug: wL movies: " + wL.getMovies());
+            System.out.println("Debug: wL2 movies: " + wL2.getMovies());
+            System.out.println("Debug: " + wL);
+
         }
-        else {
-            wL = watchListRepository.findBycustomer(cust);
-        }
+        System.out.println("Debug: ------------------------------------END--------------------------------------------------------------------------");
+
         return wL;
+
     }
 
     public Optional<Movies> getMovieById(Long id) {
@@ -90,20 +117,17 @@ public class MovieService {
 
     public Movies updateMovie(Long id, Movies movie) {
         System.out.println("124124");
-        Movies existingMovie =  movieRepository.findById(id).get();
+        Movies existingMovie = movieRepository.findById(id).get();
         System.out.println(existingMovie.getId());
-                    // Update the fields as needed
-                    existingMovie.setInWatchList(movie.getInWatchList());
-                    existingMovie.setDescription(movie.getDescription());
-                    existingMovie.setTitle(movie.getTitle());
-                    existingMovie.setSubGenre(movie.getSubGenre());
-                    System.out.println("Done");
+        // Update the fields as needed
+        existingMovie.setInWatchList(movie.getInWatchList());
+        existingMovie.setDescription(movie.getDescription());
+        existingMovie.setTitle(movie.getTitle());
+        existingMovie.setSubGenre(movie.getSubGenre());
+        System.out.println("Done");
 
-                    // Save the updated movie
-                    return movieRepository.save(existingMovie);
-                }
-
-
-
+        // Save the updated movie
+        return movieRepository.save(existingMovie);
     }
 
+}

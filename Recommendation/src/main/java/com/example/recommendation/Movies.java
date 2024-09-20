@@ -16,6 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Movies {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -31,6 +32,5 @@ public class Movies {
 
     @NonNull
     private String subGenre;
-
 
 }

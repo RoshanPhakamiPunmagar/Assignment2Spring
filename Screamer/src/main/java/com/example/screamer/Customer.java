@@ -19,12 +19,14 @@ import lombok.NonNull;
  * ******************************************************
  */
 
-@Entity @Data @NoArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
 public class Customer {
+
     @Id
     @GeneratedValue
     private long id;
-
 
     private String name;
 
@@ -32,13 +34,12 @@ public class Customer {
 
     private String password;
     private String roll;
-private String genre;
-    
-    @OneToOne (mappedBy = "customer")
+    private String genre;
+
+    @OneToOne(mappedBy = "customer")
     private WatchList watchList;
 
     @NonNull
     private boolean blocked;
-
 
 }

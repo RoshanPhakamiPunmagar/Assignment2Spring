@@ -15,14 +15,17 @@ import java.util.List;
  */
 @Service
 public class MovieService {
+
     //initializing
     private final MovieClient movieClient;
     private List<Movies> movies;
+
     //Constructor
     public MovieService(MovieClient movieClient) {
         this.movieClient = movieClient;
 
     }
+
     //fetches all movies from the client and returns it to controller
     public List<Movies> getAllMovies() {
         try {
@@ -32,6 +35,7 @@ public class MovieService {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
     }
+
     //gets all the watchlist added and returns it to controller
     public WatchList getAllWatchListMovies(String custID) {
         try {
@@ -42,12 +46,14 @@ public class MovieService {
             throw new RuntimeException("Failed to get all movies: " + e.getMessage(), e);
         }
     }
+
     //removes movie from watchlist
     public void removeFromWatchList(Long id, Customer customer) {
 
-       movieClient.addMoveToWatchList(id, "Remove", customer);
+        movieClient.addMoveToWatchList(id, "Remove", customer);
 
     }
+
     //adds movie from watchlist
     public void addToWatchList(Long id, Customer customer) {
 

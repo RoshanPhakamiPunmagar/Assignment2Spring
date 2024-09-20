@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Movies {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -37,9 +38,8 @@ public class Movies {
     private boolean blocked;
 
     @ManyToOne
-    @JsonBackReference(value="watchlist-class")
+    @JsonBackReference(value = "watchlist-class")
     private WatchList watchList;
-
 
     // Optionally, add a toggle method
     public boolean getInWatchList() {
@@ -52,13 +52,13 @@ public class Movies {
 
     @Override
     public String toString() {
-        return "Movies{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
-                ", description='" + description + '\'' +
-                ", subGenre='" + subGenre + '\'' +
-                ", inWatchList=" + this.inWatchList +
-                '}';
+        return "Movies{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", url='" + url + '\''
+                + ", description='" + description + '\''
+                + ", subGenre='" + subGenre + '\''
+                + ", inWatchList=" + this.inWatchList
+                + '}';
     }
 }

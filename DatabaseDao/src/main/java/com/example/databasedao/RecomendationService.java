@@ -22,7 +22,6 @@ public class RecomendationService {
 
     ResponseEntity<Movies> getRecommendation() {
 
-
         Movies randomMovie = getRandomMovie();
 
         return ResponseEntity.ok(randomMovie);

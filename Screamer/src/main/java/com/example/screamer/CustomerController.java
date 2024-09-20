@@ -14,7 +14,8 @@ import java.util.List;
  * All the request functionality depends upon
  * ******************************************************
  */
-@RestController @RequestMapping("/user")
+@RestController
+@RequestMapping("/user")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -32,17 +33,16 @@ public class CustomerController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Customer> retrieveById(@RequestParam Long id) {
-        Customer customer =  customerService.getCustomerById(id);
+        Customer customer = customerService.getCustomerById(id);
         return ResponseEntity.ok(customer);
     }
 
     @GetMapping("/getByEmail/{email}")
-    public Customer getByEmail(@RequestParam String email)
-    {
+    public Customer getByEmail(@RequestParam String email) {
         return customerService.getByEmail(email);
     }
-    
-      @PostMapping("/addCustomer")
+
+    @PostMapping("/addCustomer")
     @ResponseBody
     public ResponseEntity<Void> addNew(@RequestBody Customer customer) {
         System.out.println("Debug: " + customer);

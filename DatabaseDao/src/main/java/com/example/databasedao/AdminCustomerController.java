@@ -77,4 +77,3 @@ public class AdminCustomerController {
         return ResponseEntity.noContent().build(); // 204 No Content on successful unblocking
     }
 }
-

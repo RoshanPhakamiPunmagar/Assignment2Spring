@@ -8,13 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
+
 /**
  * Movies.java
- * @author : Teams
- * Date: 16/09/2024
- * Initalzing data
+ *
+ * @author : Teams Date: 16/09/2024 Initalzing data
  */
-@SpringBootApplication @EnableDiscoveryClient
+@SpringBootApplication
+@EnableDiscoveryClient
 public class DatabaseDaoApplication {
 
     public static void main(String[] args) {
@@ -22,6 +23,7 @@ public class DatabaseDaoApplication {
     }
 
 }
+
 @Component
 @Data
 @Transactional
@@ -43,14 +45,12 @@ class AppInit implements ApplicationRunner {
         m.setUrl("https://www.youtube.com/embed/y1OhC9h3flY?si=lmulPcEtFJcbg92Z");
         moviesRepository.save(m);
 
-
         Movies m1 = new Movies();
         m1.setTitle("Hereditary");
         m1.setSubGenre("Comedy");
         m1.setDescription("Annie is devastated along with her family following her mother’s death. Odd things begin happening as the truth about Annie's family starts to emerge.");
         m1.setUrl("https://www.youtube.com/embed/-sM8Jrcbxdc?si=fCDhEViO7quuwUvv");
         moviesRepository.save(m1);
-
 
         // Additional movie entries
         Movies m2 = new Movies();
@@ -60,15 +60,12 @@ class AppInit implements ApplicationRunner {
         m2.setUrl("https://www.youtube.com/embed/JhMWopjJiI8?si=4iyYIe1xsWrDdaYG");
         moviesRepository.save(m2);
 
-
-
         Movies m3 = new Movies();
         m3.setTitle("Say it");
         m3.setSubGenre("Action");
         m3.setDescription("A Chinese immigrant must connect with different versions of herself to save the universe.");
         m3.setUrl("https://www.youtube.com/embed/JjBYmLxmT_U?si=EXJZCg7_CSgZUA8I");
         moviesRepository.save(m3);
-
 
         Movies m4 = new Movies();
         m4.setTitle("Interstellar");
@@ -77,14 +74,12 @@ class AppInit implements ApplicationRunner {
         m4.setUrl("https://www.youtube.com/embed/s_M1t0HE-Kk?si=oN8dQ9vY6YGPaufW");
         moviesRepository.save(m4);
 
-
         Movies m5 = new Movies();
         m5.setTitle("The Exorcist");
         m5.setSubGenre("Si-Fi");
         m5.setDescription("An actress notices dangerous changes in her 12-year-old daughter.");
         m5.setUrl("https://www.youtube.com/embed/bSxuXQCEC7M?si=aPw7kcVFWW-QwMER");
         moviesRepository.save(m5);
-
 
         // Additional movie entries
         Movies m6 = new Movies();
@@ -122,13 +117,13 @@ class AppInit implements ApplicationRunner {
         m10.setUrl("https://www.youtube.com/embed/JhMWopjJiI8?si=4iyYIe1xsWrDdaYG");
         moviesRepository.save(m10);
 
-
         // Create a new Customer object for Anmol
         Customer c1 = new Customer();
         c1.setName("Anmol");
         c1.setEmail("anmol@gmail.com");
         c1.setPassword("anmol123");
         c1.setRoll("ROLE_ADMIN");
+
         customerRepository.save(c1);
         customerController.addCustomer(c1);
 
@@ -138,6 +133,7 @@ class AppInit implements ApplicationRunner {
         c2.setEmail("roshan@gmail.com");
         c2.setPassword("roshan123");
         c2.setRoll("ROLE_ADMIN");
+
         customerRepository.save(c2);
         customerController.addCustomer(c2);
 
@@ -147,6 +143,7 @@ class AppInit implements ApplicationRunner {
         c3.setEmail("caleb@gmail.com");
         c3.setPassword("caleb123");
         c3.setRoll("ROLE_USER");
+
         customerRepository.save(c3);
         customerController.addCustomer(c3);
 

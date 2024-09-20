@@ -1,6 +1,5 @@
 package com.example.databasedao;
 
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +29,5 @@ public class CustomerService {
     Customer getByEmail(String email) {
         return customerRepository.findByemail(email);
     }
-    
-    
+
 }

@@ -17,10 +17,13 @@ import java.util.List;
  * Entity Class For WatchList
  * ******************************************************
  */
-@Entity @Data
+@Entity
+@Data
 @NoArgsConstructor
 public class WatchList {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     private long id;
 
     @ManyToMany
@@ -41,7 +44,5 @@ public class WatchList {
             movie.getWatchLists().add(this); // Maintain the bidirectional relationship
         }
     }
-
-
 
 }
