@@ -45,5 +45,20 @@ Roshan Phakami Magar & Amnol Saru Magar Week 2: https://youtu.be/IxIJlfpAZ3Y
 Anmol Saru Magar & Caleb Davidson: https://youtu.be/JEEgCJa7jYY
 
 Non Functional Designs:
+Micro Service 1:
+![image](https://github.com/user-attachments/assets/60266c1d-8103-4742-855b-5e1e290d10cc)
 
+Micro Service 1:
+![image](https://github.com/user-attachments/assets/9f67fc9e-b9fd-4581-8fa7-8aa4ba999c96)
 
+Micro Service 1: 
+![image](https://github.com/user-attachments/assets/0df1f78d-e2a0-4553-9ddb-3885ba4db969)
+
+Erd Week 3: Team
+![image](https://github.com/user-attachments/assets/1ed221c6-35b9-4745-b3c9-441ccab5b50b)
+
+Use Case Week 3 :Team
+![image](https://github.com/user-attachments/assets/64ba4b2f-1e3c-4d50-bf18-ab61adebfed7)
+
+Use Case Week 3: Team
+![image](https://github.com/user-attachments/assets/477743ee-9d19-4ef5-9dcf-78066c8da4cf)
