@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * CustomerClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "screamerService", url = "http://localhost:8003/user")
+@FeignClient(name = "screamerService")
 public interface CustomerClient {
 
     @GetMapping("/get/all")
