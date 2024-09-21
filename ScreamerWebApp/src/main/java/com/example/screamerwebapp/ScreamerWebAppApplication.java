@@ -49,7 +49,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * ******************************************************
  */
 //admin feign client interface
-@SpringBootApplication @EnableFeignClients
+@SpringBootApplication
+@EnableFeignClients
 @EnableDiscoveryClient
 public class ScreamerWebAppApplication {
 
@@ -59,10 +60,10 @@ public class ScreamerWebAppApplication {
 
 }
 
-
 @Configuration // Marks this class as a configuration class for Spring.
 @EnableWebSecurity // Enables web security for the application.
- class WebSecurityConfiguration  {
+class WebSecurityConfiguration {
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -72,7 +73,7 @@ public class ScreamerWebAppApplication {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/", "/register", "/error").permitAll();
+                    auth.requestMatchers("/", "/register", "/error", "/landing").permitAll();
                     auth.requestMatchers("/view/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                 })
@@ -101,13 +102,12 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private CustomerClient custClient;
-    
 
     @Override
     public UserDetails loadUserByUsername(final String email) {
         final Customer cust = this.custClient.getByEmail(email);
-        
-      System.out.println("Customer auth debug: " + cust);
+
+        System.out.println("Customer auth debug: " + cust);
         if (cust == null) {
             System.out.println("Error no user with email: " + email);
         }
@@ -122,11 +122,3 @@ class UserDetailsServiceImpl implements UserDetailsService {
     }
 
 }
-
-
-
-
-
-
-
-
