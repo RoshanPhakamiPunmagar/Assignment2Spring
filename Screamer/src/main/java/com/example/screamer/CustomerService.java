@@ -21,7 +21,6 @@ public class CustomerService {
 
     public CustomerService(CustomerClient customerClient) {
         this.customerClient = customerClient;
-        customers = customerClient.getAllCustomer();
     }
 
     //gets customer by all customers
