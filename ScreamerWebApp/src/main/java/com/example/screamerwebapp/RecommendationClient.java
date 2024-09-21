@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "recommendationService", contextId = "recommendationClient")
 public interface RecommendationClient {
 
-    @GetMapping("/get")
+    @GetMapping("/recommendation/get")
     ResponseEntity<Movies> getRecomendation();
 }
