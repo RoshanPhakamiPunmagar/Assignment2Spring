@@ -17,10 +17,13 @@ import java.util.List;
  * Entity Class For WatchList
  * ******************************************************
  */
-@Entity @Data
+@Entity
+@Data
 @NoArgsConstructor
 public class WatchList {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     private long id;
 
     @ManyToMany
@@ -35,13 +38,12 @@ public class WatchList {
     @JsonBackReference
     private Customer customer;
 
-
     @Override
     public String toString() {
-        return "WatchList{" +
-                "id=" + id +
-                ", movieList=" + movies +
-                '}';
+        return "WatchList{"
+                + "id=" + id
+                + ", movieList=" + movies
+                + '}';
     }
 
 }

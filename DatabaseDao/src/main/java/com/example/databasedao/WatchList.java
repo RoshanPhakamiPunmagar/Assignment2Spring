@@ -18,8 +18,12 @@ public class WatchList {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    @JsonManagedReference(value = "watchlist-class")
+    @ManyToMany
+    @JoinTable(
+            name = "watchlist_movies",
+            joinColumns = @JoinColumn(name = "watchlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
     private List<Movies> movies = new ArrayList<>();
 
     public void addMovie(Movies movie) {
