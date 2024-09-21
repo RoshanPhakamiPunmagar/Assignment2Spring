@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 /**
  *
  * @author Roshan Phakami PunMagar
+ * @contributor Caleb Davidson
  * File Name: AdminApplication.java
  * Date :16/9/2024
  * Purpose : Runs AdminApplicaiton
