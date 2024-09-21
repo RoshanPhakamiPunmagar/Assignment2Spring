@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "database")
 public interface RecomendationClient {
 
-    @GetMapping("/get")
+    @GetMapping("/recommendation/get")
     ResponseEntity<Movies> getRecomendation();
 }
