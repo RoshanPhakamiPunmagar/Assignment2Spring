@@ -18,7 +18,6 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerClient customerClient;
-    private List<Customer> customers;
 
     public CustomerService(CustomerClient customerClient) {
         this.customerClient = customerClient;
