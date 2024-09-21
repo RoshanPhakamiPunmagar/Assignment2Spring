@@ -55,7 +55,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ScreamerWebAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ScreamerWebAppApplication.class, args);
+        SpringApplicationBuilder webApp = new SpringApplicationBuilder(ScreamerWebAppApplication.class);
+        webApp.properties("server.port=8080");
+        webApp.properties("spring.application.name=recommendationClient");
+        webApp.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
+        webApp.properties("eureka.instance.prefer-ip-address=true");
+        webApp.run(args);
     }
 
 }
