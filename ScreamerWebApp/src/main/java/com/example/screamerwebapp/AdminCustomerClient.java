@@ -20,7 +20,7 @@ import java.util.List;
 // This interface defines methods for various operations related to customers
 // through the Feign client, which simplifies HTTP communication and serialization.
 
-@FeignClient(name = "admin-customer")
+@FeignClient(name = "adminService")
 public interface AdminCustomerClient {
 
     // Fetch a list of all customers
