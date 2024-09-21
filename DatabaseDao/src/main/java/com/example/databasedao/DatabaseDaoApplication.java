@@ -11,9 +11,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
 
 /**
- * Movies.java
- *
- * @author : Teams Date: 16/09/2024 Initalzing data
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * start and seed database
+ * ******************************************************
  */
 @SpringBootApplication
 @EnableDiscoveryClient
