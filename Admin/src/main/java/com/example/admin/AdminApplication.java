@@ -29,7 +29,7 @@ public class AdminApplication {
         SpringApplicationBuilder adminService = new SpringApplicationBuilder(AdminApplication.class);
         adminService.properties("server.port=8222");
         // #comment in application.properties
-        adminService.properties("spring.application.name=Database");
+        adminService.properties("spring.application.name=adminService");
         adminService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
         adminService.properties("eureka.instance.prefer-ip-address=true");
 
