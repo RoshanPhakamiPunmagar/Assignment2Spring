@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -73,14 +74,18 @@ public class MainPageController {
     }
 
     @GetMapping("/landing")
-    public String landing() {
+    public ModelAndView landing() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("landing.html");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             System.out.println("Debug: " + "User is logged in");
-            return "landing";
+            model.addObject("isCustomerAdmin", true);
+            return model;
         }
+        model.setViewName("redirect:/login");
+        return model;
 
-        return "redirect:/login";
     }
 }

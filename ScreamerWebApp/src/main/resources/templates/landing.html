@@ -146,12 +146,14 @@
         </body>
         <script type="text/javascript">
            function removeAdminButton() {
-               var x = document.getElementById("adminButton");
+               var x = document.getElementById("adminButton")
                var isAdmin = ${isCustomerAdmin}
                if(isAdmin)
                {
                x.style.display = "none";    
+               
                }
+               alert('isAdmin')
             
            }
            window.onload = removeAdminButton;
