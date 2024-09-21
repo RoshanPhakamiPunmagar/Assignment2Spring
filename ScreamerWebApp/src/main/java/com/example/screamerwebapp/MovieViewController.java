@@ -122,11 +122,7 @@ public class MovieViewController {
         return "redirect:/view/all";
     }
     
-    @GetMapping("/landing")
-    public String landing()
-    {
-        return "landing";
-    }
+    
 
 }
 
