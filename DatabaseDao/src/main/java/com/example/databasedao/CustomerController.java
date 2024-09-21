@@ -5,6 +5,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * Routes for interfacing with customer database
+ * ******************************************************
+ */
 @RestController
 @RequestMapping("/user")
 public class CustomerController {
