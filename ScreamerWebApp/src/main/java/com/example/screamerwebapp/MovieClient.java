@@ -14,7 +14,7 @@ import java.util.List;
  * MovieClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "movie")
+@FeignClient(name = "screamerService")
 public interface MovieClient {
 
     @GetMapping("/movies/get/all")
