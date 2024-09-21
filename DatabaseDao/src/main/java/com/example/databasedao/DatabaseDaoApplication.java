@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseDaoApplication {
 
     public static void main(String[] args) {
+        try{
         //set up discovery client and configure port and name for discovery
         SpringApplicationBuilder DatabaseService = new SpringApplicationBuilder(DatabaseDaoApplication.class);
         DatabaseService.properties("server.port=8000");
@@ -33,6 +34,12 @@ public class DatabaseDaoApplication {
         DatabaseService.properties("eureka.instance.prefer-ip-address=true");
 
         DatabaseService.run(args);
+        }catch(Exception  e)
+        {
+            System.out.println("--------------------------ERROR---------------------------");
+            System.out.println("Cannot connect to discovery server");
+            System.out.println("--------------------------ERROR---------------------------");
+        }
     }
 
 }

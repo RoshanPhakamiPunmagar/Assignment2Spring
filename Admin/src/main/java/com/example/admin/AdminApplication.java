@@ -27,6 +27,7 @@ public class AdminApplication {
 
     public static void main(String[] args) {
 
+        try{
         SpringApplicationBuilder adminService = new SpringApplicationBuilder(AdminApplication.class);
         adminService.properties("server.port=8222");
         // #comment in application.properties
@@ -35,6 +36,12 @@ public class AdminApplication {
         adminService.properties("eureka.instance.prefer-ip-address=true");
 
         adminService.run(args);
+        }catch(Exception  e)
+        {
+            System.out.println("--------------------------ERROR---------------------------");
+            System.out.println("Cannot connect to discovery server");
+            System.out.println("--------------------------ERROR---------------------------");
+        }
     }
 
 }

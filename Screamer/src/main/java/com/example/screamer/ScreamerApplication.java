@@ -20,12 +20,19 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class ScreamerApplication {
 
     public static void main(String[] args) {
+        try{
         SpringApplicationBuilder screamerService = new SpringApplicationBuilder(ScreamerApplication.class);
         screamerService.properties("server.port=8888");
         screamerService.properties("spring.application.name=screamerService");
         screamerService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
         screamerService.properties("eureka.instance.prefer-ip-address=true");
         screamerService.run(args);
+        }catch(Exception  e)
+        {
+            System.out.println("--------------------------ERROR---------------------------");
+            System.out.println("Cannot connect to discovery server");
+            System.out.println("--------------------------ERROR---------------------------");
+        }
     }
 
 }

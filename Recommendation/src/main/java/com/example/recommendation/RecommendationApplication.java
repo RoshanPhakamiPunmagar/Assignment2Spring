@@ -20,6 +20,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class RecommendationApplication {
 
     public static void main(String[] args) {
+        try{
         //setup disovery client
         SpringApplicationBuilder recommendationService = new SpringApplicationBuilder(RecommendationApplication.class);
         recommendationService.properties("server.port=8333");
@@ -27,6 +28,12 @@ public class RecommendationApplication {
         recommendationService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
         recommendationService.properties("eureka.instance.prefer-ip-address=true");
         recommendationService.run(args);
+        }catch(Exception  e)
+        {
+            System.out.println("--------------------------ERROR---------------------------");
+            System.out.println("Cannot connect to discovery server");
+            System.out.println("--------------------------ERROR---------------------------");
+        }
     }
 
 }
