@@ -1,7 +1,15 @@
 package com.example.recommendation;
 
 import org.springframework.stereotype.Service;
-
+/**
+ * Author: Caleb Davidson
+ * 
+ * File Name: RecommendationService
+ * Date: 16/9/2024
+ * Purpose:
+ * service for getting recommendations 
+ * ******************************************************
+ */
 @Service
 public class RecommendationService {
 

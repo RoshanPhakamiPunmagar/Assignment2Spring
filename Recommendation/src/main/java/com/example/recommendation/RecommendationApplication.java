@@ -5,13 +5,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-
+/**
+ * Author: Caleb Davidson
+ * 
+ * File Name: RecommendationApplication.java
+ * Date: 16/9/2024
+ * Purpose:
+ * 
+ * ******************************************************
+ */
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
 public class RecommendationApplication {
 
     public static void main(String[] args) {
+        //setup disovery client
         SpringApplicationBuilder recommendationService = new SpringApplicationBuilder(RecommendationApplication.class);
         recommendationService.properties("server.port=8333");
         recommendationService.properties("spring.application.name=recommendationService");

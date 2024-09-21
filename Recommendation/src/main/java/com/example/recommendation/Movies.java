@@ -11,7 +11,15 @@ import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * movie class
+ * ******************************************************
+ */
 @Entity
 @Data
 @NoArgsConstructor
