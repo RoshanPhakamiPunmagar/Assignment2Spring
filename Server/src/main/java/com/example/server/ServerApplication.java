@@ -2,6 +2,7 @@ package com.example.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
@@ -9,7 +10,11 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 public class ServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServerApplication.class, args);
+        SpringApplicationBuilder eureka = new SpringApplicationBuilder(ServerApplication.class);
+        eureka.properties("server.port=8761");
+        eureka.properties("eureka.client.register-with-eureka=false");
+        eureka.properties("eureka.client.fetch-registry=false");
+        eureka.run(args);
     }
 
 }
