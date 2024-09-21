@@ -18,34 +18,34 @@ import java.util.List;
  * ******************************************************
  */
 
-@FeignClient(name = "database", url = "http://localhost:8009/admin/movies")
+@FeignClient(name = "database", url = "http://localhost:8009")
 // Feign client interface to communicate with the "admin-movies" microservice.
 // Base URL for the movies service is: http://localhost:8009/admin/movies
 interface AdminMoviesClient {
 
-    @GetMapping("/get/all")
+    @GetMapping("/admin/movies/get/all")
     // Fetches a list of all movies from the movies microservice.
     List<Movies> listMovies();
 
-    @GetMapping("/blocked")
+    @GetMapping("/admin/movies/blocked")
     // Fetches a list of all blocked movies.
     List<Movies> listBlockedMovies();
 
-    @GetMapping("/unblocked")
+    @GetMapping("/admin/movies/unblocked")
     // Fetches a list of all unblocked movies.
     List<Movies> listUnblockedMovies();
 
-    @GetMapping("/status/{id}")
+    @GetMapping("/admin/movies/status/{id}")
     // Checks if a movie with the given ID is blocked.
     // Returns true if blocked, false otherwise.
     Boolean checkMovieStatus(@PathVariable Long id);
 
-    @PostMapping("/block/{id}")
+    @PostMapping("/admin/movies/block/{id}")
     // Blocks a movie by its ID.
     // Returns a ResponseEntity<Void> indicating the result of the operation.
     ResponseEntity<Void> blockMovie(@PathVariable Long id);
 
-    @PostMapping("/unblock/{id}")
+    @PostMapping("/admin/movies/unblock/{id}")
     // Unblocks a movie by its ID.
     // Returns a ResponseEntity<Void> indicating the result of the operation.
     ResponseEntity<Void> unblockMovie(@PathVariable Long id);
