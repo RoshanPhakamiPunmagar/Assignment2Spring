@@ -15,7 +15,7 @@ import java.util.List;
  * MovieClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "database", url = "http://localhost:8009")
+@FeignClient(name = "database")
 @Transactional
 public interface MovieClient {
 
