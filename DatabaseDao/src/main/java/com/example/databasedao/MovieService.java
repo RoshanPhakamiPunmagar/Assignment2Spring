@@ -4,7 +4,15 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * class for sql queries 
+ * ******************************************************
+ */
 @Service
 public class MovieService {
 
@@ -25,11 +33,13 @@ public class MovieService {
 
     }
 
+    //add new movie
     public Movies postMovie(Movies movie) {
         System.out.println(movie.getId());
         return movieRepository.save(movie);
     }
 
+    //remove movie from watchlist
     @Transactional
     public void removeWatchList(Long id, Customer customer) {
         Optional<Movies> movies = movieRepository.findById(id);
@@ -42,6 +52,7 @@ public class MovieService {
 
     }
 
+    //create a new watch list for customer with ID
     public void postWatchlist(Long id, Customer customer) {
         // Retrieve the movie from the repository
         Movies movie = movieRepository.findById(id).get();
@@ -49,8 +60,7 @@ public class MovieService {
 
         movie.setInWatchList(true);
 
-        //movieRepository.save(movie);
-        //watchListToAdd.addMovie(movie);
+        
         if (cust.getWatchList() == null) {
             System.out.println("Debug: --------------------------------------ADD TO WATCHLIST-----------------------------------------------------------------------------");
 
@@ -74,15 +84,16 @@ public class MovieService {
 
         System.out.println("Debug: ----------------------------------------------END DEBUG------------------------------------------------------------------");
 
-        //watchListToAdd.setCustomer(customerService.getCustomerById(customer.getId()));
-        // Save the updated watchlist
+        
     }
 
+    //get all movies
     public List<Movies> getAllMovies() {
         System.out.println(movieRepository.findAll());
         return movieRepository.findByBlocked(false);
     }
 
+    //return customer watchlist
     public WatchList getAllWatchList(String custId) {
         System.out.println(watchListRepository.findAll().size());
         Customer cust = customerRepository.findByemail(custId);
@@ -107,6 +118,7 @@ public class MovieService {
 
     }
 
+    //return a movie based on its ID
     public Optional<Movies> getMovieById(Long id) {
         try {
             return movieRepository.findById(id);
@@ -115,6 +127,7 @@ public class MovieService {
         }
     }
 
+    //update a movie
     public Movies updateMovie(Long id, Movies movie) {
         System.out.println("124124");
         Movies existingMovie = movieRepository.findById(id).get();
