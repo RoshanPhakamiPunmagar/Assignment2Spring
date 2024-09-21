@@ -17,16 +17,16 @@ import java.util.List;
 @FeignClient(name = "database", url = "http://localhost:8009/user")
 public interface CustomerClient {
 
-    @GetMapping("/get/all")
+    @GetMapping("/user/get/all")
     List<Customer> getAllCustomer();
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/user/get/{id}")
     ResponseEntity<Customer> retrieveById(@RequestParam Long id);
 
-    @GetMapping("/getByEmail/{email}")
+    @GetMapping("/user/getByEmail/{email}")
     Customer getByEmail(@RequestParam String email);
 
-    @PostMapping("/add")
+    @PostMapping("/user/add")
     @ResponseBody
     ResponseEntity<Customer> addCustomer(@RequestBody Customer customer);
 
