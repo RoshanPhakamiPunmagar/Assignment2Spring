@@ -16,7 +16,7 @@ import java.util.List;
  * Feign client interface for interacting with the Admin Movies service.
  * This interface defines the endpoints for managing movies.
  */
-@FeignClient(name = "adminService", url = "http://localhost:8007/admin/movies")
+@FeignClient(name = "adminService")
 interface AdminMoviesClient {
 
     /**
