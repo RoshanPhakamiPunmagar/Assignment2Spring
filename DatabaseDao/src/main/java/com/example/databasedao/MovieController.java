@@ -9,7 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * routes for interacting with movie database
+ * ******************************************************
+ */
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
@@ -20,6 +28,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    //gets all movies
     @GetMapping("/get/all")
     public ResponseEntity<List<Movies>> retrieveAll() {
         List<Movies> movies = movieService.getAllMovies();
@@ -27,18 +36,21 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
+    //get watch list from a particular customer using their customer ID
     @GetMapping("/get/watchlist/all/{custID}")
     public ResponseEntity<WatchList> retrieveAllWatchList(@PathVariable String custID) {
         WatchList watchLists = movieService.getAllWatchList(custID);
         return ResponseEntity.ok(watchLists);
     }
 
+    //gets a movie based on its ID
     @GetMapping("/get/{id}")
     public ResponseEntity<Movies> retrieveId(@PathVariable Long id) {
         Optional<Movies> movie = movieService.getMovieById(id);
         return movie.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    //update a movie based on its ID
     @PutMapping("/update/{id}")
     @ResponseBody
     public ResponseEntity<Movies> updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie) {
@@ -54,12 +66,14 @@ public class MovieController {
         }
     }
 
+    //add a new movie
     @PostMapping("/add")
     public ResponseEntity<Movies> addMovie(@RequestBody Movies movie) {
         Movies createdMovie = movieService.postMovie(movie);
         return ResponseEntity.ok(createdMovie);
     }
 
+    //add a movie to watchlist based on the watchlist ID
     @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addMovieToWatchlist(@PathVariable("id") Long id, @RequestParam String action, @RequestBody Customer customer) {
         WatchList updatedMovie = new WatchList();
