@@ -4,6 +4,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * service class containing customer related logic
+ * ******************************************************
+ */
+
 @Service
 public class CustomerService {
 
