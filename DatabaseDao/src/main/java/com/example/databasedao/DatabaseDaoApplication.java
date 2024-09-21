@@ -24,10 +24,11 @@ import org.springframework.stereotype.Component;
 public class DatabaseDaoApplication {
 
     public static void main(String[] args) {
+        //set up discovery client and configure port and name for discovery
         SpringApplicationBuilder DatabaseService = new SpringApplicationBuilder(DatabaseDaoApplication.class);
         DatabaseService.properties("server.port=8000");
-        // #comment in application.properties
         DatabaseService.properties("spring.application.name=database");
+        //set url to discovery server
         DatabaseService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
         DatabaseService.properties("eureka.instance.prefer-ip-address=true");
 
@@ -41,6 +42,7 @@ public class DatabaseDaoApplication {
 @Transactional
 class AppInit implements ApplicationRunner {
 
+    //inject database repos
     private final MovieController movieController;
     private final MoviesRepository moviesRepository;
     private final CustomerRepository customerRepository;
@@ -48,7 +50,6 @@ class AppInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // Create and save movie entries
         // Create and save movie entries
         Movies m = new Movies();
         m.setTitle("Getout");
