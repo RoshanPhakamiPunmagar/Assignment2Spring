@@ -15,20 +15,20 @@ import java.util.List;
  * MovieClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "database", url = "http://localhost:8009/movies")
+@FeignClient(name = "database", url = "http://localhost:8009")
 @Transactional
 public interface MovieClient {
 
-    @GetMapping("/get/all")
+    @GetMapping("/movies/get/all")
     List<Movies> getAllMovies();
 
-    @GetMapping("/get/watchlist/all/{custID}")
+    @GetMapping("/movies/get/watchlist/all/{custID}")
     WatchList getAllWatchList(@PathVariable("custID") String custID);
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/movies/update/{id}")
     Movies updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie);
 
-    @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/movies/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     void addMoveToWatchList(@PathVariable("id") Long id, @RequestParam("action") String action, @RequestBody Customer customer);
 
 }
