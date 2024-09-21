@@ -8,7 +8,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Author: ??
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * watch list data class
+ * ******************************************************
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -18,6 +26,7 @@ public class WatchList {
     @GeneratedValue
     private Long id;
 
+    //links to movie list
     @ManyToMany
     @JoinTable(
             name = "watchlist_movies",
@@ -26,6 +35,7 @@ public class WatchList {
     )
     private List<Movies> movies = new ArrayList<>();
 
+    //add movie to list
     public void addMovie(Movies movie) {
         // Check to avoid adding duplicates
         if (!this.movies.contains(movie)) {
@@ -33,6 +43,7 @@ public class WatchList {
         }
     }
 
+    //links to customer
     @OneToOne
     @JsonBackReference(value = "customer-class")
     private Customer customer;

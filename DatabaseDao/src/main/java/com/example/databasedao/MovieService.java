@@ -10,7 +10,7 @@ import java.util.Optional;
  * File Name: AdminMoviesController.java
  * Date: 16/9/2024
  * Purpose:
- * class for sql queries 
+ * 
  * ******************************************************
  */
 @Service

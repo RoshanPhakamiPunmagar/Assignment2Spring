@@ -15,7 +15,7 @@ import java.util.List;
  * File Name: AdminMoviesController.java
  * Date: 16/9/2024
  * Purpose:
- * class for sql queries 
+ * main movie class
  * ******************************************************
  */
 @Entity

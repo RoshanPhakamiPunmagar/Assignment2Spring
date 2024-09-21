@@ -7,19 +7,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Random;
-
+/**
+ * Author: Caleb Davidson
+ * 
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * 
+ * ******************************************************
+ */
 @Service
 public class RecomendationService {
-
+    //inject movie service
     @Autowired
     private final MovieService movieService;
-
+    //create random number generator object
     Random random = new Random();
 
     public RecomendationService(MovieService movieService) {
         this.movieService = movieService;
     }
 
+    //returns a random movie recommendation
     ResponseEntity<Movies> getRecommendation() {
 
         Movies randomMovie = getRandomMovie();
@@ -28,6 +37,7 @@ public class RecomendationService {
 
     }
 
+    //returns a random movie recommendation
     Movies getRandomMovie() {
         List<Movies> movies = movieService.getAllMovies();
 
