@@ -31,12 +31,15 @@ public class Customer {
 
     private String password;
 
+    //customers security roll usually user or admin however any roll can be assigned
     private String roll;
     private String genre;
 
+    //watch list mapping
     @OneToOne(mappedBy = "customer")
     @JsonManagedReference(value = "customer-class")
     private WatchList watchList;
+    //is this customer blocked (I.E not allowed to login)
     @NonNull
     private boolean blocked;
 
