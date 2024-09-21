@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,14 @@ import org.springframework.stereotype.Component;
 public class DatabaseDaoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DatabaseDaoApplication.class, args);
+        SpringApplicationBuilder DatabaseService = new SpringApplicationBuilder(DatabaseDaoApplication.class);
+        DatabaseService.properties("server.port=8000");
+        // #comment in application.properties
+        DatabaseService.properties("spring.application.name=Database");
+        DatabaseService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
+        DatabaseService.properties("eureka.instance.prefer-ip-address=true");
+
+        DatabaseService.run(args);
     }
 
 }
