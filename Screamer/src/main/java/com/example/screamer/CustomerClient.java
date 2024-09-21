@@ -14,7 +14,7 @@ import java.util.List;
  * CustomerClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "customer", url = "http://localhost:8009/user")
+@FeignClient(name = "database", url = "http://localhost:8009/user")
 public interface CustomerClient {
 
     @GetMapping("/get/all")
