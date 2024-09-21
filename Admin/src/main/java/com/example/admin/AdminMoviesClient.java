@@ -18,7 +18,7 @@ import java.util.List;
  * ******************************************************
  */
 
-@FeignClient(name = "admin-movies", url = "http://localhost:8009/admin/movies")
+@FeignClient(name = "database", url = "http://localhost:8009/admin/movies")
 // Feign client interface to communicate with the "admin-movies" microservice.
 // Base URL for the movies service is: http://localhost:8009/admin/movies
 interface AdminMoviesClient {
