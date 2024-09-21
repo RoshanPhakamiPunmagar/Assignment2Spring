@@ -14,7 +14,7 @@ import java.util.List;
  * MovieClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "movie", url = "http://localhost:8003/movies")
+@FeignClient(name = "movie")
 public interface MovieClient {
 
     @GetMapping("/get/all")
