@@ -17,13 +17,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class CustomerController {
-
+    //injects service class
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
+    //returns all customers
     @GetMapping("/get/all")
     public ResponseEntity<List<Customer>> retrieveAll() {
         List<Customer> movies = customerService.getAllCustomers();
@@ -31,18 +32,21 @@ public class CustomerController {
         return ResponseEntity.ok(movies);
     }
 
+    //returns a customer based on the customers ID provided
     @GetMapping("/get/{id}")
     public ResponseEntity<Customer> retrieveById(@RequestParam Long id) {
         Customer customer = customerService.getCustomerById(id);
         return ResponseEntity.ok(customer);
     }
 
+    //adds a new customer
     @PostMapping("/add")
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
         Customer createdCustomer = customerService.postCustomer(customer);
         return ResponseEntity.ok(createdCustomer);
     }
 
+    //Gets customer by email (used with auth to provide user specific content)
     @GetMapping("/getByEmail/{email}")
     public Customer getByEmail(@RequestParam String email) {
         return customerService.getByEmail(email);
