@@ -125,7 +125,7 @@
                     <a th:href="@{/view/all}" class="btn btn-danger btn-lg mt-4">View All Movies</a>
 
                     <div sec:authorize="hasRole('ADMIN')">
-                        <a th:href="@{/admin/movie/view/all}" class="btn btn-primary btn-lg mt-4">Admin Panel</a>
+                        <a th:href="@{/admin/movie/view/all}" class="btn btn-primary btn-lg mt-4" id="adminButton">Admin Panel</a>
                     </div>
 
                     <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
