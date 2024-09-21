@@ -86,9 +86,11 @@ public class MainPageController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             System.out.println("Debug: " + "User is logged in");
-          
+            System.out.println("Debug: Customer email is " + customerClient.getByEmail(auth.getName()).getEmail());
+            if (customerClient.getByEmail(auth.getName()).getRoll() == "ROLE_ADMIN") {
                 model.addObject("isCustomerAdmin", "true");
-            
+            }
+
             return model;
         }
         model.setViewName("redirect:/login");
