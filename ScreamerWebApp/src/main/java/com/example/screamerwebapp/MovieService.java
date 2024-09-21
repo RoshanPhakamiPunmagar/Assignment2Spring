@@ -21,7 +21,6 @@ public class MovieService {
     private final RecommendationClient recommendationClient;
     private final MovieClient movieClient;
     private final CustomerClient customerClient;
-    private List<Movies> movies;
     //Constructor
     public MovieService(RecommendationClient recommendationClient, MovieClient movieClient , CustomerClient customerClient) {
         this.recommendationClient = recommendationClient;
