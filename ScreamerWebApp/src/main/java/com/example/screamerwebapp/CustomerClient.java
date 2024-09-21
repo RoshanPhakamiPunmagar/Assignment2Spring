@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @FeignClient(name = "screamerService")
 public interface CustomerClient {
 
-    @GetMapping("/get/all")
+    @GetMapping("/user/get/all")
     List<Customer> getAllCustomer();
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/user/get/{id}")
     ResponseEntity<Customer> retrieveById(@RequestParam Long id);
     
-    @GetMapping("/getByEmail/{email}")
+    @GetMapping("/user/getByEmail/{email}")
     Customer getByEmail(@RequestParam String email);
     
-    @PostMapping("/addCustomer")
+    @PostMapping("/user/addCustomer")
     @ResponseBody
     ResponseEntity<Void> addCustomer(@RequestBody Customer customer);
 
