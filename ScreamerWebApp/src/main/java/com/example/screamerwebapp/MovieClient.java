@@ -17,16 +17,16 @@ import java.util.List;
 @FeignClient(name = "movie")
 public interface MovieClient {
 
-    @GetMapping("/get/all")
+    @GetMapping("/movies/get/all")
     List<Movies> getAllMovies();
 
-    @GetMapping("/get/watchlist/all/{custID}")
+    @GetMapping("/movies/get/watchlist/all/{custID}")
     WatchList getAllWatchListMovies(@PathVariable("custID") String custID);
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/movies/update/{id}")
     Movies updateMovieById(@PathVariable("id") Long id, @RequestBody Movies movie);
 
-    @PostMapping(value = "/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/movies/add/watchlist/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     void addMovieToWatchList(@PathVariable("id") Long id, @RequestParam("action") String action, @RequestBody Customer customer);
 
 }
