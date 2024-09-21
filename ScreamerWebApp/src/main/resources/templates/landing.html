@@ -39,6 +39,24 @@
                 margin-top: 30px;
             }
         </style>
+
+        <script type="text/javascript">
+            function removeAdminButton() {
+
+                var x = document.getElementById("adminButton");
+
+
+                var isAdmin = "[[${isCustomerAdmin}]]";
+                console.log(isAdmin);
+                if (isAdmin != "true")
+                {
+                    x.style.display = "none";
+                }
+
+            }
+            window.onload = removeAdminButton;
+        </script>
+
     </head>
     <body>
 
@@ -143,19 +161,6 @@
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        </body>
-        <script type="text/javascript">
-           function removeAdminButton() {
-               var x = document.getElementById("adminButton")
-               var isAdmin = ${isCustomerAdmin}
-               if(isAdmin)
-               {
-               x.style.display = "none";    
-               
-               }
-               alert('isAdmin')
-            
-           }
-           window.onload = removeAdminButton;
-        </script>
-        </html>
+    </body>
+
+</html>

@@ -86,11 +86,9 @@ public class MainPageController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             System.out.println("Debug: " + "User is logged in");
-            try {
-                model.addObject("isCustomerAdmin", objectMapper.writeValueAsString(true));
-            } catch (JsonProcessingException ex) {
-                System.out.println("Failed to convert to json");
-            }
+          
+                model.addObject("isCustomerAdmin", "true");
+            
             return model;
         }
         model.setViewName("redirect:/login");
