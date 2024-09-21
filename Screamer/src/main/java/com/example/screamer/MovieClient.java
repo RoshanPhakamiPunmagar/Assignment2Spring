@@ -15,7 +15,7 @@ import java.util.List;
  * MovieClient that takes request and sends that request to it assigned url
  * ******************************************************
  */
-@FeignClient(name = "database")
+@FeignClient(name = "database", contextId = "movieClient")
 @Transactional
 public interface MovieClient {
 
