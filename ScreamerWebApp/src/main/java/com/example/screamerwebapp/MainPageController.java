@@ -4,6 +4,10 @@
  */
 package com.example.screamerwebapp;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -82,7 +86,11 @@ public class MainPageController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             System.out.println("Debug: " + "User is logged in");
-            model.addObject("isCustomerAdmin", true);
+            try {
+                model.addObject("isCustomerAdmin", objectMapper.writeValueAsString(true));
+            } catch (JsonProcessingException ex) {
+                System.out.println("Failed to convert to json");
+            }
             return model;
         }
         model.setViewName("redirect:/login");
