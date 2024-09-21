@@ -77,6 +77,7 @@ public class MainPageController {
     public ModelAndView landing() {
         ModelAndView model = new ModelAndView();
         model.setViewName("landing.html");
+        ObjectMapper objectMapper = new ObjectMapper();
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
