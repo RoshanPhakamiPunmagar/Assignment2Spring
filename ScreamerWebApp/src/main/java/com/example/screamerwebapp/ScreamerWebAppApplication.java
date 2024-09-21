@@ -78,7 +78,7 @@ public class ScreamerWebAppApplication {
                 })
                 .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/view/landing", true) // true ensures it always redirects to /posts after login
+                .defaultSuccessUrl("/landing", true) // true ensures it always redirects to /posts after login
                 .failureUrl("/login?error")
                 .permitAll()
                 ).logout(logout -> logout
