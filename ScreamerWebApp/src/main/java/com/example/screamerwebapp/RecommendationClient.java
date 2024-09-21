@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * RecommendationClient interface that connects with recommendation client and gets requested data
  * ******************************************************
  */
-@FeignClient(name = "recommendation", url = "http://localhost:8001/recommendation")
+@FeignClient(name = "recommendationService")
 public interface RecommendationClient {
 
     @GetMapping("/get")
