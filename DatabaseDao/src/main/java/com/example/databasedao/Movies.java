@@ -9,7 +9,15 @@ import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Author: 
+ * Contributor Caleb Davidson
+ * File Name: AdminMoviesController.java
+ * Date: 16/9/2024
+ * Purpose:
+ * class for sql queries 
+ * ******************************************************
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -31,12 +39,15 @@ public class Movies {
     @NonNull
     private String subGenre;
 
+    //is movie in watchlist
     @NonNull
     private boolean inWatchList; // Renamed for clarity
 
+    //is movie blocked
     @NonNull
     private boolean blocked;
 
+    //link to watchlist
     @ManyToOne
     @JsonBackReference(value = "watchlist-class")
     private WatchList watchList;
