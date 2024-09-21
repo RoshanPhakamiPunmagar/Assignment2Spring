@@ -18,7 +18,7 @@ import java.util.List;
  * ******************************************************
  */
 
-@FeignClient(name = "database")
+@FeignClient(name = "database", contextId = "adminCustomerClient")
 // This interface uses Feign to communicate with the "admin-customer" microservice
 // Base URL: http://localhost:8009/admin/customer
 public interface AdminCustomerClient {
