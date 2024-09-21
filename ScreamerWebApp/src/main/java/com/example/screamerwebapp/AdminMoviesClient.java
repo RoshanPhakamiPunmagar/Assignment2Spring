@@ -22,36 +22,36 @@ interface AdminMoviesClient {
     /**
      * Retrieve a list of all movies.
      */
-    @GetMapping("/get/all")
+    @GetMapping("/admin/movies/get/all")
     List<Movies> listMovies();
 
     /**
      * Retrieve a list of all blocked movies.
      */
-    @GetMapping("/blocked")
+    @GetMapping("/admin/movies/blocked")
     List<Movies> listBlockedMovies();
 
     /**
      * Retrieve a list of all unblocked movies.
      */
-    @GetMapping("/unblocked")
+    @GetMapping("/admin/movies/unblocked")
     List<Movies> listUnblockedMovies();
 
     /**
      * Check the status of a specific movie to determine if it is blocked or not.
      */
-    @GetMapping("/status/{id}")
+    @GetMapping("/admin/movies/status/{id}")
     Boolean checkMovieStatus(@PathVariable Long id);
 
     /**
      * Block a specific movie, making it unavailable for viewing.
      */
-    @PostMapping("/block/{id}")
+    @PostMapping("/admin/movies/block/{id}")
     ResponseEntity<Void> blockMovie(@PathVariable Long id);
 
     /**
      * Unblock a specific movie, making it available for viewing.
      */
-    @PostMapping("/unblock/{id}")
+    @PostMapping("/admin/movies/unblock/{id}")
     ResponseEntity<Void> unblockMovie(@PathVariable Long id);
 }
