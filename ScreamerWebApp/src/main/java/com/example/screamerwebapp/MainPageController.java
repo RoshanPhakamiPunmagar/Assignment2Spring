@@ -87,14 +87,16 @@ public class MainPageController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             System.out.println("Debug: " + "User is logged in");
             System.out.println("Debug: Customer email is " + customerClient.getByEmail(auth.getName()).getEmail());
-            if (customerClient.getByEmail(auth.getName()).getRoll() == "ROLE_ADMIN") {
+            System.out.println("Debug: Customer role is " + customerClient.getByEmail(auth.getName()).getRoll());
+            
+            if (customerClient.getByEmail(auth.getName()).getRoll().toString().equals("ROLE_ADMIN")) {
+                System.out.println("This customer is a admin");
                 model.addObject("isCustomerAdmin", "true");
             }
-
+            
             return model;
         }
         model.setViewName("redirect:/login");
         return model;
-
     }
 }
