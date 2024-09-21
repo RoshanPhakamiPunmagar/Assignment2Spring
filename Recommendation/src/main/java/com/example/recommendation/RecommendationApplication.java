@@ -2,6 +2,7 @@ package com.example.recommendation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
@@ -11,7 +12,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class RecommendationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RecommendationApplication.class, args);
+        SpringApplicationBuilder recommendationService = new SpringApplicationBuilder(RecommendationApplication.class);
+        recommendationService.properties("server.port=8333");
+        recommendationService.properties("spring.application.name=recommendationService");
+        recommendationService.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
+        recommendationService.properties("eureka.instance.prefer-ip-address=true");
+        recommendationService.run(args);
     }
 
 }
