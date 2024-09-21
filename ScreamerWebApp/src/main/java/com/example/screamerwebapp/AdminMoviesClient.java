@@ -16,7 +16,7 @@ import java.util.List;
  * Feign client interface for interacting with the Admin Movies service.
  * This interface defines the endpoints for managing movies.
  */
-@FeignClient(name = "adminService")
+@FeignClient(name = "adminService", contextId = "adminMoviesClient")
 interface AdminMoviesClient {
 
     /**
