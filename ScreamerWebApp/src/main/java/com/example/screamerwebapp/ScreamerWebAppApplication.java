@@ -56,8 +56,8 @@ public class ScreamerWebAppApplication {
 
     public static void main(String[] args) {
         SpringApplicationBuilder screamerWebApp = new SpringApplicationBuilder(ScreamerWebAppApplication.class);
-        screamerWebApp.properties("server.port=8888");
-        screamerWebApp.properties("spring.application.name=screamerService");
+        screamerWebApp.properties("server.port=8080");
+        screamerWebApp.properties("spring.application.name=screamerWebApp");
         screamerWebApp.properties("eureka.client.service-url.defaultZone=http://localhost:8761/eureka/");
         screamerWebApp.properties("eureka.instance.prefer-ip-address=true");
         screamerWebApp.run(args);
